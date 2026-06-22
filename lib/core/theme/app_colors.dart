@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // Theme: Deep Forest & Premium Minimalism
-  static const Color primary = Color(0xFF0D3D35); // Dark Green - used for CTA, prominent buttons
+  static const Color primary =
+      Color(0xFF0D3D35); // Dark Green - used for CTA, prominent buttons
   static const Color onPrimary = Color(0xFFFFFFFF);
   static const Color primaryContainer = Color(0xFF0D3D35);
   static const Color onPrimaryContainer = Color(0xFF7BA89D);

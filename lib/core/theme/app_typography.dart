@@ -5,7 +5,8 @@ import "package:flutter_screenutil/flutter_screenutil.dart";
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTypography {
-  static final String fontFamily = GoogleFonts.hankenGrotesk().fontFamily ?? 'Hanken Grotesk';
+  static final String fontFamily =
+      GoogleFonts.hankenGrotesk().fontFamily ?? 'Hanken Grotesk';
 
   static TextStyle get displayLarge => TextStyle(
         fontFamily: fontFamily,

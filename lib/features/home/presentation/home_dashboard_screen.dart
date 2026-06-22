@@ -110,14 +110,15 @@ class _HomeDashboardScreenState extends State<HomeDashboardScreen> {
                       Text(
                         'No recent tasks',
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant,
+                            ),
                       ),
                     ],
                   ),
                 ),
               ),
-
             ],
           ),
         ),

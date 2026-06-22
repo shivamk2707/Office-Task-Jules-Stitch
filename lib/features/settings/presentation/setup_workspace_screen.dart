@@ -31,11 +31,12 @@ class SetupWorkspaceScreen extends StatelessWidget {
               Text(
                 'Tell us a bit about your team and how you plan to use the app.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
               ),
               SizedBox(height: 32.h),
-              Text('Workspace Name', style: Theme.of(context).textTheme.labelSmall),
+              Text('Workspace Name',
+                  style: Theme.of(context).textTheme.labelSmall),
               SizedBox(height: 8.h),
               TextFormField(
                 decoration: const InputDecoration(

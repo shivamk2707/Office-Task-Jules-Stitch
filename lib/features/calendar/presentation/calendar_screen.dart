@@ -34,11 +34,16 @@ class CalendarScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('October 2026', style: Theme.of(context).textTheme.headlineSmall),
+                      Text('October 2026',
+                          style: Theme.of(context).textTheme.headlineSmall),
                       Row(
                         children: [
-                          IconButton(icon: const Icon(Icons.chevron_left), onPressed: () {}),
-                          IconButton(icon: const Icon(Icons.chevron_right), onPressed: () {}),
+                          IconButton(
+                              icon: const Icon(Icons.chevron_left),
+                              onPressed: () {}),
+                          IconButton(
+                              icon: const Icon(Icons.chevron_right),
+                              onPressed: () {}),
                         ],
                       ),
                     ],
@@ -52,7 +57,8 @@ class CalendarScreen extends StatelessWidget {
               child: ListView(
                 padding: EdgeInsets.all(24.w),
                 children: [
-                  Text('Agenda', style: Theme.of(context).textTheme.headlineSmall),
+                  Text('Agenda',
+                      style: Theme.of(context).textTheme.headlineSmall),
                   SizedBox(height: 16.h),
                   // Placeholder for agenda items
                   const ListTile(

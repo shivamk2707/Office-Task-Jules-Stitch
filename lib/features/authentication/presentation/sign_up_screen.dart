@@ -31,8 +31,8 @@ class SignUpScreen extends StatelessWidget {
               Text(
                 'Sign up to get started with your new workspace.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
               ),
               SizedBox(height: 32.h),
               Text('Full Name', style: Theme.of(context).textTheme.labelSmall),

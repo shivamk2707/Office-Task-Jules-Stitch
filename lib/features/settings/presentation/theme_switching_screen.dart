@@ -23,7 +23,8 @@ class ThemeSwitchingScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Choose your preferred theme:', style: Theme.of(context).textTheme.titleLarge),
+              Text('Choose your preferred theme:',
+                  style: Theme.of(context).textTheme.titleLarge),
               SizedBox(height: 16.h),
               RadioListTile(
                 value: ThemeMode.system,

@@ -31,8 +31,8 @@ class PersonalizeFlowScreen extends StatelessWidget {
               Text(
                 'Let\'s tailor the AI to match your workflow.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
               ),
               const Spacer(),
               SizedBox(

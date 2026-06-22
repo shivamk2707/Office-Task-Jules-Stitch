@@ -31,7 +31,8 @@ class FocusTimerScreen extends StatelessWidget {
                     child: CircularProgressIndicator(
                       value: 0.75, // Placeholder value
                       strokeWidth: 12.w,
-                      backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+                      backgroundColor:
+                          Theme.of(context).colorScheme.surfaceContainerHighest,
                       color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
@@ -40,9 +41,10 @@ class FocusTimerScreen extends StatelessWidget {
                     children: [
                       Text(
                         '25:00',
-                        style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                          fontSize: 64.sp,
-                        ),
+                        style:
+                            Theme.of(context).textTheme.displayLarge?.copyWith(
+                                  fontSize: 64.sp,
+                                ),
                       ),
                       Text(
                         'Focusing on Design Review',

@@ -31,11 +31,12 @@ class PersonalizeIntegrationsScreen extends StatelessWidget {
               Text(
                 'Connect your favorite tools for a seamless experience.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
               ),
               SizedBox(height: 32.h),
-              _buildIntegrationCard(context, 'Google Calendar', Icons.calendar_today, true),
+              _buildIntegrationCard(
+                  context, 'Google Calendar', Icons.calendar_today, true),
               SizedBox(height: 16.h),
               _buildIntegrationCard(context, 'Slack', Icons.chat, false),
               SizedBox(height: 16.h),
@@ -57,16 +58,23 @@ class PersonalizeIntegrationsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildIntegrationCard(BuildContext context, String title, IconData icon, bool isConnected) {
+  Widget _buildIntegrationCard(
+      BuildContext context, String title, IconData icon, bool isConnected) {
     return ListTile(
       leading: Icon(icon),
       title: Text(title),
       trailing: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: isConnected ? Theme.of(context).colorScheme.surfaceContainerLowest : Theme.of(context).colorScheme.primary,
-          foregroundColor: isConnected ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onPrimary,
-          side: isConnected ? BorderSide(color: Theme.of(context).colorScheme.primary) : null,
+          backgroundColor: isConnected
+              ? Theme.of(context).colorScheme.surfaceContainerLowest
+              : Theme.of(context).colorScheme.primary,
+          foregroundColor: isConnected
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.onPrimary,
+          side: isConnected
+              ? BorderSide(color: Theme.of(context).colorScheme.primary)
+              : null,
         ),
         child: Text(isConnected ? 'Connected' : 'Connect'),
       ),

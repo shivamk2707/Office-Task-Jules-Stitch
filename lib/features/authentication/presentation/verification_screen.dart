@@ -32,8 +32,8 @@ class VerificationScreen extends StatelessWidget {
               Text(
                 'Your account has been verified successfully. You can now access your workspace.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 48.h),
