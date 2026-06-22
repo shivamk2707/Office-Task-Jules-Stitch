@@ -44,7 +44,10 @@ class AllProjectsScreen extends StatelessWidget {
                           children: [
                             Text(
                               'Project ${index + 1}',
-                              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(fontWeight: FontWeight.bold),
                             ),
                             SizedBox(height: 8.h),
                             const Text('3 active tasks • 2 completed'),

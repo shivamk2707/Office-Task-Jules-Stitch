@@ -33,7 +33,10 @@ class TaskDetailsScreen extends StatelessWidget {
             children: [
               Text(
                 'Complete Q3 Financial Report',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall
+                    ?.copyWith(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 16.h),
               Row(
@@ -48,13 +51,17 @@ class TaskDetailsScreen extends StatelessWidget {
                 children: [
                   const Icon(Icons.flag, size: 16, color: Colors.red),
                   SizedBox(width: 8.w),
-                  const Text('High Priority', style: TextStyle(color: Colors.red)),
+                  const Text('High Priority',
+                      style: TextStyle(color: Colors.red)),
                 ],
               ),
               SizedBox(height: 32.h),
               Text(
                 'Description',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium
+                    ?.copyWith(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8.h),
               const Text(

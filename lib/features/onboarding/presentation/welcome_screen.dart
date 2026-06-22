@@ -33,8 +33,8 @@ class WelcomeScreen extends StatelessWidget {
               Text(
                 'Organize your work, stay focused, and achieve more.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                 textAlign: TextAlign.center,
               ),
               const Spacer(),

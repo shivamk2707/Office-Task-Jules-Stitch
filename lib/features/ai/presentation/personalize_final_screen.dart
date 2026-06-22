@@ -31,8 +31,8 @@ class PersonalizeFinalScreen extends StatelessWidget {
               Text(
                 'AI has been configured to match your workflow. You can change these settings later.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
               ),
               const Spacer(),
               SizedBox(

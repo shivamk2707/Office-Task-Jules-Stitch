@@ -38,8 +38,8 @@ class _PersonalizeRoleScreenState extends State<PersonalizeRoleScreen> {
               Text(
                 'This helps us configure default suggestions.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
               ),
               SizedBox(height: 32.h),
               _buildRoleCard(context, 'Software Engineer', Icons.code),

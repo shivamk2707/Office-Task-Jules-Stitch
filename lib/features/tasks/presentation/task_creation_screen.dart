@@ -39,7 +39,8 @@ class TaskCreationScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 24.h),
-              Text('Description', style: Theme.of(context).textTheme.labelSmall),
+              Text('Description',
+                  style: Theme.of(context).textTheme.labelSmall),
               SizedBox(height: 8.h),
               TextFormField(
                 maxLines: 4,
@@ -54,7 +55,8 @@ class TaskCreationScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Date', style: Theme.of(context).textTheme.labelSmall),
+                        Text('Date',
+                            style: Theme.of(context).textTheme.labelSmall),
                         SizedBox(height: 8.h),
                         OutlinedButton.icon(
                           onPressed: () {},
@@ -62,7 +64,8 @@ class TaskCreationScreen extends StatelessWidget {
                           label: const Text('Today'),
                           style: OutlinedButton.styleFrom(
                             alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.w, vertical: 12.h),
                           ),
                         ),
                       ],
@@ -73,7 +76,8 @@ class TaskCreationScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Time', style: Theme.of(context).textTheme.labelSmall),
+                        Text('Time',
+                            style: Theme.of(context).textTheme.labelSmall),
                         SizedBox(height: 8.h),
                         OutlinedButton.icon(
                           onPressed: () {},
@@ -81,7 +85,8 @@ class TaskCreationScreen extends StatelessWidget {
                           label: const Text('Set time'),
                           style: OutlinedButton.styleFrom(
                             alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.w, vertical: 12.h),
                           ),
                         ),
                       ],

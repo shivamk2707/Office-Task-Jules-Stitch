@@ -41,8 +41,10 @@ class SettingsScreen extends StatelessWidget {
             ),
             const Divider(),
             ListTile(
-              leading: Icon(Icons.logout, color: Theme.of(context).colorScheme.error),
-              title: Text('Log Out', style: TextStyle(color: Theme.of(context).colorScheme.error)),
+              leading: Icon(Icons.logout,
+                  color: Theme.of(context).colorScheme.error),
+              title: Text('Log Out',
+                  style: TextStyle(color: Theme.of(context).colorScheme.error)),
               onTap: () {
                 context.go('/signin');
               },

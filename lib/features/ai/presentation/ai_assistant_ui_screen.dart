@@ -32,13 +32,14 @@ class AiAssistantUiScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(Icons.auto_awesome, color: Theme.of(context).colorScheme.onPrimaryContainer),
+                Icon(Icons.auto_awesome,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer),
                 SizedBox(height: 16.h),
                 Text(
                   'How can I help you today?',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onPrimaryContainer,
-                  ),
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
                 ),
                 SizedBox(height: 24.h),
                 ElevatedButton(
@@ -46,7 +47,8 @@ class AiAssistantUiScreen extends StatelessWidget {
                     context.push('/chat');
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.surfaceContainerLowest,
+                    backgroundColor:
+                        Theme.of(context).colorScheme.surfaceContainerLowest,
                     foregroundColor: Theme.of(context).colorScheme.primary,
                   ),
                   child: const Text('Start Chat'),
@@ -55,7 +57,8 @@ class AiAssistantUiScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 32.h),
-          Text('Suggested Actions', style: Theme.of(context).textTheme.headlineSmall),
+          Text('Suggested Actions',
+              style: Theme.of(context).textTheme.headlineSmall),
           SizedBox(height: 16.h),
           ListTile(
             leading: const Icon(Icons.summarize_outlined),

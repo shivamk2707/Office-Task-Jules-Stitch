@@ -15,7 +15,8 @@ class LuminaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(390, 844), // Standard iPhone 14 size, adjust if needed
+      designSize:
+          const Size(390, 844), // Standard iPhone 14 size, adjust if needed
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
@@ -23,7 +24,8 @@ class LuminaApp extends StatelessWidget {
           title: 'Lumina AI Productivity App',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
-          themeMode: ThemeMode.system, // Or whatever the user preference dictates later
+          themeMode: ThemeMode
+              .system, // Or whatever the user preference dictates later
           routerConfig: AppRouter.router,
         );
       },

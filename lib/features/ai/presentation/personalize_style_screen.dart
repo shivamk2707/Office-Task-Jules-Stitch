@@ -38,13 +38,15 @@ class _PersonalizeStyleScreenState extends State<PersonalizeStyleScreen> {
               Text(
                 'How do you prefer to manage tasks?',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
               ),
               SizedBox(height: 32.h),
-              _buildStyleCard(context, 'Agile / Scrum', 'Sprints, backlogs, and story points.'),
+              _buildStyleCard(context, 'Agile / Scrum',
+                  'Sprints, backlogs, and story points.'),
               SizedBox(height: 16.h),
-              _buildStyleCard(context, 'Kanban', 'Boards, columns, and continuous flow.'),
+              _buildStyleCard(
+                  context, 'Kanban', 'Boards, columns, and continuous flow.'),
               SizedBox(height: 32.h),
               SizedBox(
                 width: double.infinity,

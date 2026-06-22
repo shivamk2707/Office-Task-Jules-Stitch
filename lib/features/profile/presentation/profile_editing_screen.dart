@@ -35,12 +35,16 @@ class ProfileEditingScreen extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 50.r,
-                    backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                    backgroundColor:
+                        Theme.of(context).colorScheme.primaryContainer,
                     child: Text(
                       'AL',
-                      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      ),
+                      style:
+                          Theme.of(context).textTheme.headlineLarge?.copyWith(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onPrimaryContainer,
+                              ),
                     ),
                   ),
                   Positioned(
@@ -63,7 +67,8 @@ class ProfileEditingScreen extends StatelessWidget {
               SizedBox(height: 32.h),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text('Full Name', style: Theme.of(context).textTheme.labelSmall),
+                child: Text('Full Name',
+                    style: Theme.of(context).textTheme.labelSmall),
               ),
               SizedBox(height: 8.h),
               TextFormField(
@@ -75,7 +80,8 @@ class ProfileEditingScreen extends StatelessWidget {
               SizedBox(height: 24.h),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text('Role', style: Theme.of(context).textTheme.labelSmall),
+                child:
+                    Text('Role', style: Theme.of(context).textTheme.labelSmall),
               ),
               SizedBox(height: 8.h),
               TextFormField(

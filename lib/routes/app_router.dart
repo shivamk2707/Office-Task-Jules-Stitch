@@ -1,7 +1,6 @@
 import "package:go_router/go_router.dart";
 import "package:flutter_screenutil/flutter_screenutil.dart";
 
-
 // Authentication
 import 'package:office_task_jules_stitch/features/authentication/presentation/sign_in_screen.dart';
 import 'package:office_task_jules_stitch/features/authentication/presentation/sign_up_screen.dart';
@@ -79,74 +78,158 @@ class AppRouter {
     errorBuilder: (context, state) => const Error404Screen(),
     routes: [
       // Authentication
-      GoRoute(path: '/signin', builder: (context, state) => const SignInScreen()),
-      GoRoute(path: '/signup', builder: (context, state) => const SignUpScreen()),
-      GoRoute(path: '/forgot-password', builder: (context, state) => const ForgotPasswordScreen()),
+      GoRoute(
+          path: '/signin', builder: (context, state) => const SignInScreen()),
+      GoRoute(
+          path: '/signup', builder: (context, state) => const SignUpScreen()),
+      GoRoute(
+          path: '/forgot-password',
+          builder: (context, state) => const ForgotPasswordScreen()),
       GoRoute(path: '/otp', builder: (context, state) => const OtpScreen()),
-      GoRoute(path: '/verification-success', builder: (context, state) => const VerificationScreen()),
+      GoRoute(
+          path: '/verification-success',
+          builder: (context, state) => const VerificationScreen()),
 
       // Onboarding & Setup
-      GoRoute(path: '/welcome', builder: (context, state) => const WelcomeScreen()),
-      GoRoute(path: '/setup-workspace', builder: (context, state) => const SetupWorkspaceScreen()),
-      GoRoute(path: '/workspace-management', builder: (context, state) => const WorkspaceManagementScreen()),
+      GoRoute(
+          path: '/welcome', builder: (context, state) => const WelcomeScreen()),
+      GoRoute(
+          path: '/setup-workspace',
+          builder: (context, state) => const SetupWorkspaceScreen()),
+      GoRoute(
+          path: '/workspace-management',
+          builder: (context, state) => const WorkspaceManagementScreen()),
 
       // AI Personalization Flow
-      GoRoute(path: '/personalize-ai-flow', builder: (context, state) => const PersonalizeFlowScreen()),
-      GoRoute(path: '/personalize-ai-role', builder: (context, state) => const PersonalizeRoleScreen()),
-      GoRoute(path: '/personalize-ai-style', builder: (context, state) => const PersonalizeStyleScreen()),
-      GoRoute(path: '/personalize-ai-integrations', builder: (context, state) => const PersonalizeIntegrationsScreen()),
-      GoRoute(path: '/personalize-ai-final', builder: (context, state) => const PersonalizeFinalScreen()),
+      GoRoute(
+          path: '/personalize-ai-flow',
+          builder: (context, state) => const PersonalizeFlowScreen()),
+      GoRoute(
+          path: '/personalize-ai-role',
+          builder: (context, state) => const PersonalizeRoleScreen()),
+      GoRoute(
+          path: '/personalize-ai-style',
+          builder: (context, state) => const PersonalizeStyleScreen()),
+      GoRoute(
+          path: '/personalize-ai-integrations',
+          builder: (context, state) => const PersonalizeIntegrationsScreen()),
+      GoRoute(
+          path: '/personalize-ai-final',
+          builder: (context, state) => const PersonalizeFinalScreen()),
 
       // Main Navigation
-      GoRoute(path: '/dashboard', builder: (context, state) => const HomeDashboardScreen()),
+      GoRoute(
+          path: '/dashboard',
+          builder: (context, state) => const HomeDashboardScreen()),
 
       // Tasks
-      GoRoute(path: '/task-create', builder: (context, state) => const TaskCreationScreen()),
-      GoRoute(path: '/task-edit', builder: (context, state) => const TaskEditingScreen()),
-      GoRoute(path: '/categories', builder: (context, state) => const CategoriesScreen()),
-      GoRoute(path: '/task-details', builder: (context, state) => const TaskDetailsScreen()),
-      GoRoute(path: '/all-projects', builder: (context, state) => const AllProjectsScreen()),
-      GoRoute(path: '/empty-projects', builder: (context, state) => const EmptyProjectsScreen()),
-      GoRoute(path: '/create-project', builder: (context, state) => const CreateProjectScreen()),
+      GoRoute(
+          path: '/task-create',
+          builder: (context, state) => const TaskCreationScreen()),
+      GoRoute(
+          path: '/task-edit',
+          builder: (context, state) => const TaskEditingScreen()),
+      GoRoute(
+          path: '/categories',
+          builder: (context, state) => const CategoriesScreen()),
+      GoRoute(
+          path: '/task-details',
+          builder: (context, state) => const TaskDetailsScreen()),
+      GoRoute(
+          path: '/all-projects',
+          builder: (context, state) => const AllProjectsScreen()),
+      GoRoute(
+          path: '/empty-projects',
+          builder: (context, state) => const EmptyProjectsScreen()),
+      GoRoute(
+          path: '/create-project',
+          builder: (context, state) => const CreateProjectScreen()),
 
       // Calendar & Focus
-      GoRoute(path: '/calendar', builder: (context, state) => const CalendarScreen()),
-      GoRoute(path: '/focus-timer', builder: (context, state) => const FocusTimerScreen()),
-      GoRoute(path: '/pomodoro', builder: (context, state) => const PomodoroScreen()),
+      GoRoute(
+          path: '/calendar',
+          builder: (context, state) => const CalendarScreen()),
+      GoRoute(
+          path: '/focus-timer',
+          builder: (context, state) => const FocusTimerScreen()),
+      GoRoute(
+          path: '/pomodoro',
+          builder: (context, state) => const PomodoroScreen()),
 
       // AI
-      GoRoute(path: '/ai-assistant', builder: (context, state) => const AiAssistantUiScreen()),
+      GoRoute(
+          path: '/ai-assistant',
+          builder: (context, state) => const AiAssistantUiScreen()),
       GoRoute(path: '/chat', builder: (context, state) => const ChatUiScreen()),
-      GoRoute(path: '/knowledge-base', builder: (context, state) => const KnowledgeBaseScreen()),
-      GoRoute(path: '/export-handover', builder: (context, state) => const ExportHandoverScreen()),
-      GoRoute(path: '/project-chat', builder: (context, state) => const ProjectChatScreen()),
+      GoRoute(
+          path: '/knowledge-base',
+          builder: (context, state) => const KnowledgeBaseScreen()),
+      GoRoute(
+          path: '/export-handover',
+          builder: (context, state) => const ExportHandoverScreen()),
+      GoRoute(
+          path: '/project-chat',
+          builder: (context, state) => const ProjectChatScreen()),
 
       // Profile & Settings
-      GoRoute(path: '/profile-edit', builder: (context, state) => const ProfileEditingScreen()),
-      GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
-      GoRoute(path: '/theme-switch', builder: (context, state) => const ThemeSwitchingScreen()),
-      GoRoute(path: '/language', builder: (context, state) => const LanguageSelectionScreen()),
+      GoRoute(
+          path: '/profile-edit',
+          builder: (context, state) => const ProfileEditingScreen()),
+      GoRoute(
+          path: '/settings',
+          builder: (context, state) => const SettingsScreen()),
+      GoRoute(
+          path: '/theme-switch',
+          builder: (context, state) => const ThemeSwitchingScreen()),
+      GoRoute(
+          path: '/language',
+          builder: (context, state) => const LanguageSelectionScreen()),
 
       // Analytics & Assets
-      GoRoute(path: '/statistics', builder: (context, state) => const StatisticsScreen()),
-      GoRoute(path: '/productivity', builder: (context, state) => const ProductivityDashboardScreen()),
-      GoRoute(path: '/reports', builder: (context, state) => const ReportsScreen()),
-      GoRoute(path: '/deep-work', builder: (context, state) => const DeepWorkAnalyticsScreen()),
-      GoRoute(path: '/files-assets', builder: (context, state) => const FilesAssetsScreen()),
+      GoRoute(
+          path: '/statistics',
+          builder: (context, state) => const StatisticsScreen()),
+      GoRoute(
+          path: '/productivity',
+          builder: (context, state) => const ProductivityDashboardScreen()),
+      GoRoute(
+          path: '/reports', builder: (context, state) => const ReportsScreen()),
+      GoRoute(
+          path: '/deep-work',
+          builder: (context, state) => const DeepWorkAnalyticsScreen()),
+      GoRoute(
+          path: '/files-assets',
+          builder: (context, state) => const FilesAssetsScreen()),
 
       // Search
-      GoRoute(path: '/global-search', builder: (context, state) => const GlobalSearchScreen()),
-      GoRoute(path: '/search-results', builder: (context, state) => const SearchResultsScreen()),
-      GoRoute(path: '/advanced-filters', builder: (context, state) => const AdvancedFiltersScreen()),
+      GoRoute(
+          path: '/global-search',
+          builder: (context, state) => const GlobalSearchScreen()),
+      GoRoute(
+          path: '/search-results',
+          builder: (context, state) => const SearchResultsScreen()),
+      GoRoute(
+          path: '/advanced-filters',
+          builder: (context, state) => const AdvancedFiltersScreen()),
 
       // Team & Notifications
-      GoRoute(path: '/team-activity', builder: (context, state) => const TeamActivityScreen()),
-      GoRoute(path: '/team-pulse', builder: (context, state) => const TeamPulseScreen()),
-      GoRoute(path: '/notification-center', builder: (context, state) => const NotificationCenterScreen()),
+      GoRoute(
+          path: '/team-activity',
+          builder: (context, state) => const TeamActivityScreen()),
+      GoRoute(
+          path: '/team-pulse',
+          builder: (context, state) => const TeamPulseScreen()),
+      GoRoute(
+          path: '/notification-center',
+          builder: (context, state) => const NotificationCenterScreen()),
 
       // Premium
-      GoRoute(path: '/upgrade-pro', builder: (context, state) => const UpgradeProScreen()),
-      GoRoute(path: '/payment-success', builder: (context, state) => const PaymentSuccessScreen()),
+      GoRoute(
+          path: '/upgrade-pro',
+          builder: (context, state) => const UpgradeProScreen()),
+      GoRoute(
+          path: '/payment-success',
+          builder: (context, state) => const PaymentSuccessScreen()),
     ],
   );
 }

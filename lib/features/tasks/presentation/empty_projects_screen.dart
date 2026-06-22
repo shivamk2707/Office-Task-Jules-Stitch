@@ -35,8 +35,8 @@ class EmptyProjectsScreen extends StatelessWidget {
               Text(
                 'Create your first project to start organizing tasks with your team.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 32.h),

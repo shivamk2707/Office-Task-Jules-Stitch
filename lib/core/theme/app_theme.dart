@@ -49,14 +49,16 @@ class AppTheme {
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         centerTitle: false,
-        titleTextStyle: AppTypography.headlineMedium.copyWith(color: AppColors.onSurface),
+        titleTextStyle:
+            AppTypography.headlineMedium.copyWith(color: AppColors.onSurface),
         iconTheme: const IconThemeData(color: AppColors.onSurface),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           foregroundColor: AppColors.onPrimary,
-          textStyle: AppTypography.bodyLarge.copyWith(fontWeight: FontWeight.w600),
+          textStyle:
+              AppTypography.bodyLarge.copyWith(fontWeight: FontWeight.w600),
           padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(9999), // Pill shape
@@ -67,7 +69,8 @@ class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.primary,
-          textStyle: AppTypography.bodyLarge.copyWith(fontWeight: FontWeight.w600),
+          textStyle:
+              AppTypography.bodyLarge.copyWith(fontWeight: FontWeight.w600),
           padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
           side: const BorderSide(color: AppColors.primary),
           shape: RoundedRectangleBorder(
@@ -78,7 +81,8 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: AppColors.primary,
-          textStyle: AppTypography.bodyLarge.copyWith(fontWeight: FontWeight.w600),
+          textStyle:
+              AppTypography.bodyLarge.copyWith(fontWeight: FontWeight.w600),
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
         ),
       ),
@@ -86,8 +90,10 @@ class AppTheme {
         filled: true,
         fillColor: AppColors.surfaceContainerLowest,
         contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
-        labelStyle: AppTypography.bodyMedium.copyWith(color: AppColors.onSurfaceVariant),
-        hintStyle: AppTypography.bodyMedium.copyWith(color: AppColors.onSurfaceVariant),
+        labelStyle: AppTypography.bodyMedium
+            .copyWith(color: AppColors.onSurfaceVariant),
+        hintStyle: AppTypography.bodyMedium
+            .copyWith(color: AppColors.onSurfaceVariant),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16.r),
           borderSide: const BorderSide(color: AppColors.outlineVariant),
@@ -116,7 +122,8 @@ class AppTheme {
       ),
       chipTheme: ChipThemeData(
         backgroundColor: AppColors.primaryFixed,
-        labelStyle: AppTypography.labelSmall.copyWith(color: AppColors.onPrimaryFixed),
+        labelStyle:
+            AppTypography.labelSmall.copyWith(color: AppColors.onPrimaryFixed),
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(500),
@@ -128,7 +135,8 @@ class AppTheme {
         selectedItemColor: AppColors.primary,
         unselectedItemColor: AppColors.onSurfaceVariant,
         selectedLabelStyle: AppTypography.labelSmall.copyWith(fontSize: 10.sp),
-        unselectedLabelStyle: AppTypography.labelSmall.copyWith(fontSize: 10.sp),
+        unselectedLabelStyle:
+            AppTypography.labelSmall.copyWith(fontSize: 10.sp),
         type: BottomNavigationBarType.fixed,
         elevation: 8,
       ),

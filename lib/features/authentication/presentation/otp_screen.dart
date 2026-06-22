@@ -31,8 +31,8 @@ class OtpScreen extends StatelessWidget {
               Text(
                 'We sent a 6-digit code to your email.',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
               ),
               SizedBox(height: 32.h),
               // Simplified OTP input for now, consider using pin_code_fields package for better UI

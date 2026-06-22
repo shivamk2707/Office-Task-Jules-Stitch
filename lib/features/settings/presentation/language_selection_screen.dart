@@ -23,7 +23,8 @@ class LanguageSelectionScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Select Language:', style: Theme.of(context).textTheme.titleLarge),
+              Text('Select Language:',
+                  style: Theme.of(context).textTheme.titleLarge),
               SizedBox(height: 16.h),
               ListTile(
                 title: const Text('English (US)'),
