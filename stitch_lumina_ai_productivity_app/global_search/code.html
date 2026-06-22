@@ -1,0 +1,323 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TaskFlow - Global Search</title>
+<!-- Google Fonts: Hanken Grotesk -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#717976",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#9dd1c4",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-surface-variant": "#404846",
+                    "tertiary": "#142421",
+                    "tertiary-fixed-dim": "#b8cac6",
+                    "on-background": "#1a1c1b",
+                    "surface-variant": "#e2e3e1",
+                    "on-secondary-container": "#3a6b61",
+                    "secondary-fixed": "#b9ede0",
+                    "background": "#f9f9f7",
+                    "tertiary-container": "#293937",
+                    "on-secondary-fixed-variant": "#1b4f46",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed": "#00201b",
+                    "on-primary-fixed-variant": "#224e46",
+                    "surface-bright": "#f9f9f7",
+                    "outline-variant": "#c0c8c5",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#b6eadd",
+                    "on-tertiary-container": "#91a29f",
+                    "on-surface": "#1a1c1b",
+                    "inverse-on-surface": "#f0f1ef",
+                    "on-primary-fixed": "#00201b",
+                    "primary": "#002620",
+                    "surface-container-low": "#f3f4f2",
+                    "surface-container-highest": "#e2e3e1",
+                    "surface-container": "#edeeec",
+                    "inverse-surface": "#2f3130",
+                    "primary-fixed-dim": "#a2d0c4",
+                    "primary-fixed": "#bdece0",
+                    "inverse-primary": "#a2d0c4",
+                    "surface-tint": "#3a665d",
+                    "surface-container-high": "#e8e8e6",
+                    "surface": "#f9f9f7",
+                    "tertiary-fixed": "#d4e6e2",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#3a4a47",
+                    "on-primary-container": "#7ba89d",
+                    "secondary": "#35675d",
+                    "primary-container": "#0d3d35",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed": "#0f1e1c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-gap": "16px",
+                    "base": "4px",
+                    "gutter": "16px",
+                    "container-padding": "24px",
+                    "section-margin": "40px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
+        }
+        
+        .floating-card {
+            box-shadow: 0 30px 30px rgba(13, 61, 53, 0.04), 0 4px 4px rgba(13, 61, 53, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .floating-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 40px 40px rgba(13, 61, 53, 0.06), 0 6px 6px rgba(13, 61, 53, 0.03);
+        }
+
+        .ai-border {
+            position: relative;
+            background: #fff;
+            background-clip: padding-box;
+            border: 1px solid transparent;
+        }
+
+        .ai-border::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -1px;
+            border-radius: inherit;
+            background: linear-gradient(to right, #0D3D35, #DCEEEA);
+        }
+
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-3">
+<button class="p-2 hover:bg-surface-container-high/50 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TaskFlow</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-surface-container-high/50 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-gutter pt-24">
+<!-- Search Input Section -->
+<section class="mb-section-margin">
+<div class="relative group">
+<div class="absolute inset-y-0 left-6 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline text-[24px]">search</span>
+</div>
+<input autofocus="" class="w-full bg-surface-container-lowest border-0 rounded-full py-6 pl-16 pr-6 font-body-lg text-body-lg text-on-surface shadow-[0_4px_20px_rgba(13,61,53,0.03)] focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all placeholder:text-outline/60" placeholder="Search tasks, projects, or people..." type="text">
+<div class="absolute inset-y-0 right-6 flex items-center">
+<kbd class="hidden md:flex items-center gap-1 px-2.5 py-1 bg-surface-container-high text-outline font-label-caps text-[10px] rounded-lg">
+<span>⌘</span>
+<span>K</span>
+</kbd>
+</div>
+</div>
+</section>
+<!-- Bento Layout for Search Discovery -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-card-gap">
+<!-- Recent Searches -->
+<div class="md:col-span-1 flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Recent Searches</h2>
+<button class="text-secondary font-label-caps hover:underline">CLEAR ALL</button>
+</div>
+<div class="floating-card bg-surface-container-lowest rounded-xl p-4 border border-surface-container flex flex-wrap gap-2">
+<div class="flex items-center gap-2 bg-surface-container-high px-3 py-1.5 rounded-full group cursor-pointer hover:bg-secondary-container transition-colors">
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-secondary-container">Brand Refresh</span>
+<span class="material-symbols-outlined text-[16px] text-outline group-hover:text-on-secondary-container">close</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-3 py-1.5 rounded-full group cursor-pointer hover:bg-secondary-container transition-colors">
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-secondary-container">Sarah Chen</span>
+<span class="material-symbols-outlined text-[16px] text-outline group-hover:text-on-secondary-container">close</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-3 py-1.5 rounded-full group cursor-pointer hover:bg-secondary-container transition-colors">
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-secondary-container">Q4 Roadmap</span>
+<span class="material-symbols-outlined text-[16px] text-outline group-hover:text-on-secondary-container">close</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-3 py-1.5 rounded-full group cursor-pointer hover:bg-secondary-container transition-colors">
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-secondary-container">API Integration</span>
+<span class="material-symbols-outlined text-[16px] text-outline group-hover:text-on-secondary-container">close</span>
+</div>
+</div>
+</div>
+<!-- Suggested for You (AI Section) -->
+<div class="md:col-span-2 flex flex-col gap-4">
+<div class="flex items-center gap-2 px-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Suggested for You</h2>
+<span class="bg-primary-container text-on-primary-container font-label-caps text-[10px] px-2 py-0.5 rounded-full">AI DRIVEN</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Recommendation Card 1 -->
+<div class="ai-border rounded-xl p-5 floating-card flex flex-col justify-between h-[160px] cursor-pointer hover:scale-[1.02] transition-transform">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<span class="text-outline font-label-caps">TASK</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-primary leading-tight">Finalize Q3 Design Review</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Based on upcoming deadline</p>
+</div>
+</div>
+<!-- Recommendation Card 2 -->
+<div class="ai-border rounded-xl p-5 floating-card flex flex-col justify-between h-[160px] cursor-pointer hover:scale-[1.02] transition-transform">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">group</span>
+</div>
+<span class="text-outline font-label-caps">PEOPLE</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-primary leading-tight">Onboard new designer</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Reviewing candidates in Slack</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Additional Discovery Context -->
+<section class="mt-12">
+<h3 class="font-label-caps text-outline mb-4 ml-2">POPULAR PROJECTS</h3>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-surface-container floating-card flex flex-col items-center text-center cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-primary">folder_open</span>
+</div>
+<span class="font-body-md text-body-md font-semibold text-primary">Mobile App v2</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-surface-container floating-card flex flex-col items-center text-center cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-primary">campaign</span>
+</div>
+<span class="font-body-md text-body-md font-semibold text-primary">Marketing Hub</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-surface-container floating-card flex flex-col items-center text-center cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<span class="font-body-md text-body-md font-semibold text-primary">Sales Metrics</span>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-surface-container floating-card flex flex-col items-center text-center cursor-pointer">
+<div class="w-12 h-12 rounded-xl bg-primary/5 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+</div>
+<span class="font-body-md text-body-md font-semibold text-primary">Archive</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (AI Active) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-xl rounded-t-xl shadow-[0_-4px_30px_rgba(13,61,53,0.04)]">
+<div class="flex justify-around items-center px-4 pb-6 pt-2 max-w-[600px] mx-auto">
+<!-- Today -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="font-label-caps text-label-caps mt-1">Today</span>
+</a>
+<!-- Calendar -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-caps text-label-caps mt-1">Calendar</span>
+</a>
+<!-- AI (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-2 w-12 h-12 translate-y-[-2px] shadow-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</a>
+<!-- Projects -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-caps text-label-caps mt-1">Projects</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for removing recent searches
+        document.querySelectorAll('.group.cursor-pointer').forEach(tag => {
+            tag.addEventListener('click', function(e) {
+                if (e.target.closest('.material-symbols-outlined')) {
+                    this.style.opacity = '0';
+                    this.style.transform = 'scale(0.8)';
+                    setTimeout(() => this.remove(), 200);
+                }
+            });
+        });
+
+        // AI Shine effect simulation
+        const aiCards = document.querySelectorAll('.ai-border');
+        aiCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>

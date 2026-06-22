@@ -1,0 +1,403 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TaskFlow | Files &amp; Assets Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #f9f9f7;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+        }
+        .floating-card {
+            box-shadow: 0 30px 30px rgba(13, 61, 53, 0.04), 0 4px 4px rgba(13, 61, 53, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .floating-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 40px 40px rgba(13, 61, 53, 0.06), 0 6px 6px rgba(13, 61, 53, 0.03);
+        }
+        /* Custom scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e2e3e1;
+            border-radius: 10px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-variant": "#e2e3e1",
+                      "surface-bright": "#f9f9f7",
+                      "inverse-surface": "#2f3130",
+                      "tertiary-fixed": "#d4e6e2",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed": "#b9ede0",
+                      "on-surface": "#1a1c1b",
+                      "surface-container-high": "#e8e8e6",
+                      "inverse-primary": "#a2d0c4",
+                      "on-secondary-container": "#3a6b61",
+                      "error": "#ba1a1a",
+                      "surface-dim": "#d9dad8",
+                      "primary-container": "#0d3d35",
+                      "on-background": "#1a1c1b",
+                      "on-primary-container": "#7ba89d",
+                      "outline-variant": "#c0c8c5",
+                      "on-secondary-fixed-variant": "#1b4f46",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-container": "#91a29f",
+                      "on-secondary-fixed": "#00201b",
+                      "inverse-on-surface": "#f0f1ef",
+                      "on-tertiary-fixed": "#0f1e1c",
+                      "tertiary-fixed-dim": "#b8cac6",
+                      "on-error": "#ffffff",
+                      "surface-container": "#edeeec",
+                      "surface-container-highest": "#e2e3e1",
+                      "secondary": "#35675d",
+                      "secondary-container": "#b6eadd",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#a2d0c4",
+                      "background": "#f9f9f7",
+                      "on-primary-fixed-variant": "#224e46",
+                      "surface-tint": "#3a665d",
+                      "primary": "#002620",
+                      "on-surface-variant": "#404846",
+                      "secondary-fixed-dim": "#9dd1c4",
+                      "surface": "#f9f9f7",
+                      "primary-fixed": "#bdece0",
+                      "tertiary-container": "#293937",
+                      "on-secondary": "#ffffff",
+                      "outline": "#717976",
+                      "on-tertiary-fixed-variant": "#3a4a47",
+                      "surface-container-low": "#f3f4f2",
+                      "on-primary-fixed": "#00201b",
+                      "tertiary": "#142421"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section-margin": "40px",
+                      "container-padding": "24px",
+                      "base": "4px",
+                      "gutter": "16px",
+                      "card-gap": "16px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Hanken Grotesk"],
+                      "body-md": ["Hanken Grotesk"],
+                      "headline-lg-mobile": ["Hanken Grotesk"],
+                      "display-lg": ["Hanken Grotesk"],
+                      "headline-md": ["Hanken Grotesk"],
+                      "headline-sm": ["Hanken Grotesk"],
+                      "label-caps": ["Hanken Grotesk"]
+              },
+              "fontSize": {
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                      "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-high/50 p-2 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TaskFlow</h1>
+</div>
+<div class="flex-1 max-w-md mx-8 hidden md:block">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-body-md focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Search files, folders, projects..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-headline-sm flex items-center gap-2 hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="upload">upload</span>
+<span>Upload</span>
+</button>
+<button class="hover:bg-surface-container-high/50 p-2 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-gutter max-w-[1200px] mx-auto">
+<!-- Welcome & Breadcrumb -->
+<section class="mb-10">
+<div class="flex items-end justify-between mb-2">
+<div>
+<h2 class="font-display-lg text-display-lg text-primary">Files &amp; Assets</h2>
+<p class="text-on-surface-variant font-body-lg">Manage your project ecosystem and collaborative resources.</p>
+</div>
+<div class="flex gap-2">
+<span class="bg-surface-container-highest px-3 py-1 rounded-full text-label-caps text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="cloud_done">cloud_done</span>
+                        All synced
+                    </span>
+</div>
+</div>
+</section>
+<!-- Project Folders (Bento Style) -->
+<section class="mb-12">
+<h3 class="font-headline-sm text-headline-sm text-on-surface-variant mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+                Active Projects
+            </h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Credivance Folder -->
+<div class="floating-card bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/30 flex flex-col group cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="w-14 h-14 bg-primary-fixed rounded-xl flex items-center justify-center text-primary-container group-hover:bg-primary-container group-hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[32px]" data-icon="folder_zip" style="font-variation-settings: 'FILL' 1;">folder_zip</span>
+</div>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female executive with a soft, minimalist office background. High-end photography with clean lighting and neutral tones, fitting a luxury productivity app aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzhvsmOkHkrQunOafQECCbALQF48mbsOpoyK5hQkVPIuVTlaI59QnZYHWElCFMhOvfZ-W2YFO7U79f7shJFjrF__CMO0aM7ljEfJ7-jCe8rKaUGOqIcwNHjTSgaW4oLXszNjoJLPaFinpdLPeH_4tpUAwdWdDFC6JsWdB3QACOEYp3su3jSvzGo_7wecm35iC2n822aNkvTwBfMkolnVYyyzNegUGbYfxP2nqynwx5iR2MurTpzDiymv9ZZLTPsrFFvHG2vBAIimo">
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a male designer wearing a minimalist turtleneck. High-end portrait photography with soft-focus office background, matching a calm and sophisticated digital workspace environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8o4SPloTMxvCzzF3b7SwapoWs59hFb4UxFcy7DBmL8QferBPrmE7sLWEVwnVvi9C2DX04ltTjKdcxQBmiyIaQsG4TA5CQh2bwJYRyxJrd4j0RMwOahN9juyU6Fq8ptR5h8-SH2DVnb1a4gce4BONlaDnamMHGZw4r9aJjw_uqI4KlydDwC4Ad0KBKHaekSQgR3lCJxp54NprvhWHmgpgW1rGJM86vCk6OkJCt9R9Z1tFUEEzUmIsXMBvihv9854TAw2-l4lNH68A">
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-surface-container-lowest flex items-center justify-center text-[10px] font-bold text-on-surface-variant">
+                                +3
+                            </div>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-1">Credivance</h4>
+<p class="text-on-surface-variant text-body-md mb-4">Fintech platform redesign &amp; assets.</p>
+<div class="mt-auto flex items-center justify-between pt-4 border-t border-outline-variant/20">
+<span class="text-label-caps text-on-surface-variant">124 FILES</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Xpand Folder -->
+<div class="floating-card bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/30 flex flex-col group cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="w-14 h-14 bg-secondary-container rounded-xl flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-secondary-container transition-colors">
+<span class="material-symbols-outlined text-[32px]" data-icon="folder_shared" style="font-variation-settings: 'FILL' 1;">folder_shared</span>
+</div>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close up of a creative professional's face with warm natural lighting. Minimalist style with a focus on human connection and professional warmth, using a high-key bright background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhHqLac6sC_s770t2YXyTYz3guT86goxyrbmhkFVFGCv3bNitUfkHSOIGD9JVaWWLY7ZVEo9NVXavzkKNoGS-_8YpcetEUU-gg3iHfD1Mn3sswnvpsE0HQMDnkWunLGe2WLvm3P-93raqUWtuVLnfjacbVTk018G5KoRYISDOQBY-O_V2RteEO9oye-BDrsbYGVznrL7xmYomYA3F-SNSkeESdbn5YUXXnpdsXqyYzDN_fKMB5h8s9u2nzxLe2k9o6hUHMrjbGosI">
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-surface-container-lowest flex items-center justify-center text-[10px] font-bold text-on-surface-variant">
+                                +1
+                            </div>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-1">Xpand</h4>
+<p class="text-on-surface-variant text-body-md mb-4">Marketing strategy &amp; media kit.</p>
+<div class="mt-auto flex items-center justify-between pt-4 border-t border-outline-variant/20">
+<span class="text-label-caps text-on-surface-variant">42 FILES</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Design Systems Folder -->
+<div class="floating-card bg-surface-container-lowest rounded-xl p-6 border border-outline-variant/30 flex flex-col group cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="w-14 h-14 bg-tertiary-fixed rounded-xl flex items-center justify-center text-tertiary group-hover:bg-tertiary group-hover:text-tertiary-fixed transition-colors">
+<span class="material-symbols-outlined text-[32px]" data-icon="folder_special" style="font-variation-settings: 'FILL' 1;">folder_special</span>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary mb-1">Core Assets</h4>
+<p class="text-on-surface-variant text-body-md mb-4">Branding guides, logos, and UI components.</p>
+<div class="mt-auto flex items-center justify-between pt-4 border-t border-outline-variant/20">
+<span class="text-label-caps text-on-surface-variant">89 FILES</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Files Section -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                    Recent Files
+                </h3>
+<button class="text-primary font-label-caps hover:underline">VIEW ALL</button>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+<!-- File Item: PDF -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] bg-surface-container rounded-lg overflow-hidden border border-outline-variant/20 mb-2 transition-all group-hover:border-primary/30">
+<div class="absolute inset-0 flex items-center justify-center bg-white/40 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm z-10">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="visibility">visibility</span>
+</div>
+<div class="p-4 h-full flex flex-col">
+<div class="flex justify-between mb-4">
+<span class="bg-red-50 text-red-700 text-[10px] font-bold px-1.5 py-0.5 rounded">PDF</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="more_vert">more_vert</span>
+</div>
+<div class="flex-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-[64px] text-red-200" data-icon="description">description</span>
+</div>
+</div>
+</div>
+<p class="text-body-md font-semibold text-primary truncate">Q3_Financial_Review.pdf</p>
+<p class="text-label-caps text-on-surface-variant">2.4 MB • 2h ago</p>
+</div>
+<!-- File Item: JPG/Image -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden border border-outline-variant/20 mb-2 transition-all group-hover:border-primary/30">
+<div class="w-full h-full bg-cover bg-center" data-alt="A high-resolution architectural interior photo of a minimalist modern workspace. Natural light streams through large windows onto a clean white desk with a single laptop. Aesthetic is calm, professional, and sophisticated, dominated by whites and soft greens." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAsQ6Yt5wlDMQbnQeh7alD-lLzH5uBJyZ1dScv9KLivp2g0zXeqsp6kmPEngYJuLMTMbiGGPd6xWrzm3I7iikWyj8b-OJkhY9zlwet9VlIPj2hecOCCSIqY2b5WwD8FI1iBBUD_MGLQiZ8Ye6Bx57Onb3nrpZRdJk-CxXaXtpqBMq4NXVzhG-PLpaT5DRhVBNS9oS6PtNxthr4_v6qNHrPdYQL0OBWxj0bgSl02dsjUsniUFNJcOvO2_rs4TVg2qkMrPh75E_KvZsM')"></div>
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+<div class="absolute top-2 left-2 z-20">
+<span class="bg-blue-50 text-blue-700 text-[10px] font-bold px-1.5 py-0.5 rounded">JPG</span>
+</div>
+</div>
+<p class="text-body-md font-semibold text-primary truncate">Office_Inspiration_01.jpg</p>
+<p class="text-label-caps text-on-surface-variant">8.1 MB • 5h ago</p>
+</div>
+<!-- File Item: Design Doc -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] bg-surface-container rounded-lg overflow-hidden border border-outline-variant/20 mb-2 transition-all group-hover:border-primary/30">
+<div class="p-4 h-full flex flex-col">
+<div class="flex justify-between mb-4">
+<span class="bg-purple-50 text-purple-700 text-[10px] font-bold px-1.5 py-0.5 rounded">FIGMA</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="more_vert">more_vert</span>
+</div>
+<div class="flex-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-[64px] text-purple-200" data-icon="pentagon" style="font-variation-settings: 'FILL' 1;">pentagon</span>
+</div>
+</div>
+</div>
+<p class="text-body-md font-semibold text-primary truncate">Design_System_v2.fig</p>
+<p class="text-label-caps text-on-surface-variant">14.2 MB • Yesterday</p>
+</div>
+<!-- File Item: Spreadsheet -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] bg-surface-container rounded-lg overflow-hidden border border-outline-variant/20 mb-2 transition-all group-hover:border-primary/30">
+<div class="p-4 h-full flex flex-col">
+<div class="flex justify-between mb-4">
+<span class="bg-green-50 text-green-700 text-[10px] font-bold px-1.5 py-0.5 rounded">XLSX</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="more_vert">more_vert</span>
+</div>
+<div class="flex-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-[64px] text-green-200" data-icon="table_chart">table_chart</span>
+</div>
+</div>
+</div>
+<p class="text-body-md font-semibold text-primary truncate">Resource_Allocation.xlsx</p>
+<p class="text-label-caps text-on-surface-variant">1.1 MB • 2 days ago</p>
+</div>
+<!-- File Item: PDF 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] bg-surface-container rounded-lg overflow-hidden border border-outline-variant/20 mb-2 transition-all group-hover:border-primary/30">
+<div class="p-4 h-full flex flex-col">
+<div class="flex justify-between mb-4">
+<span class="bg-red-50 text-red-700 text-[10px] font-bold px-1.5 py-0.5 rounded">PDF</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="more_vert">more_vert</span>
+</div>
+<div class="flex-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-[64px] text-red-200" data-icon="description">description</span>
+</div>
+</div>
+</div>
+<p class="text-body-md font-semibold text-primary truncate">Marketing_Brief.pdf</p>
+<p class="text-label-caps text-on-surface-variant">4.5 MB • Oct 12</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-xl rounded-t-xl shadow-[0_-4px_30px_rgba(13,61,53,0.04)]">
+<div class="flex justify-around items-center px-4 pb-6 pt-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="event_upcoming">event_upcoming</span>
+<span class="font-label-caps text-label-caps mt-1">Today</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-caps text-label-caps mt-1">Calendar</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+<span class="font-label-caps text-label-caps mt-1">AI</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-2 w-12 h-12 active:translate-y-[-2px] transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</div>
+</nav>
+<!-- AI Task Assistant Bubble (Small context floating) -->
+<div class="fixed bottom-24 right-8 z-40">
+<div class="bg-surface-container-lowest border border-primary/10 p-4 rounded-2xl shadow-xl max-w-[200px] hidden md:block">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-caps text-primary">AI SUGGESTION</span>
+</div>
+<p class="text-body-md text-on-surface-variant leading-tight">Organize 5 unsorted JPGs into the <span class="font-semibold text-primary">Xpand</span> folder?</p>
+<div class="flex gap-2 mt-3">
+<button class="bg-primary text-on-primary px-3 py-1 rounded-full text-[10px] font-bold">YES</button>
+<button class="bg-surface-container-high px-3 py-1 rounded-full text-[10px] font-bold">SKIP</button>
+</div>
+</div>
+</div>
+<script>
+        // Simple interaction for cards
+        document.querySelectorAll('.floating-card, .group').forEach(el => {
+            el.addEventListener('click', () => {
+                // Future navigation logic or detail view
+                console.log('Component clicked:', el.innerText.split('\n')[0]);
+            });
+        });
+
+        // Search highlight interaction
+        const searchInput = document.querySelector('input');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+    </script>
+</body></html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TaskFlow - Create New Task</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e2e3e1",
+                        "on-tertiary-container": "#91a29f",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#bdece0",
+                        "on-surface-variant": "#404846",
+                        "on-tertiary-fixed-variant": "#3a4a47",
+                        "primary-fixed-dim": "#a2d0c4",
+                        "inverse-primary": "#a2d0c4",
+                        "tertiary-fixed-dim": "#b8cac6",
+                        "inverse-surface": "#2f3130",
+                        "background": "#f9f9f7",
+                        "on-tertiary-fixed": "#0f1e1c",
+                        "secondary-fixed-dim": "#9dd1c4",
+                        "outline": "#717976",
+                        "error-container": "#ffdad6",
+                        "surface": "#f9f9f7",
+                        "surface-container": "#edeeec",
+                        "secondary-fixed": "#b9ede0",
+                        "surface-container-high": "#e8e8e6",
+                        "outline-variant": "#c0c8c5",
+                        "surface-dim": "#d9dad8",
+                        "on-secondary-fixed": "#00201b",
+                        "on-primary-container": "#7ba89d",
+                        "surface-tint": "#3a665d",
+                        "on-secondary-container": "#3a6b61",
+                        "on-primary-fixed-variant": "#224e46",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#b6eadd",
+                        "tertiary-container": "#293937",
+                        "surface-variant": "#e2e3e1",
+                        "on-surface": "#1a1c1b",
+                        "primary": "#002620",
+                        "inverse-on-surface": "#f0f1ef",
+                        "tertiary": "#142421",
+                        "surface-container-low": "#f3f4f2",
+                        "on-background": "#1a1c1b",
+                        "tertiary-fixed": "#d4e6e2",
+                        "surface-bright": "#f9f9f7",
+                        "secondary": "#35675d",
+                        "primary-container": "#0d3d35",
+                        "on-secondary-fixed-variant": "#1b4f46",
+                        "on-primary-fixed": "#00201b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "20px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "card-gap": "16px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "section-margin": "40px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "display-lg": ["34px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ambient-shadow {
+            box-shadow: 0 30px 30px rgba(13, 61, 53, 0.04), 0 4px 4px rgba(13, 61, 53, 0.02);
+        }
+        .ai-glow {
+            box-shadow: 0 0 20px rgba(13, 61, 53, 0.15);
+            border: 1px solid transparent;
+            background-image: linear-gradient(white, white), linear-gradient(90deg, #0d3d35, #bdece0);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #0d3d35 !important;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface min-h-screen">
+<!-- Top Navigation Anchor (Simulated Shell) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl flex justify-between items-center px-gutter py-4">
+<span class="font-headline-md text-headline-md font-bold text-primary">TaskFlow</span>
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-high/50 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a high-achieving creative director in a minimalist studio. The lighting is soft and natural, emphasizing a calm and focused expression. The color palette consists of deep forest greens and neutral tones, aligning with a premium, Apple-inspired luxury brand aesthetic. The background is a clean, slightly blurred architectural space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmkqofbMfiI7QLMgshnZFg2ccXMn8iUo-ltwWB-GKj-NqoybjrSmGrDVp0kSvN4zVdHQWDwT-fjOOJiyZDLZx3iTkqVZlAVo1z1Naxa7f3VtPfuqC_-_7Js3zhzXfMoaMuMjAQeHDBmLd58Lt92cJrCb_JtzVBDHyRi-RcwBeOjBv50uxoiigm1cmXkWP_ji2k_Xqc2ZmLMeB480rlGiyxGc7ArSOCRvpGRaZywkXGGB7cBo4bckjn8FqHCjrLFv6x38bXVnJtTMk">
+</div>
+</div>
+</header>
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 bg-primary/20 backdrop-blur-md z-[60] flex items-end md:items-center justify-center">
+<!-- Main Modal Content -->
+<main class="bg-white w-full max-w-[600px] h-[813px] md:h-auto md:max-h-[751px] rounded-t-2xl md:rounded-2xl ambient-shadow overflow-hidden flex flex-col animate-in slide-in-from-bottom duration-500">
+<!-- Modal Header -->
+<div class="px-gutter py-4 flex justify-between items-center bg-white/90 backdrop-blur-md border-b border-surface-container sticky top-0 z-10">
+<button class="font-body-lg text-body-lg text-on-surface-variant hover:text-primary transition-colors">Cancel</button>
+<h1 class="font-headline-sm text-headline-sm text-primary">New Task</h1>
+<button class="font-body-lg text-body-lg font-bold text-primary px-4 py-1.5 bg-primary-container rounded-full text-white hover:opacity-90 transition-opacity">Create</button>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto no-scrollbar px-gutter py-6 space-y-8">
+<!-- Task Name & Description -->
+<section class="space-y-4">
+<div class="group">
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1">Task Title</label>
+<input class="w-full border-none p-0 font-display-lg text-display-lg text-primary placeholder:text-surface-variant focus:ring-0" placeholder="Design Review Meeting" type="text">
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1">Description</label>
+<textarea class="w-full border-none p-0 font-body-lg text-body-lg text-on-surface placeholder:text-surface-variant focus:ring-0 resize-none" placeholder="Outline the primary goals for the Q3 design sprint..." rows="3"></textarea>
+</div>
+</section>
+<!-- Project & AI Generation -->
+<section class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-low rounded-xl border border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">folder_open</span>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Project</span>
+<select class="bg-transparent border-none p-0 font-body-md text-body-md text-primary focus:ring-0 cursor-pointer">
+<option>Apollo Brand Identity</option>
+<option>Lunar System Launch</option>
+<option>Internal Workspace</option>
+</select>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+<!-- AI Generate Button -->
+<button class="w-full ai-glow py-4 px-6 rounded-xl flex items-center justify-center gap-3 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-body-lg text-body-lg font-bold text-primary">AI Generate Subtasks</span>
+</button>
+</section>
+<!-- Chips & Priorities -->
+<section class="grid grid-cols-2 gap-4">
+<div class="space-y-3">
+<label class="block font-label-caps text-label-caps text-on-surface-variant">Priority</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 rounded-full border border-primary text-primary bg-primary-container/10 font-label-caps text-label-caps transition-all">High</button>
+<button class="px-3 py-1.5 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-label-caps">Med</button>
+<button class="px-3 py-1.5 rounded-full border border-outline-variant text-on-surface-variant font-label-caps text-label-caps">Low</button>
+</div>
+</div>
+<div class="space-y-3">
+<label class="block font-label-caps text-label-caps text-on-surface-variant">Category</label>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-label-caps text-label-caps">Design</span>
+<span class="px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-caps text-label-caps">+ Tag</span>
+</div>
+</div>
+</section>
+<!-- Date & Time -->
+<section class="grid grid-cols-2 gap-4">
+<div class="p-3 bg-surface-container-low rounded-xl border border-outline-variant flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">calendar_today</span>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant text-[10px]">Deadline</span>
+<span class="font-body-md text-body-md text-on-surface">Oct 24, 2023</span>
+</div>
+</div>
+<div class="p-3 bg-surface-container-low rounded-xl border border-outline-variant flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">schedule</span>
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant text-[10px]">Time</span>
+<span class="font-body-md text-body-md text-on-surface">10:30 AM</span>
+</div>
+</div>
+</section>
+<!-- Assignees -->
+<section class="space-y-3">
+<label class="block font-label-caps text-label-caps text-on-surface-variant">Assignees</label>
+<div class="flex items-center gap-2">
+<div class="flex -space-x-2">
+<div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A focused studio portrait of a woman professional in her 30s, wearing an elegant dark green blazer. Minimalist clean background, soft lighting, luxury branding style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA9s7WY2gc5SPIhGmajD6Rsm_-w69oIjYzg14SjFhXI-y-f0dKQb-rbst2vR1NnIV0VmU9qfMPKJUYknMu00k5LUSv2xQvaK1AF4XX1EgavwnLAsy9O-qTXnTihJocbsBqmFT8Riyng81OComxfpTfI5ExZcD9_qW8rieAXeo52epueUYg3srl2CI7-pC3H6yVcDDRetmQHqzaeLeBfaI8xVXTu-f6SAIlxraByOiS3LrxIy0ky5tosZw4LI7JTdugJX7_IUeedzw">
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Close-up headshot of a creative male professional with glasses, modern minimalist vibe, soft shadow on a light grey background. Premium corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxyMrtsozSJWBaqumdJTTbvpZna_Fh23voTsQUZ7Q9qjscAp2bhk8GjEmcahj7KdYdR9DPRgEYbdIIXvhrQDhrXpnSWcU8KZOlM7DEBlH78lE637FEKLgUM9vqA42r_N3aNcWKUBVeuhWFKyUxILkjbIQrE8IX4zupm3d3zMMK-Rkuf41CEPJJpLyakK9bzRBJ-u28QQUyp-HiY5Er8gUcSqnFPdj5BCRaHWfCLMdX7khHDYhEWLom1EtDnYuhHiOnUinIhfNp5c8">
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Minimalist portrait of a young female strategist with a neutral expression. High-key lighting, bright and airy luxury light mode style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB-MeKGZ5afCSxsHudx_ECgvxAOHrX_y_y2d7mb0y3Oz2UeDKzhjLzYBjsU6r_psMD9RjfweeKngbzWxLHUunJUUM5fipsKewNcnoCpkrmmqXrfj6hk7CpPUZrRYFqYp1NONGYvE4g148KmpbOOK1PGC4WOkp_J2oesNdTPu0VInsPQew64TxlIPxZ-okYjiGLnO6cfLciPnYJKxvIqjlyA586KfSbVraDUgfcKziI0aAloB17NAi3qj7aIShRbIcZ2l58Pst4TqI">
+</div>
+</div>
+<button class="w-10 h-10 rounded-full border-2 border-dashed border-outline-variant flex items-center justify-center text-outline transition-colors hover:border-primary hover:text-primary">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</section>
+<!-- Attachments -->
+<section class="space-y-3">
+<label class="block font-label-caps text-label-caps text-on-surface-variant">Attachments</label>
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+<div class="min-w-[120px] h-20 rounded-xl bg-surface-container-high flex flex-col items-center justify-center border border-outline-variant border-dashed group cursor-pointer hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:scale-110 transition-transform">upload_file</span>
+<span class="font-label-caps text-[10px] mt-1">Upload</span>
+</div>
+<div class="min-w-[120px] h-20 rounded-xl bg-surface-container flex items-center p-2 gap-2 border border-outline-variant">
+<div class="w-10 h-10 rounded-lg bg-white flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">description</span>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="font-label-caps text-[10px] truncate">Brief.pdf</span>
+<span class="font-label-caps text-[8px] text-on-surface-variant">2.4 MB</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Modal Footer Action (Optional) -->
+<div class="p-gutter bg-surface-container-lowest border-t border-surface-container">
+<p class="text-center font-label-caps text-on-tertiary-container">Private task • Visible only to you and assignees</p>
+</div>
+</main>
+</div>
+<!-- Bottom Navigation Shell (Always Rendered on Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-surface/90 backdrop-blur-xl rounded-t-xl shadow-[0_-4px_30px_rgba(13,61,53,0.04)] z-50 md:hidden">
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="font-label-caps text-label-caps">Today</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-caps text-label-caps">Calendar</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-2 w-12 h-12 shadow-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-caps text-label-caps">Projects</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</div>
+</nav>
+<script>
+        // Simple Micro-interactions
+        document.querySelectorAll('button, .chip').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.95)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+
+        // AI Button Animation
+        const aiBtn = document.querySelector('.ai-glow');
+        if(aiBtn) {
+            aiBtn.addEventListener('mouseenter', () => {
+                aiBtn.style.boxShadow = '0 0 30px rgba(13, 61, 53, 0.25)';
+            });
+            aiBtn.addEventListener('mouseleave', () => {
+                aiBtn.style.boxShadow = '0 0 20px rgba(13, 61, 53, 0.15)';
+            });
+        }
+    </script>
+</body></html>

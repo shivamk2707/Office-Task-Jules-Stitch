@@ -1,0 +1,214 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Welcome to TaskFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #f9f9f7; /* Matching theme.colors.background */
+            overflow: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.7);
+        }
+        .floating-anim {
+            animation: floating 6s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.3s; }
+        .fade-in-up {
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f9f9f7",
+                        "surface-container-highest": "#e2e3e1",
+                        "surface-container": "#edeeec",
+                        "surface-bright": "#f9f9f7",
+                        "on-tertiary-fixed-variant": "#3a4a47",
+                        "surface-variant": "#e2e3e1",
+                        "on-surface-variant": "#404846",
+                        "on-surface": "#1a1c1b",
+                        "inverse-primary": "#a2d0c4",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f0f1ef",
+                        "on-primary-fixed-variant": "#224e46",
+                        "outline": "#717976",
+                        "on-tertiary-container": "#91a29f",
+                        "surface-tint": "#3a665d",
+                        "primary-fixed": "#bdece0",
+                        "on-tertiary-fixed": "#0f1e1c",
+                        "on-secondary-container": "#3a6b61",
+                        "surface-container-high": "#e8e8e6",
+                        "tertiary": "#142421",
+                        "secondary": "#35675d",
+                        "primary-fixed-dim": "#a2d0c4",
+                        "secondary-fixed-dim": "#9dd1c4",
+                        "on-secondary-fixed": "#00201b",
+                        "on-background": "#1a1c1b",
+                        "secondary-container": "#b6eadd",
+                        "tertiary-fixed": "#d4e6e2",
+                        "primary-container": "#0d3d35",
+                        "tertiary-fixed-dim": "#b8cac6",
+                        "outline-variant": "#c0c8c5",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f3130",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#b9ede0",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#f9f9f7",
+                        "on-primary-container": "#7ba89d",
+                        "on-primary-fixed": "#00201b",
+                        "surface-container-low": "#f3f4f2",
+                        "on-secondary-fixed-variant": "#1b4f46",
+                        "surface-dim": "#d9dad8",
+                        "tertiary-container": "#293937",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#002620",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "24px",
+                        "section-margin": "40px",
+                        "card-gap": "16px",
+                        "base": "4px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Subtle Background Shader/Atmosphere -->
+<div class="absolute inset-0 z-0 opacity-40">
+
+</div>
+<!-- Background Decorative Elements -->
+<div class="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] rounded-full bg-primary-fixed/20 blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] rounded-full bg-secondary-container/30 blur-[100px] pointer-events-none"></div>
+<!-- Main Splash Container -->
+<main class="relative z-10 flex flex-col items-center max-w-lg px-container-padding text-center">
+<!-- Brand Mark / Logo -->
+<div class="fade-in-up mb-12 flex flex-col items-center">
+<div class="w-24 h-24 bg-primary-container rounded-[32px] flex items-center justify-center shadow-[0_20px_40px_rgba(13,61,53,0.15)] mb-6 floating-anim">
+<span class="material-symbols-outlined text-on-primary text-[48px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight">TaskFlow</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-3 max-w-[280px]">AI-powered productivity for high-performing individuals.</p>
+</div>
+<!-- Featured Abstract Image (Floating Card) -->
+<div class="fade-in-up stagger-1 mb-16 w-full max-w-sm">
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-10 group-hover:opacity-20 transition duration-1000"></div>
+<div class="relative bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30 shadow-[0_30px_60px_-15px_rgba(13,61,53,0.08)]">
+<img class="w-full h-48 object-cover" data-alt="A sophisticated digital artwork showing clean, minimalist layers of translucent frosted glass overlapping. The color palette is composed of deep forest greens, soft sage, and warm off-white tones. The composition is balanced and serene, representing an organized and calm digital workspace. High-end product photography lighting with soft, diffuse shadows creates a luxury minimalist feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtc94Ip_47yBHH9vCwSSGHo6Cwm8U3aKTQz698pQ3F_wYcAYai7xJWCF86N7bh_CnUDtFXzXAttiQn3w3KEZTqBgpQGtD_NZ5d_FPlKRdDDQ-jRqGA6HXijUSinuIvAcEC7yBcCor1F68RjtKn5vY6fyEC5hEZNRWvXRnJWAuaZRhA7gVDopC_lKfOKMyhmzrTNwHQb9SMz0MNg_YOGk0ThRCmwRp48hXjVb1d6-pbPI-Z8V1luM2cXWc_BI6-RCNBRQoqlS43Tpc">
+<div class="p-6 text-left flex items-center justify-between">
+<div>
+<p class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Active Workspace</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">Q4 Strategy Planning</p>
+</div>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-container-highest"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-primary-fixed flex items-center justify-center text-[10px] font-bold text-primary">AI</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="fade-in-up stagger-2 flex flex-col w-full gap-4 px-6">
+<button class="w-full bg-primary-container text-white font-headline-sm text-headline-sm py-5 rounded-full shadow-[0_10px_20px_rgba(13,61,53,0.2)] hover:shadow-[0_15px_30px_rgba(13,61,53,0.25)] hover:scale-[1.02] active:scale-95 transition-all duration-300">
+                Get Started
+            </button>
+<button class="w-full bg-transparent text-primary font-headline-sm text-headline-sm py-5 rounded-full border border-outline-variant/50 hover:bg-surface-container-low transition-all duration-300">
+                Log In
+            </button>
+</div>
+<!-- Footer Note -->
+<div class="fade-in-up stagger-2 mt-12 opacity-50 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+<p class="font-label-caps text-label-caps uppercase tracking-tighter">Secure Enterprise Access Only</p>
+</div>
+</main>
+<!-- Navigation suppression check: This is a splash screen, so no global nav is rendered -->
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Simple mouse parallax for depth
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            const container = document.querySelector('main');
+            container.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+</body></html>

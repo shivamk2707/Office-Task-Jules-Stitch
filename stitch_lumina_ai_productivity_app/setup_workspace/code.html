@@ -1,0 +1,275 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TaskFlow | Workspace Setup</title>
+<!-- Google Fonts: Hanken Grotesk for Apple-style typography -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols for Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS with official plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f9f9f7",
+                    "surface-container-highest": "#e2e3e1",
+                    "surface-container": "#edeeec",
+                    "surface-bright": "#f9f9f7",
+                    "on-tertiary-fixed-variant": "#3a4a47",
+                    "surface-variant": "#e2e3e1",
+                    "on-surface-variant": "#404846",
+                    "on-surface": "#1a1c1b",
+                    "inverse-primary": "#a2d0c4",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f0f1ef",
+                    "on-primary-fixed-variant": "#224e46",
+                    "outline": "#717976",
+                    "on-tertiary-container": "#91a29f",
+                    "surface-tint": "#3a665d",
+                    "primary-fixed": "#bdece0",
+                    "on-tertiary-fixed": "#0f1e1c",
+                    "on-secondary-container": "#3a6b61",
+                    "surface-container-high": "#e8e8e6",
+                    "tertiary": "#142421",
+                    "secondary": "#35675d",
+                    "primary-fixed-dim": "#a2d0c4",
+                    "secondary-fixed-dim": "#9dd1c4",
+                    "on-secondary-fixed": "#00201b",
+                    "on-background": "#1a1c1b",
+                    "secondary-container": "#b6eadd",
+                    "tertiary-fixed": "#d4e6e2",
+                    "primary-container": "#0d3d35",
+                    "tertiary-fixed-dim": "#b8cac6",
+                    "outline-variant": "#c0c8c5",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#b9ede0",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface": "#f9f9f7",
+                    "on-primary-container": "#7ba89d",
+                    "on-primary-fixed": "#00201b",
+                    "surface-container-low": "#f3f4f2",
+                    "on-secondary-fixed-variant": "#1b4f46",
+                    "surface-dim": "#d9dad8",
+                    "tertiary-container": "#293937",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#002620",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "24px",
+                    "section-margin": "40px",
+                    "card-gap": "16px",
+                    "base": "4px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #f9f9f7;
+            -webkit-font-smoothing: antialiased;
+        }
+        .apple-shadow {
+            box-shadow: 0 30px 60px -12px rgba(13, 61, 53, 0.04), 0 18px 36px -18px rgba(13, 61, 53, 0.02);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .focus-ring:focus {
+            outline: none;
+            border-color: #0d3d35;
+            box-shadow: 0 0 0 2px rgba(13, 61, 53, 0.1);
+        }
+        /* Custom radio button appearance */
+        input[type="radio"]:checked + label {
+            background-color: #0d3d35;
+            color: #ffffff;
+            border-color: #0d3d35;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- Top Navigation Anchor (As per JSON hierarchy) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-high/50 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TaskFlow</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-on-surface-variant font-label-caps text-label-caps px-3 py-1 bg-surface-container rounded-full">Step 2 of 3</span>
+</div>
+</div>
+</header>
+<main class="min-h-screen pt-24 pb-32 px-container-padding flex flex-col items-center">
+<!-- Content Container -->
+<div class="w-full max-w-[640px] flex flex-col gap-section-margin">
+<!-- Header Section -->
+<div class="text-center md:text-left space-y-2">
+<h2 class="font-display-lg text-display-lg md:text-display-lg text-primary">Setup your workspace</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[480px]">Personalize your environment. This is where you and your team will collaborate and track high-impact goals.</p>
+</div>
+<!-- Workspace Name Card -->
+<section class="bg-surface-container-lowest border border-surface-container-highest rounded-xl apple-shadow p-8 transition-all hover:translate-y-[-2px] duration-300">
+<div class="flex flex-col gap-6">
+<div class="space-y-4">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase" for="workspace-name">Workspace Name</label>
+<input class="w-full px-4 py-3 bg-background border border-surface-container-highest rounded-lg font-body-lg text-body-lg focus-ring transition-all" id="workspace-name" placeholder="Acme Corp HQ" type="text" value="Acme Strategic Projects">
+</div>
+<div class="space-y-4">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Team Size</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<div>
+<input checked="" class="hidden peer" id="size-1" name="team-size" type="radio">
+<label class="flex items-center justify-center h-12 border border-surface-container-highest rounded-lg cursor-pointer font-body-md text-body-md text-on-surface-variant hover:border-primary/30 peer-checked:bg-primary-container peer-checked:text-on-primary-container peer-checked:border-primary-container transition-all" for="size-1">
+                                    Just me
+                                </label>
+</div>
+<div>
+<input class="hidden peer" id="size-2" name="team-size" type="radio">
+<label class="flex items-center justify-center h-12 border border-surface-container-highest rounded-lg cursor-pointer font-body-md text-body-md text-on-surface-variant hover:border-primary/30 peer-checked:bg-primary-container peer-checked:text-on-primary-container peer-checked:border-primary-container transition-all" for="size-2">
+                                    2 - 10
+                                </label>
+</div>
+<div>
+<input class="hidden peer" id="size-3" name="team-size" type="radio">
+<label class="flex items-center justify-center h-12 border border-surface-container-highest rounded-lg cursor-pointer font-body-md text-body-md text-on-surface-variant hover:border-primary/30 peer-checked:bg-primary-container peer-checked:text-on-primary-container peer-checked:border-primary-container transition-all" for="size-3">
+                                    11 - 50
+                                </label>
+</div>
+<div>
+<input class="hidden peer" id="size-4" name="team-size" type="radio">
+<label class="flex items-center justify-center h-12 border border-surface-container-highest rounded-lg cursor-pointer font-body-md text-body-md text-on-surface-variant hover:border-primary/30 peer-checked:bg-primary-container peer-checked:text-on-primary-container peer-checked:border-primary-container transition-all" for="size-4">
+                                    50+
+                                </label>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Teammates Invite Card -->
+<section class="bg-surface-container-lowest border border-surface-container-highest rounded-xl apple-shadow p-8 transition-all hover:translate-y-[-2px] duration-300">
+<div class="flex flex-col gap-6">
+<div class="flex justify-between items-center">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase">Invite Teammates</label>
+<span class="text-xs text-on-surface-variant">Optional</span>
+</div>
+<div class="flex flex-col gap-3" id="email-list">
+<div class="relative group">
+<input class="w-full pl-10 pr-4 py-3 bg-background border border-surface-container-highest rounded-lg font-body-lg text-body-lg focus-ring transition-all" placeholder="teammate@company.com" type="email">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">mail</span>
+</div>
+<div class="relative group">
+<input class="w-full pl-10 pr-4 py-3 bg-background border border-surface-container-highest rounded-lg font-body-lg text-body-lg focus-ring transition-all" placeholder="colleague@company.com" type="email">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">mail</span>
+</div>
+</div>
+<button class="flex items-center gap-2 text-primary-container font-body-md text-body-md hover:opacity-80 transition-opacity w-fit" onclick="addEmailField()">
+<span class="material-symbols-outlined text-base">add_circle</span>
+                        Add another email
+                    </button>
+<!-- AI Suggestion Prompt (Minimalist Apple-style) -->
+<div class="p-4 bg-secondary-container/20 rounded-lg border border-secondary-container/30 flex gap-4">
+<div class="bg-primary-container text-on-primary rounded-full w-8 h-8 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-secondary-fixed-variant leading-relaxed">
+<span class="font-bold">AI Tip:</span> Invite your core team now to let TaskFlow's AI assistant automatically distribute initial onboarding tasks based on roles.
+                            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Visual Asset Section -->
+<div class="relative h-64 rounded-xl overflow-hidden apple-shadow">
+<div class="w-full h-full bg-cover bg-center" data-alt="A minimalist and high-end digital illustration of a workspace dashboard on a clean desk. The scene features a sleek laptop showing a forest green project management UI, surrounded by a single green plant and a warm, soft morning light. The color palette is composed of deep dark greens, soft whites, and natural textures, conveying a sense of organized tranquility and premium productivity." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB6Tw-WM67xQ0asi4dn0UlWjeNE6gaQrzLDqzLAhTd6atyn0-qMAhclOzdp8GjmFJ5nWWbQ2kG9FhMcgb1tU0lwb4zDH5poprLOqiyBZtKJc_yelaAS8m_r_J1KLbYBtqkcoVUU4bqYkmze2Z_j7UHbUUNNCHMwJEjEbYIl_vX88otQ1TcMvtTZYfncWbXSgUAamsQhB2D--HAralBwMZY2g43JIsbE3QaCfCC7Kfc9F0HGxfspswfX_mKNv4wHvUHUyLlIQO2ikhY')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+<div class="absolute bottom-6 left-8 text-white">
+<p class="font-headline-sm text-headline-sm">Collaboration built-in.</p>
+<p class="font-body-md text-body-md opacity-90">Experience seamless task flow with your team.</p>
+</div>
+</div>
+<!-- Footer Action Bar (Fixed-like functionality at bottom of flow) -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-4 border-t border-surface-container-highest">
+<button class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors underline underline-offset-4">
+                    I'll do this later
+                </button>
+<button class="w-full sm:w-auto px-12 py-4 bg-primary-container text-white rounded-full font-headline-sm text-headline-sm hover:scale-[1.02] active:scale-95 transition-all apple-shadow flex items-center justify-center gap-2">
+                    Complete Setup
+                    <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Invisible spacer for bottom padding on mobile if needed -->
+<div class="h-24 md:hidden"></div>
+<script>
+        function addEmailField() {
+            const list = document.getElementById('email-list');
+            const newField = document.createElement('div');
+            newField.className = 'relative group animate-in fade-in slide-in-from-top-2 duration-300';
+            newField.innerHTML = `
+                <input type="email" placeholder="new-teammate@company.com" 
+                       class="w-full pl-10 pr-4 py-3 bg-background border border-surface-container-highest rounded-lg font-body-lg text-body-lg focus-ring transition-all">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">mail</span>
+                <button onclick="this.parentElement.remove()" class="absolute right-3 top-1/2 -translate-y-1/2 text-error opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span class="material-symbols-outlined text-sm">close</span>
+                </button>
+            `;
+            list.appendChild(newField);
+        }
+
+        // Active state simulation for input fields
+        document.querySelectorAll('input[type="text"], input[type="email"]').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.closest('section').style.borderColor = '#0d3d3533';
+            });
+            input.addEventListener('blur', () => {
+                input.closest('section').style.borderColor = '';
+            });
+        });
+    </script>
+</body></html>

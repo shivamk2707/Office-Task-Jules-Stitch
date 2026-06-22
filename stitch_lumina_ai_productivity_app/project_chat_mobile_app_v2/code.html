@@ -1,0 +1,301 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TaskFlow | Team Chat</title>
+<!-- Google Fonts: Hanken Grotesk -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#d4e6e2",
+                        "surface-tint": "#3a665d",
+                        "secondary-fixed-dim": "#9dd1c4",
+                        "secondary": "#35675d",
+                        "on-secondary-fixed-variant": "#1b4f46",
+                        "inverse-primary": "#a2d0c4",
+                        "on-primary-fixed": "#00201b",
+                        "on-background": "#1a1c1b",
+                        "primary-fixed": "#bdece0",
+                        "on-tertiary-fixed-variant": "#3a4a47",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#3a6b61",
+                        "primary-fixed-dim": "#a2d0c4",
+                        "on-tertiary-fixed": "#0f1e1c",
+                        "secondary-fixed": "#b9ede0",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#224e46",
+                        "outline": "#717976",
+                        "tertiary-fixed-dim": "#b8cac6",
+                        "on-surface-variant": "#404846",
+                        "background": "#f9f9f7",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#b6eadd",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f3f4f2",
+                        "surface-bright": "#f9f9f7",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e2e3e1",
+                        "on-secondary-fixed": "#00201b",
+                        "tertiary-container": "#293937",
+                        "primary": "#002620",
+                        "surface-dim": "#d9dad8",
+                        "on-tertiary-container": "#91a29f",
+                        "on-primary": "#ffffff",
+                        "tertiary": "#142421",
+                        "on-primary-container": "#7ba89d",
+                        "on-surface": "#1a1c1b",
+                        "inverse-surface": "#2f3130",
+                        "outline-variant": "#c0c8c5",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e2e3e1",
+                        "surface": "#f9f9f7",
+                        "surface-container-high": "#e8e8e6",
+                        "surface-container": "#edeeec",
+                        "primary-container": "#0d3d35",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f0f1ef"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "container-padding": "24px",
+                        "base": "4px",
+                        "section-margin": "40px",
+                        "card-gap": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .chat-bubble-sender {
+            box-shadow: 0 4px 12px rgba(13, 61, 53, 0.12);
+        }
+        .chat-bubble-recipient {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        /* Custom scrollbar for message list */
+        .message-list::-webkit-scrollbar {
+            width: 4px;
+        }
+        .message-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .message-list::-webkit-scrollbar-thumb {
+            background: #e2e3e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden">
+<!-- Top Navigation Anchor (As per JSON) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-high/50 p-2 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-headline-sm text-headline-sm text-primary">Project Phoenix</h1>
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase tracking-widest">Active Development Cluster</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<div class="hidden md:flex -space-x-3 mr-4">
+<div class="w-8 h-8 rounded-full border-2 border-surface overflow-hidden" data-alt="Close up portrait of a professional woman with a calm expression, soft studio lighting, against a minimal neutral grey background. The style is clean, corporate photography with high detail and realistic textures, matching a premium business application aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvOxg5a2Jgs-yhuUMSJC_pmfgUIPOL1u7JJFu06dU5C9Dpe9QFIhrr2y83B8ygzY5aPPoaDvM9ou3_9ErQlaMWYY7ThcQw4vOqU0yYmchYVcN9WL4BQshzkeUgUOERpefKK7Y6VVrSSQCFSaS69mQUkdX02tuWxpxYp1uKnamd0xR3nZjXhRkb56oPRiExTeVVJabM8pTsPmcqf4nPy9sMrcV_mypNnkg1bbJTB4AwTLQchUOG8fUBst17oaE8fOp7ooPjPpZkfmU')"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface overflow-hidden" data-alt="Close up portrait of a male designer wearing glasses, looking thoughtfully at the camera. Professional cinematic lighting with soft shadows on a minimalist background. High-quality digital photography representing a sophisticated team environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvAWm1BsQQYUyoBe0AUTOuADDt0ZYr7VtXQxaI_OM5kjqwOg5Y7_FpZuOuTvlR1DHM9NcF5K6IuxuKlhAlEQAVXgDyqhu0Uq9i01Ig1cp8WEFAUCGt5gzMiNyojjJ6Ptvjkh8EF_TLrwknt48UcumtLU2RUgi-kJPGixdRI8v5D3TVx1UfiDplvlu2ZlXre-Kg5CHHqq43_NwAztHocn3NEgXod_eFHoAqNLaBolez0B7dMuv-4qjcZCwCcgHS_P_pbXYx6h_6nxA')"></div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-primary-container flex items-center justify-center">
+<span class="text-[10px] text-on-primary-container font-bold">+4</span>
+</div>
+</div>
+<button class="hover:bg-surface-container-high/50 p-2 rounded-full transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex h-screen pt-24 pb-32 md:pb-24 max-w-[1200px] mx-auto px-gutter gap-gutter">
+<!-- Left: Context / File Sidebar (Hidden on Mobile) -->
+<aside class="hidden lg:flex flex-col w-[300px] shrink-0 gap-6">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_12px_rgba(13,61,53,0.04)] border border-outline-variant/30">
+<h3 class="text-label-caps font-label-caps text-on-surface-variant mb-4">Project Context</h3>
+<div class="space-y-4">
+<div class="p-3 bg-surface-container-low rounded-lg group cursor-pointer hover:bg-surface-container transition-colors">
+<p class="font-headline-sm text-[14px] text-primary">Q4 Strategy Deck.pdf</p>
+<p class="text-label-caps text-on-surface-variant mt-1">Shared by Sarah • 2h ago</p>
+</div>
+<div class="p-3 bg-surface-container-low rounded-lg group cursor-pointer hover:bg-surface-container transition-colors">
+<p class="font-headline-sm text-[14px] text-primary">Branding Guidelines v2</p>
+<p class="text-label-caps text-on-surface-variant mt-1">Figma Link • Yesterday</p>
+</div>
+</div>
+</div>
+<div class="bg-primary-container p-6 rounded-xl relative overflow-hidden">
+
+<div class="relative z-10">
+<h3 class="font-headline-sm text-on-primary-container mb-2">AI Insights</h3>
+<p class="text-body-md text-on-primary-container/80 leading-relaxed">Most discussions today are focused on the "Hero Section" interaction. I can draft a spec for the devs if you're ready.</p>
+<button class="mt-4 px-4 py-2 bg-on-primary-container text-primary-container rounded-full font-label-caps text-[11px] font-bold uppercase tracking-wide hover:opacity-90 transition-opacity">
+                        Generate Spec
+                    </button>
+</div>
+</div>
+</aside>
+<!-- Center: Chat Interface -->
+<section class="flex-1 flex flex-col bg-surface-container-lowest rounded-2xl shadow-[0_30px_60px_rgba(13,61,53,0.08)] border border-outline-variant/20 overflow-hidden relative">
+<!-- Message List -->
+<div class="flex-1 overflow-y-auto p-6 space-y-8 message-list" id="chat-messages">
+<!-- Date Separator -->
+<div class="flex justify-center">
+<span class="px-3 py-1 bg-surface-container rounded-full text-label-caps text-on-surface-variant font-medium">Today</span>
+</div>
+<!-- Recipient Message -->
+<div class="flex gap-3 max-w-[85%]">
+<div class="w-8 h-8 rounded-full shrink-0 overflow-hidden" data-alt="Close up profile picture of a young professional woman with dark hair and a warm smile, wearing a white minimalist blouse. The background is a blurred office interior with soft natural lighting and a premium corporate aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0eW9hHVvIL6ICN3JMqwKyHOvRH-cGMWw_pYyGvAxMXMYyx4qTAPErmIaABxB9J7EJVto7wdsEHusSsHbQEOWcyJN0RGEvRebgK1-5Q5VpbyXCsgUD5bUlXe8YiZb_tm67mapIqMZLzZE6-NirSrlrTMmFjSyxhJQyCPcomjrMS0ZrEwZtAVIyuBzBhLFLHhtge_Kkfs0J_uGZN_pOJUHOH4HVv3pW27kzXIu-Ah4-LopNZgCBkq-46O6d5daFRFZpJ5r_f8HHjWU')"></div>
+<div class="flex flex-col gap-1">
+<div class="bg-surface-container-high chat-bubble-recipient px-5 py-3 rounded-2xl rounded-tl-none text-on-surface leading-relaxed text-body-lg">
+                            Has anyone had a chance to review the new design tokens for the mobile view? I think we might need to adjust the primary container's saturation for better accessibility.
+                        </div>
+<span class="text-label-caps text-[10px] text-on-surface-variant ml-2">Sarah • 10:24 AM</span>
+</div>
+</div>
+<!-- Sender Message -->
+<div class="flex flex-row-reverse gap-3 max-w-[85%] ml-auto">
+<div class="w-8 h-8 rounded-full shrink-0 overflow-hidden" data-alt="Portrait of a male creative director with short beard and glasses, looking confident. Soft overhead lighting creating a professional, artistic mood with high clarity and neutral tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA_p20h1l6kN8-K6-UbPwuSqKwLFdhw7k5U4HmgqHSObWUxLgPJUVCN9Iq2JZcpMLTj3j0khq45MG9_dtzRXHTPHTU0xRdCdkCNEWlRxUPh0yF-e_VOLwA0FzqKjM3V7ELbg1BBu-GLXzOq3QxZXQ30Ie96ADluz0RsUqCegXxRy_aAURfbPWTC7AYX6Zr-dNpSg_42lzGMQjarhr4UTlWIksJrZoIE-ITcIuEQJRVlTN5ptzcOaXcb177UvkyE7hndEQjeU1F3ZZo')"></div>
+<div class="flex flex-col gap-1 items-end">
+<div class="bg-primary-container chat-bubble-sender px-5 py-3 rounded-2xl rounded-tr-none text-white leading-relaxed text-body-lg">
+                            I'm looking at them now. You're right, the contrast on the active tabs feels a bit soft in low light. Let's push the forest green a bit darker.
+                        </div>
+<span class="text-label-caps text-[10px] text-on-surface-variant mr-2">Me • 10:26 AM</span>
+</div>
+</div>
+<!-- AI Intervention Message -->
+<div class="flex justify-center px-12">
+<div class="bg-secondary-container/30 border border-secondary-container rounded-xl p-4 flex gap-4 items-start relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-[pulse_3s_infinite]"></div>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<div>
+<p class="text-body-md text-on-secondary-container font-semibold">AI Suggested Action</p>
+<p class="text-[13px] text-on-secondary-container/80">I can simulate the accessibility score for the proposed color shift immediately.</p>
+<div class="flex gap-2 mt-3">
+<button class="px-3 py-1 bg-secondary text-white rounded-full text-[11px] font-bold">Run Simulation</button>
+<button class="px-3 py-1 bg-transparent border border-secondary text-secondary rounded-full text-[11px] font-bold">Dismiss</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Recipient Message with Image -->
+<div class="flex gap-3 max-w-[85%]">
+<div class="w-8 h-8 rounded-full shrink-0 overflow-hidden" data-alt="A different professional team member, a man with a friendly expression and short brown hair, wearing a grey sweater. The style is high-end studio portraiture with soft shadows and a clean, minimalist background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQfvV97uk6iacZAoz5lOZ32wbnPVT_BsBD2Y6DC5gMJajazu8cova2arz7AtR4Tzs3dwMGCU0c3IvAXuGYDFJs9ROQ1U5QVu3cIMI5JAFw2X4TdKqOJY7HRzKzTU9jOSTzq0G9z5QYATZEBvm2ixy7kKUyZufXlMAwWuUE_OxOe5AxlgmMciaXCZyd7GiehuMMRzPuvgqjVpFQEyPPGQZSwHkvuXDJE8WOBr9v-wuTsS_4jpFx8Ib0_7HGzdsVexzqF3qAlfKnSMM')"></div>
+<div class="flex flex-col gap-1">
+<div class="bg-surface-container-high chat-bubble-recipient px-5 py-3 rounded-2xl rounded-tl-none text-on-surface leading-relaxed text-body-lg">
+                            Great catch! Here is the latest render with the adjusted tokens for comparison.
+                        </div>
+<div class="mt-2 rounded-xl overflow-hidden border border-outline-variant/30 max-w-[400px]">
+<img class="w-full object-cover aspect-video" data-alt="A clean, minimalist UI design mockup of a mobile task management dashboard. The interface features a dark forest green and soft cream palette, with elegant typography and floating cards. High-end product photography style with focus on crisp edges and subtle depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbzYrzM0GBGV46EBm0bS9EeqIU6mGSfF8Jct0OgbhD6roD2COV_Js7TeJ5HBmuM-roMC4o0RD6asiILTa-fVroJg5oBxRBOsANoU8FBEnERPqRkPvCPYjTeYiEQkjjI46c6qvFcipPwD67Re0VWQV1CsVtoEMeemDfRJsTp0ONJodJVx1eVALY5mF8tSZGdtRu_1v7K3QnljC_JtkVPs3HlNDsA3MZs6IpAvLtwDr6k6K8tH8-u1SkpPysVwFzvvGjOT5Mr4mGeww">
+</div>
+<span class="text-label-caps text-[10px] text-on-surface-variant ml-2">Mark • 10:30 AM</span>
+</div>
+</div>
+</div>
+<!-- Input Area -->
+<div class="p-6 bg-surface-container-lowest border-t border-outline-variant/20">
+<div class="flex items-end gap-3 bg-surface-container-low rounded-2xl p-2 pr-4 border border-outline-variant/20 focus-within:border-primary transition-colors">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 py-3 text-body-lg resize-none placeholder:text-on-surface-variant/50 max-h-32" oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'" placeholder="Type a message or use / for AI commands..." rows="1"></textarea>
+<div class="flex items-center gap-2 mb-1">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">sentiment_satisfied</span>
+</button>
+<button class="bg-primary-container text-white w-10 h-10 rounded-xl flex items-center justify-center hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Shell (As per JSON) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-surface/90 dark:bg-surface-container-highest/90 backdrop-blur-xl z-50 rounded-t-xl shadow-[0_-4px_30px_rgba(13,61,53,0.04)]">
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="text-label-caps font-label-caps mt-1">Today</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-label-caps font-label-caps mt-1">Calendar</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">bolt</span>
+<span class="text-label-caps font-label-caps mt-1">AI</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-2 w-12 h-12 translate-y-[-2px]">
+<span class="material-symbols-outlined">folder_open</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">person</span>
+<span class="text-label-caps font-label-caps mt-1">Profile</span>
+</div>
+</nav>
+<!-- Desktop Navigation Cluster (Top Right - handled by TopAppBar layout) -->
+<script>
+        // Simple Interaction logic
+        const messageContainer = document.getElementById('chat-messages');
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+
+        // Auto-expand textarea already handled by inline JS oninput
+
+        // Simulate active navigation state transition
+        const navItems = document.querySelectorAll('nav div');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navItems.forEach(i => i.classList.remove('bg-primary-container', 'text-on-primary-container', 'rounded-full', 'w-12', 'h-12', 'translate-y-[-2px]'));
+                navItems.forEach(i => i.classList.add('text-on-surface-variant'));
+                
+                item.classList.remove('text-on-surface-variant');
+                item.classList.add('bg-primary-container', 'text-on-primary-container', 'rounded-full', 'w-12', 'h-12', 'translate-y-[-2px]');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TaskFlow AI Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e3e1;
+            border-radius: 10px;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e2e3e1",
+                        "surface-bright": "#f9f9f7",
+                        "inverse-surface": "#2f3130",
+                        "tertiary-fixed": "#d4e6e2",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#b9ede0",
+                        "on-surface": "#1a1c1b",
+                        "surface-container-high": "#e8e8e6",
+                        "inverse-primary": "#a2d0c4",
+                        "on-secondary-container": "#3a6b61",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d9dad8",
+                        "primary-container": "#0d3d35",
+                        "on-background": "#1a1c1b",
+                        "on-primary-container": "#7ba89d",
+                        "outline-variant": "#c0c8c5",
+                        "on-secondary-fixed-variant": "#1b4f46",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#91a29f",
+                        "on-secondary-fixed": "#00201b",
+                        "inverse-on-surface": "#f0f1ef",
+                        "on-tertiary-fixed": "#0f1e1c",
+                        "tertiary-fixed-dim": "#b8cac6",
+                        "on-error": "#ffffff",
+                        "surface-container": "#edeeec",
+                        "surface-container-highest": "#e2e3e1",
+                        "secondary": "#35675d",
+                        "secondary-container": "#b6eadd",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#a2d0c4",
+                        "background": "#f9f9f7",
+                        "on-primary-fixed-variant": "#224e46",
+                        "surface-tint": "#3a665d",
+                        "primary": "#002620",
+                        "on-surface-variant": "#404846",
+                        "secondary-fixed-dim": "#9dd1c4",
+                        "surface": "#f9f9f7",
+                        "primary-fixed": "#bdece0",
+                        "tertiary-container": "#293937",
+                        "on-secondary": "#ffffff",
+                        "outline": "#717976",
+                        "on-tertiary-fixed-variant": "#3a4a47",
+                        "surface-container-low": "#f3f4f2",
+                        "on-primary-fixed": "#00201b",
+                        "tertiary": "#142421"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-margin": "40px",
+                        "container-padding": "24px",
+                        "base": "4px",
+                        "gutter": "16px",
+                        "card-gap": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "display-lg": ["34px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-lg overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
+<nav class="flex justify-between items-center px-6 py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-surface-container-high/50 p-2 rounded-full transition-colors">arrow_back</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TaskFlow</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-surface-container-high/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="pt-20 pb-28 min-h-screen px-4 md:px-6 max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column: Tasks & Productivity -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Bento Hero Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Weekly Productivity Score -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-6 shadow-[0_30px_30px_rgba(13,61,53,0.04),0_4px_4px_rgba(13,61,53,0.02)] relative overflow-hidden">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Weekly Productivity</p>
+<h2 class="font-headline-md text-headline-md text-primary mt-1">87%</h2>
+</div>
+<span class="material-symbols-outlined text-secondary-container bg-primary-container p-2 rounded-lg">trending_up</span>
+</div>
+<!-- Mock Chart Visualization -->
+<div class="flex items-end justify-between h-24 gap-2">
+<div class="w-full bg-surface-container-high rounded-t-sm h-[40%]"></div>
+<div class="w-full bg-surface-container-high rounded-t-sm h-[65%]"></div>
+<div class="w-full bg-surface-container-high rounded-t-sm h-[50%]"></div>
+<div class="w-full bg-surface-container-high rounded-t-sm h-[85%]"></div>
+<div class="w-full bg-primary-container rounded-t-sm h-[95%]"></div>
+<div class="w-full bg-surface-container-high rounded-t-sm h-[60%]"></div>
+<div class="w-full bg-surface-container-high rounded-t-sm h-[70%]"></div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-on-surface-variant opacity-60">
+<span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+</div>
+</div>
+<!-- Featured Action -->
+<div class="bg-primary-container text-on-primary rounded-xl p-6 flex flex-col justify-between shadow-lg relative overflow-hidden group">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-secondary/20 rounded-full blur-3xl group-hover:bg-secondary/40 transition-all duration-700"></div>
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-2">Automate Your Workflow</h3>
+<p class="text-on-primary-container text-body-md">AI will analyze your behavior and suggest a personalized focus schedule.</p>
+</div>
+<button class="bg-primary-fixed text-primary px-6 py-3 rounded-full font-semibold text-body-md w-fit flex items-center gap-2 hover:scale-105 transition-transform">
+                        Optimize Tasks with AI
+                        <span class="material-symbols-outlined text-[18px]">bolt</span>
+</button>
+</div>
+</div>
+<!-- Smart Suggestion Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-4 flex items-center gap-4 hover:shadow-md transition-shadow cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-[16px] text-primary">Schedule Optimizer</h4>
+<p class="text-body-md text-on-surface-variant">Reorganize 4 overlapping tasks</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-4 flex items-center gap-4 hover:shadow-md transition-shadow cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined">adjust</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-[16px] text-primary">Focus Mode</h4>
+<p class="text-body-md text-on-surface-variant">Block notifications for 90 mins</p>
+</div>
+</div>
+</div>
+<!-- Focus Content Area -->
+<div class="bg-surface-container-lowest border border-outline-variant/30 rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm text-primary">Next Focus Tasks</h3>
+<button class="text-secondary font-semibold text-body-md">View All</button>
+</div>
+<div class="space-y-3">
+<!-- Task Item -->
+<div class="p-4 rounded-lg bg-surface-container-low flex items-center gap-4 border border-transparent hover:border-outline-variant transition-all group">
+<div class="w-6 h-6 rounded-full border-2 border-outline group-hover:border-primary transition-colors cursor-pointer"></div>
+<div class="flex-1">
+<p class="font-semibold text-primary">Refine UI Design for Dashboard</p>
+<p class="text-body-md text-on-surface-variant">Design System • 10:00 AM</p>
+</div>
+<span class="bg-secondary-container text-on-secondary-fixed-variant px-3 py-1 rounded-full text-[12px] font-bold">HIGH</span>
+</div>
+<!-- Task Item -->
+<div class="p-4 rounded-lg bg-surface-container-low flex items-center gap-4 border border-transparent hover:border-outline-variant transition-all group">
+<div class="w-6 h-6 rounded-full border-2 border-outline group-hover:border-primary transition-colors cursor-pointer"></div>
+<div class="flex-1">
+<p class="font-semibold text-primary">Draft Q3 Performance Report</p>
+<p class="text-body-md text-on-surface-variant">Operations • 11:30 AM</p>
+</div>
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full text-[12px] font-bold">MED</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: AI Workspace (Chat) -->
+<aside class="lg:col-span-4 h-[calc(100vh-140px)] sticky top-20 flex flex-col bg-surface-container-lowest border border-outline-variant/30 rounded-xl overflow-hidden shadow-2xl">
+<!-- AI Header -->
+<div class="px-6 py-4 border-b border-outline-variant/20 bg-surface-container-low/50 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed" data-weight="fill">bolt</span>
+</div>
+<h2 class="font-headline-sm text-[16px] text-primary">AI Workspace</h2>
+</div>
+<div class="flex gap-1">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Active</span>
+</div>
+</div>
+<!-- Chat Area -->
+<div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
+<!-- AI Message -->
+<div class="flex gap-3 max-w-[85%]">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">smart_toy</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl rounded-tl-none">
+<p class="text-body-md text-on-surface">Hello! I've analyzed your upcoming schedule. You have a gap at 2:00 PM. Would you like to schedule a deep focus session for your "UI Design" task?</p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex flex-row-reverse gap-3 ml-auto max-w-[85%]">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-on-primary">person</span>
+</div>
+<div class="bg-primary text-on-primary p-4 rounded-2xl rounded-tr-none">
+<p class="text-body-md">Yes, please. Also, block all Slack notifications during that time.</p>
+</div>
+</div>
+<!-- AI Typing Indicator (Atmospheric) -->
+<div class="flex gap-3 max-w-[85%] opacity-60">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">smart_toy</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl rounded-tl-none flex gap-1">
+<span class="w-1.5 h-1.5 bg-on-surface-variant rounded-full animate-bounce"></span>
+<span class="w-1.5 h-1.5 bg-on-surface-variant rounded-full animate-bounce [animation-delay:0.2s]"></span>
+<span class="w-1.5 h-1.5 bg-on-surface-variant rounded-full animate-bounce [animation-delay:0.4s]"></span>
+</div>
+</div>
+</div>
+<!-- AI Suggestions Pill Cluster -->
+<div class="px-6 py-2 flex gap-2 overflow-x-auto no-scrollbar">
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full border border-outline-variant text-[12px] hover:bg-surface-container-low transition-colors text-on-surface-variant">Set Daily Goal</button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full border border-outline-variant text-[12px] hover:bg-surface-container-low transition-colors text-on-surface-variant">Analyze Stress</button>
+<button class="whitespace-nowrap px-3 py-1.5 rounded-full border border-outline-variant text-[12px] hover:bg-surface-container-low transition-colors text-on-surface-variant">Summarize Tasks</button>
+</div>
+<!-- Input Area -->
+<div class="p-4 bg-surface-container-lowest">
+<div class="relative flex items-center">
+<input class="w-full bg-surface-container-low border-none rounded-2xl px-5 py-4 text-body-md focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Ask AI anything..." type="text">
+<div class="absolute right-3 flex items-center gap-2">
+<button class="p-2 rounded-xl hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary">mic</span>
+</button>
+<button class="p-2 bg-primary-container text-on-primary rounded-xl hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-xl flex justify-around items-center px-4 pb-6 pt-2 z-50 rounded-t-xl shadow-[0_-4px_30px_rgba(13,61,53,0.04)]">
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="text-[10px] font-bold mt-1">Today</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] font-bold mt-1">Calendar</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-2 w-12 h-12 shadow-lg -mt-8 translate-y-[-2px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="text-[10px] font-bold mt-1">Projects</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold mt-1">Profile</span>
+</div>
+</nav>
+<!-- Floating Atmosphere Elements -->
+<div class="fixed top-1/4 -left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<div class="fixed bottom-1/4 -right-20 w-80 h-80 bg-secondary/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<script>
+        // Simple Interaction logic for demo
+        document.querySelector('input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const text = this.value;
+                if (!text) return;
+                
+                const chatArea = document.querySelector('.custom-scrollbar');
+                const userMsg = document.createElement('div');
+                userMsg.className = 'flex flex-row-reverse gap-3 ml-auto max-w-[85%]';
+                userMsg.innerHTML = `
+                    <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+                        <span class="material-symbols-outlined text-[16px] text-on-primary">person</span>
+                    </div>
+                    <div class="bg-primary text-on-primary p-4 rounded-2xl rounded-tr-none">
+                        <p class="text-body-md">${text}</p>
+                    </div>
+                `;
+                chatArea.appendChild(userMsg);
+                this.value = '';
+                chatArea.scrollTop = chatArea.scrollHeight;
+
+                // Simulate reply delay
+                setTimeout(() => {
+                    const aiMsg = document.createElement('div');
+                    aiMsg.className = 'flex gap-3 max-w-[85%]';
+                    aiMsg.innerHTML = `
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[16px] text-on-surface-variant">smart_toy</span>
+                        </div>
+                        <div class="bg-surface-container-low p-4 rounded-2xl rounded-tl-none">
+                            <p class="text-body-md text-on-surface">I've acknowledged your request. Processing optimization now...</p>
+                        </div>
+                    `;
+                    chatArea.appendChild(aiMsg);
+                    chatArea.scrollTop = chatArea.scrollHeight;
+                }, 1000);
+            }
+        });
+    </script>
+</body></html>

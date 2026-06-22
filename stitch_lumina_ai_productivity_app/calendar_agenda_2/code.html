@@ -1,0 +1,406 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TaskFlow - Calendar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-dot {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for minimalist look */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e2e3e1; border-radius: 10px; }
+        
+        .glass-header {
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+        }
+
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 19px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #e2e3e1;
+            z-index: 0;
+        }
+    </style>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e2e3e1",
+                        "surface-bright": "#f9f9f7",
+                        "inverse-surface": "#2f3130",
+                        "tertiary-fixed": "#d4e6e2",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#b9ede0",
+                        "on-surface": "#1a1c1b",
+                        "surface-container-high": "#e8e8e6",
+                        "inverse-primary": "#a2d0c4",
+                        "on-secondary-container": "#3a6b61",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d9dad8",
+                        "primary-container": "#0d3d35",
+                        "on-background": "#1a1c1b",
+                        "on-primary-container": "#7ba89d",
+                        "outline-variant": "#c0c8c5",
+                        "on-secondary-fixed-variant": "#1b4f46",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#91a29f",
+                        "on-secondary-fixed": "#00201b",
+                        "inverse-on-surface": "#f0f1ef",
+                        "on-tertiary-fixed": "#0f1e1c",
+                        "tertiary-fixed-dim": "#b8cac6",
+                        "on-error": "#ffffff",
+                        "surface-container": "#edeeec",
+                        "surface-container-highest": "#e2e3e1",
+                        "secondary": "#35675d",
+                        "secondary-container": "#b6eadd",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#a2d0c4",
+                        "background": "#f9f9f7",
+                        "on-primary-fixed-variant": "#224e46",
+                        "surface-tint": "#3a665d",
+                        "primary": "#002620",
+                        "on-surface-variant": "#404846",
+                        "secondary-fixed-dim": "#9dd1c4",
+                        "surface": "#f9f9f7",
+                        "primary-fixed": "#bdece0",
+                        "tertiary-container": "#293937",
+                        "on-secondary": "#ffffff",
+                        "outline": "#717976",
+                        "on-tertiary-fixed-variant": "#3a4a47",
+                        "surface-container-low": "#f3f4f2",
+                        "on-primary-fixed": "#00201b",
+                        "tertiary": "#142421"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-margin": "40px",
+                        "container-padding": "24px",
+                        "base": "4px",
+                        "gutter": "16px",
+                        "card-gap": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "display-lg": ["34px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-container/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high/50 rounded-full p-2 transition-colors active:scale-95">arrow_back</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TaskFlow</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-high/50 rounded-full p-2 transition-colors active:scale-95">notifications</button>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto pt-24 px-gutter flex flex-col md:flex-row gap-8">
+<!-- Main Content Area: 70% width on desktop -->
+<div class="w-full md:w-[70%] space-y-8">
+<!-- Calendar Grid Section -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_30px_30px_rgba(13,61,53,0.04),0_4px_4px_rgba(13,61,53,0.02)] border border-surface-variant/20">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-sm text-headline-sm text-primary">October 2023</h2>
+<div class="flex gap-1">
+<button class="material-symbols-outlined p-1 hover:bg-surface-container rounded-full">chevron_left</button>
+<button class="material-symbols-outlined p-1 hover:bg-surface-container rounded-full">chevron_right</button>
+</div>
+</div>
+<!-- Day Labels -->
+<div class="grid grid-cols-7 text-center mb-4 text-on-surface-variant font-label-caps text-label-caps">
+<div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+</div>
+<!-- Month Grid -->
+<div class="grid grid-cols-7 gap-y-4">
+<!-- Week 1 - Placeholder start -->
+<div class="h-12 flex flex-col items-center justify-center opacity-20"><span class="text-body-md">25</span></div>
+<div class="h-12 flex flex-col items-center justify-center opacity-20"><span class="text-body-md">26</span></div>
+<div class="h-12 flex flex-col items-center justify-center opacity-20"><span class="text-body-md">27</span></div>
+<div class="h-12 flex flex-col items-center justify-center opacity-20"><span class="text-body-md">28</span></div>
+<div class="h-12 flex flex-col items-center justify-center opacity-20"><span class="text-body-md">29</span></div>
+<div class="h-12 flex flex-col items-center justify-center opacity-20"><span class="text-body-md">30</span></div>
+<div class="h-12 flex flex-col items-center justify-center group relative cursor-pointer">
+<span class="text-body-md">1</span>
+<div class="flex gap-0.5 mt-1">
+<div class="w-1 h-1 rounded-full bg-secondary"></div>
+</div>
+</div>
+<!-- Week 2 -->
+<div class="h-12 flex flex-col items-center justify-center group cursor-pointer hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="text-body-md">2</span>
+</div>
+<div class="h-12 flex flex-col items-center justify-center group cursor-pointer hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="text-body-md">3</span>
+<div class="flex gap-0.5 mt-1">
+<div class="w-1 h-1 rounded-full bg-secondary"></div>
+<div class="w-1 h-1 rounded-full bg-secondary"></div>
+</div>
+</div>
+<div class="h-12 flex flex-col items-center justify-center bg-primary-container text-on-primary rounded-lg shadow-lg relative">
+<span class="text-body-md font-bold">4</span>
+<div class="flex gap-0.5 mt-1">
+<div class="w-1 h-1 rounded-full bg-on-primary"></div>
+</div>
+<span class="absolute -top-1 -right-1 flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary-fixed"></span>
+</span>
+</div>
+<div class="h-12 flex flex-col items-center justify-center group cursor-pointer hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="text-body-md">5</span>
+</div>
+<div class="h-12 flex flex-col items-center justify-center group cursor-pointer hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="text-body-md">6</span>
+<div class="flex gap-0.5 mt-1">
+<div class="w-1 h-1 rounded-full bg-error"></div>
+</div>
+</div>
+<div class="h-12 flex flex-col items-center justify-center group cursor-pointer hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="text-body-md">7</span>
+</div>
+<div class="h-12 flex flex-col items-center justify-center group cursor-pointer hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="text-body-md">8</span>
+</div>
+<!-- Week 3 Fillers -->
+<div class="h-12 flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-high rounded-lg transition-colors"><span class="text-body-md">9</span></div>
+<div class="h-12 flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-high rounded-lg transition-colors"><span class="text-body-md">10</span></div>
+<div class="h-12 flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-high rounded-lg transition-colors"><span class="text-body-md">11</span></div>
+<div class="h-12 flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-high rounded-lg transition-colors"><span class="text-body-md">12</span></div>
+<div class="h-12 flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-high rounded-lg transition-colors"><span class="text-body-md">13</span></div>
+<div class="h-12 flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-high rounded-lg transition-colors"><span class="text-body-md">14</span></div>
+<div class="h-12 flex flex-col items-center justify-center cursor-pointer hover:bg-surface-container-high rounded-lg transition-colors"><span class="text-body-md">15</span></div>
+</div>
+</section>
+<!-- Filters & Agenda Section -->
+<section class="space-y-6">
+<div class="flex justify-between items-center px-1">
+<h3 class="font-headline-sm text-headline-sm text-primary">Agenda</h3>
+<div class="flex p-1 bg-surface-container rounded-full">
+<button class="px-4 py-1.5 rounded-full text-label-caps font-label-caps bg-surface-container-lowest text-primary shadow-sm">My Tasks</button>
+<button class="px-4 py-1.5 rounded-full text-label-caps font-label-caps text-on-surface-variant hover:text-primary transition-colors">Team Tasks</button>
+</div>
+</div>
+<!-- Vertical Timeline -->
+<div class="relative timeline-line pl-12 space-y-8">
+<!-- Task Item 1 -->
+<div class="relative group">
+<div class="absolute -left-12 top-0 mt-1 flex items-center justify-center w-10 h-10 bg-background z-10">
+<div class="w-3 h-3 rounded-full bg-primary-container ring-4 ring-background"></div>
+</div>
+<div class="space-y-1">
+<span class="text-label-caps font-label-caps text-on-surface-variant">09:00 AM — 10:30 AM</span>
+<div class="bg-surface-container-lowest border border-surface-variant/20 p-4 rounded-xl shadow-[0_4px_12px_rgba(13,61,53,0.02)] group-hover:shadow-[0_8px_24px_rgba(13,61,53,0.06)] transition-all">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">Executive Strategy Sync</h4>
+<p class="text-body-md text-on-surface-variant mt-1">Review quarterly OKRs and resource allocation for Project Phoenix.</p>
+</div>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-fixed-variant text-label-caps font-label-caps rounded-full">High</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Task Item 2 (AI Suggestion) -->
+<div class="relative group">
+<div class="absolute -left-12 top-0 mt-1 flex items-center justify-center w-10 h-10 bg-background z-10">
+<div class="w-3 h-3 rounded-full bg-tertiary ring-4 ring-background"></div>
+</div>
+<div class="space-y-1">
+<span class="text-label-caps font-label-caps text-on-surface-variant">12:00 PM — 01:00 PM</span>
+<div class="p-[1px] rounded-xl bg-gradient-to-r from-primary-container to-secondary-fixed shadow-[0_4px_12px_rgba(13,61,53,0.02)]">
+<div class="bg-surface-container-lowest p-4 rounded-[11px] h-full">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px] active-dot">bolt</span>
+<h4 class="font-headline-sm text-headline-sm text-primary">Deep Work: UI Design Focus</h4>
+</div>
+<span class="px-3 py-1 bg-surface-container text-on-tertiary-container text-label-caps font-label-caps rounded-full">AI Suggested</span>
+</div>
+<p class="text-body-md text-on-surface-variant mt-1">Scheduled based on your focus patterns. 3 tasks available for resolution.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Task Item 3 -->
+<div class="relative group">
+<div class="absolute -left-12 top-0 mt-1 flex items-center justify-center w-10 h-10 bg-background z-10">
+<div class="w-3 h-3 rounded-full bg-outline ring-4 ring-background"></div>
+</div>
+<div class="space-y-1">
+<span class="text-label-caps font-label-caps text-on-surface-variant">03:30 PM — 04:15 PM</span>
+<div class="bg-surface-container-lowest border border-surface-variant/20 p-4 rounded-xl shadow-[0_4px_12px_rgba(13,61,53,0.02)] group-hover:shadow-[0_8px_24px_rgba(13,61,53,0.06)] transition-all">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">Frontend Review</h4>
+<p class="text-body-md text-on-surface-variant mt-1">Sanity check for new dashboard navigation and token integration.</p>
+</div>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female software engineer in a bright, modern studio. She is smiling confidently, wearing minimalist designer glasses. The background is a clean, out-of-focus tech office with soft daylight and hints of dark green plants, maintaining a luxury productivity aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM9h7oAO7k1swd1XKKhpDs3cSQTxwBBCR1tmwcd3CnOd3_4gyL4VTWq4KWAQ3SxStp73HnJKNzqlK6OyyVjyN4RpPrdzxxosXTg1JnQkvQV3TiCO0xjJRQ1Zllhhd8RavmvmMWsfNYIB4glkCx6uyJNSOKD8pXd7QUnEvy5XKHiilh4Kq3FOMUXCIG174E9ZsUpLTrT0gn-IG6jymdsbDdRUlJkE8F9dcNonhoFgoyakYyqyA0ztIjPLA3DV2-vmuCyrp1-oAnIIA">
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a male designer with a minimalist, clean-shaven look. He is wearing a dark forest green cashmere sweater. The lighting is soft and high-key, creating an expensive, Apple-style photographic feel. The overall mood is professional, calm, and focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7MY4AHaN7faYnmNpiejbrUTIip1GrGs545gDMA1bdhEQ20JIB_VVq4lxOPqI1oAov-bXm9-5D8zfUaQQWtzxlD4s33xIk_QNWnp0X21n9r5sjWoy8CTrzke8VD-kLKzlrT9OYJPje66vWJ8RP8D3uyMpoKS0d0B9yE3rsOlmSLuflseFilsE9UbEXeDgjz7O2ZIfUTwGJ6_HNeylNxOvA_Svp1_6dNgXIv6T92knCKd63PW0suTOgdnXAbr7nXwCOVObYhYJMX6k">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- AI Sidebar: 30% width on desktop -->
+<aside class="hidden md:block w-[30%] space-y-6">
+<div class="sticky top-24">
+<div class="bg-surface-container-low border border-surface-variant/30 rounded-2xl p-6 space-y-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary active-dot">bolt</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">AI Workspace</h3>
+</div>
+<div class="space-y-4">
+<div class="p-4 bg-surface-container-lowest rounded-xl border border-primary/5">
+<p class="text-body-md text-primary font-semibold mb-2">Schedule Conflict</p>
+<p class="text-body-md text-on-surface-variant">You have a overlap at 2 PM. Should I move "Email Triage" to tomorrow morning?</p>
+<div class="flex gap-2 mt-4">
+<button class="flex-1 px-4 py-2 bg-primary-container text-on-primary rounded-full text-label-caps font-label-caps hover:shadow-lg transition-all">Optimize</button>
+<button class="flex-1 px-4 py-2 border border-outline-variant text-primary rounded-full text-label-caps font-label-caps hover:bg-surface-container transition-all">Dismiss</button>
+</div>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-xl border border-primary/5">
+<p class="text-body-md text-primary font-semibold mb-2">Preparation Needed</p>
+<p class="text-body-md text-on-surface-variant">Review the "Q3 Feedback" document before the 4 PM meeting.</p>
+<button class="mt-3 flex items-center gap-1 text-secondary text-label-caps font-label-caps">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+                                Open Document
+                            </button>
+</div>
+</div>
+<div class="relative h-32 rounded-xl overflow-hidden">
+
+<div class="absolute inset-0 flex items-center justify-center bg-primary/20 backdrop-blur-[2px]">
+<p class="text-on-primary font-label-caps text-label-caps">AI analyzing patterns...</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- FAB -->
+<button class="fixed bottom-24 right-6 md:right-12 w-14 h-14 bg-primary-container text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface/90 dark:bg-surface-container-highest/90 backdrop-blur-xl md:hidden pb-6 pt-2 px-4 flex justify-around items-center shadow-[0_-4px_30px_rgba(13,61,53,0.04)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="font-label-caps text-[10px] mt-1">Today</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-2 w-12 h-12 shadow-lg translate-y-[-10px] transition-all" href="#">
+<span class="material-symbols-outlined active-dot">calendar_today</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span class="font-label-caps text-[10px] mt-1">AI</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-caps text-[10px] mt-1">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[10px] mt-1">Profile</span>
+</a>
+</nav>
+<!-- Desktop Navigation (Integrated in TopAppBar) -->
+<div class="hidden md:flex fixed top-0 left-1/2 -translate-x-1/2 z-[60] h-[72px] items-center gap-8 pointer-events-none">
+<a class="pointer-events-auto text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Today</a>
+<a class="pointer-events-auto text-primary font-semibold text-label-caps text-label-caps flex flex-col items-center" href="#">
+            Calendar
+            <span class="w-1 h-1 bg-primary rounded-full mt-1"></span>
+</a>
+<a class="pointer-events-auto text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Projects</a>
+<a class="pointer-events-auto text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Profile</a>
+</div>
+<script>
+        // Simple day selection interaction
+        document.querySelectorAll('.grid-cols-7 > div[class*="cursor-pointer"]').forEach(day => {
+            day.addEventListener('click', function() {
+                // Clear previous active
+                document.querySelectorAll('.grid-cols-7 > div').forEach(d => {
+                    d.classList.remove('bg-primary-container', 'text-on-primary', 'font-bold');
+                    if(d.querySelector('span')) d.querySelector('span').classList.remove('font-bold');
+                });
+                
+                // Set new active
+                this.classList.add('bg-primary-container', 'text-on-primary', 'rounded-lg');
+                this.querySelector('span').classList.add('font-bold');
+                
+                // Simulated micro-interaction
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => this.style.transform = 'scale(1)', 100);
+            });
+        });
+
+        // Filter toggle interaction
+        const filterBtns = document.querySelectorAll('button[class*="text-label-caps"]');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+                    b.classList.add('text-on-surface-variant');
+                });
+                this.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+                this.classList.remove('text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

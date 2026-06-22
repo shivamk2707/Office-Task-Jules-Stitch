@@ -1,0 +1,285 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TaskFlow | Personalization Step 5</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid #EEEEEE;
+            box-shadow: 0 30px 30px rgba(13, 61, 53, 0.04), 0 4px 4px rgba(13, 61, 53, 0.02);
+        }
+        .selection-ring {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .frequency-card:hover .selection-ring {
+            border-color: #0D3D35;
+        }
+        .frequency-card.active {
+            border-color: #0D3D35;
+            background-color: #F9F9F7;
+        }
+        .progress-bar-fill {
+            transition: width 1s ease-in-out;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#b8cac6",
+                        "outline-variant": "#c0c8c5",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#00201b",
+                        "inverse-on-surface": "#f0f1ef",
+                        "primary-fixed": "#bdece0",
+                        "surface": "#f9f9f7",
+                        "secondary-container": "#b6eadd",
+                        "surface-bright": "#f9f9f7",
+                        "secondary-fixed": "#b9ede0",
+                        "tertiary-container": "#293937",
+                        "tertiary": "#142421",
+                        "inverse-primary": "#a2d0c4",
+                        "on-secondary-fixed": "#00201b",
+                        "on-secondary-container": "#3a6b61",
+                        "on-primary-container": "#7ba89d",
+                        "outline": "#717976",
+                        "surface-container-low": "#f3f4f2",
+                        "on-tertiary-fixed": "#0f1e1c",
+                        "surface-dim": "#d9dad8",
+                        "primary": "#002620",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#224e46",
+                        "secondary": "#35675d",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1a1c1b",
+                        "secondary-fixed-dim": "#9dd1c4",
+                        "background": "#f9f9f7",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#3a665d",
+                        "primary-container": "#0d3d35",
+                        "on-surface-variant": "#404846",
+                        "tertiary-fixed": "#d4e6e2",
+                        "surface-container": "#edeeec",
+                        "on-tertiary-container": "#91a29f",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#1a1c1b",
+                        "on-secondary-fixed-variant": "#1b4f46",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e2e3e1",
+                        "surface-variant": "#e2e3e1",
+                        "surface-container-high": "#e8e8e6",
+                        "primary-fixed-dim": "#a2d0c4",
+                        "on-tertiary-fixed-variant": "#3a4a47",
+                        "inverse-surface": "#2f3130",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "container-padding": "24px",
+                        "section-margin": "40px",
+                        "base": "4px",
+                        "card-gap": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+<!-- Top Navigation Bar (Transactional: Sub-page) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl px-gutter py-4 flex justify-between items-center max-w-[1200px] left-1/2 -translate-x-1/2">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high/50 transition-colors active:scale-95 duration-200" onclick="history.back()">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary">TaskFlow</span>
+</div>
+<div class="hidden md:flex items-center gap-2">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Step 5 of 5</span>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 pb-32 px-container-padding max-w-[1200px] mx-auto w-full flex flex-col items-center">
+<!-- Progress Bar Section -->
+<div class="w-full max-w-2xl mb-12">
+<div class="flex justify-between items-end mb-4">
+<h1 class="font-display-lg text-display-lg text-primary">AI Interaction Frequency</h1>
+<span class="font-label-caps text-label-caps text-primary bg-primary-fixed px-3 py-1 rounded-full">Final Step</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="progress-bar-fill h-full bg-primary-container" style="width: 100%"></div>
+</div>
+</div>
+<!-- Asymmetric Layout for Options -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-card-gap w-full max-w-5xl">
+<!-- Context Visual Side (Desktop Only) -->
+<div class="hidden md:flex md:col-span-5 flex-col justify-center">
+<div class="relative h-[400px] w-full rounded-xl overflow-hidden glass-card p-8 flex flex-col justify-end">
+
+<div class="relative z-10 space-y-4">
+<div class="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-fixed" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary">Tailor your intelligence.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Define how TaskFlow's AI integrates into your daily workflow. From silent assistant to active partner.</p>
+</div>
+</div>
+</div>
+<!-- Selection Side -->
+<div class="md:col-span-7 flex flex-col gap-4">
+<!-- Option 1: Minimalist -->
+<button class="frequency-card group glass-card p-6 rounded-xl text-left border-2 border-transparent transition-all hover:scale-[1.01] active:scale-95" onclick="selectFrequency(this)">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary-container transition-colors group-hover:bg-primary-container group-hover:text-white">
+<span class="material-symbols-outlined">visibility_off</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Minimalist</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Only when asked. Silent in the background until explicitly triggered.</p>
+</div>
+</div>
+<div class="selection-ring w-6 h-6 border-2 border-outline-variant rounded-full flex items-center justify-center">
+<div class="dot w-3 h-3 bg-primary rounded-full scale-0 transition-transform"></div>
+</div>
+</div>
+</button>
+<!-- Option 2: Proactive (Pre-selected) -->
+<button class="frequency-card active group glass-card p-6 rounded-xl text-left border-2 border-primary-container bg-surface-container-low transition-all hover:scale-[1.01] active:scale-95" onclick="selectFrequency(this)">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white">
+<span class="material-symbols-outlined">tips_and_updates</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Proactive</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Suggestions &amp; Recaps. Intelligent nudges and morning summaries to keep you ahead.</p>
+</div>
+</div>
+<div class="selection-ring w-6 h-6 border-2 border-primary-container rounded-full flex items-center justify-center">
+<div class="dot w-3 h-3 bg-primary rounded-full scale-100 transition-transform"></div>
+</div>
+</div>
+</button>
+<!-- Option 3: Co-Pilot -->
+<button class="frequency-card group glass-card p-6 rounded-xl text-left border-2 border-transparent transition-all hover:scale-[1.01] active:scale-95" onclick="selectFrequency(this)">
+<div class="flex items-start justify-between">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary-container transition-colors group-hover:bg-primary-container group-hover:text-white">
+<span class="material-symbols-outlined">auto_fix_high</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Co-Pilot</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Full workflow assistance. Auto-prioritizing tasks and generating drafts in real-time.</p>
+</div>
+</div>
+<div class="selection-ring w-6 h-6 border-2 border-outline-variant rounded-full flex items-center justify-center">
+<div class="dot w-3 h-3 bg-primary rounded-full scale-0 transition-transform"></div>
+</div>
+</div>
+</button>
+<!-- AI Insight Chip -->
+<div class="mt-4 p-4 rounded-xl border border-dashed border-primary-container/30 bg-primary-fixed/20 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'wght' 300;">info</span>
+<p class="font-body-md text-body-md text-on-primary-fixed-variant">84% of high-performers prefer <strong>Proactive</strong> mode for balanced focus.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Footer CTA -->
+<footer class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-xl pt-4 pb-8 px-container-padding flex justify-center z-50">
+<div class="w-full max-w-2xl flex flex-col md:flex-row gap-4 items-center">
+<button class="w-full bg-primary-container text-white py-4 px-8 rounded-full font-headline-sm text-headline-sm hover:opacity-90 active:scale-95 transition-all shadow-lg flex items-center justify-center gap-2">
+<span>Complete Personalization</span>
+<span class="material-symbols-outlined">check_circle</span>
+</button>
+<button class="w-full md:w-auto text-on-surface-variant font-label-caps text-label-caps px-6 py-2 hover:text-primary transition-colors">
+                Skip for now
+            </button>
+</div>
+</footer>
+<script>
+        function selectFrequency(element) {
+            // Remove active classes from all cards
+            document.querySelectorAll('.frequency-card').forEach(card => {
+                card.classList.remove('active', 'border-primary-container', 'bg-surface-container-low');
+                card.classList.add('border-transparent');
+                
+                // Update dots
+                const dot = card.querySelector('.dot');
+                dot.classList.remove('scale-100');
+                dot.classList.add('scale-0');
+                
+                // Update ring
+                const ring = card.querySelector('.selection-ring');
+                ring.classList.remove('border-primary-container');
+                ring.classList.add('border-outline-variant');
+
+                // Update icon container
+                const iconContainer = card.querySelector('.w-10');
+                iconContainer.classList.remove('bg-primary-container', 'text-white');
+                iconContainer.classList.add('bg-surface-container', 'text-primary-container');
+            });
+
+            // Add active classes to selected card
+            element.classList.add('active', 'border-primary-container', 'bg-surface-container-low');
+            element.classList.remove('border-transparent');
+            
+            const selectedDot = element.querySelector('.dot');
+            selectedDot.classList.add('scale-100');
+            selectedDot.classList.remove('scale-0');
+            
+            const selectedRing = element.querySelector('.selection-ring');
+            selectedRing.classList.add('border-primary-container');
+            selectedRing.classList.remove('border-outline-variant');
+
+            const selectedIcon = element.querySelector('.w-10');
+            selectedIcon.classList.add('bg-primary-container', 'text-white');
+            selectedIcon.classList.remove('bg-surface-container', 'text-primary-container');
+        }
+    </script>
+</body></html>

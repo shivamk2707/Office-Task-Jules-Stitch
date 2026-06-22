@@ -1,0 +1,322 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Create New Project - TaskFlow</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e2e3e1",
+                    "on-tertiary-container": "#91a29f",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#bdece0",
+                    "on-surface-variant": "#404846",
+                    "on-tertiary-fixed-variant": "#3a4a47",
+                    "primary-fixed-dim": "#a2d0c4",
+                    "inverse-primary": "#a2d0c4",
+                    "tertiary-fixed-dim": "#b8cac6",
+                    "inverse-surface": "#2f3130",
+                    "background": "#f9f9f7",
+                    "on-tertiary-fixed": "#0f1e1c",
+                    "secondary-fixed-dim": "#9dd1c4",
+                    "outline": "#717976",
+                    "error-container": "#ffdad6",
+                    "surface": "#f9f9f7",
+                    "surface-container": "#edeeec",
+                    "secondary-fixed": "#b9ede0",
+                    "surface-container-high": "#e8e8e6",
+                    "outline-variant": "#c0c8c5",
+                    "surface-dim": "#d9dad8",
+                    "on-secondary-fixed": "#00201b",
+                    "on-primary-container": "#7ba89d",
+                    "surface-tint": "#3a665d",
+                    "on-secondary-container": "#3a6b61",
+                    "on-primary-fixed-variant": "#224e46",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#b6eadd",
+                    "tertiary-container": "#293937",
+                    "surface-variant": "#e2e3e1",
+                    "on-surface": "#1a1c1b",
+                    "primary": "#002620",
+                    "inverse-on-surface": "#f0f1ef",
+                    "tertiary": "#142421",
+                    "surface-container-low": "#f3f4f2",
+                    "on-background": "#1a1c1b",
+                    "tertiary-fixed": "#d4e6e2",
+                    "surface-bright": "#f9f9f7",
+                    "secondary": "#35675d",
+                    "primary-container": "#0d3d35",
+                    "on-secondary-fixed-variant": "#1b4f46",
+                    "on-primary-fixed": "#00201b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "modal": "20px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-gap": "16px",
+                    "gutter": "16px",
+                    "base": "4px",
+                    "section-margin": "40px",
+                    "container-padding": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e3e1; border-radius: 10px; }
+        .modal-shadow { box-shadow: 0 30px 60px -12px rgba(13, 61, 53, 0.12), 0 18px 36px -18px rgba(13, 61, 53, 0.08); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-surface-dim font-body-md text-on-surface overflow-hidden">
+<!-- Mock Background / Shell Suppression Logic: No Global Nav shown as this is a Task-Focused Modal -->
+<div class="fixed inset-0 bg-primary/20 backdrop-blur-md z-0 flex items-end sm:items-center justify-center p-0 sm:p-6">
+<!-- Main Create New Project Modal -->
+<main class="w-full max-w-[600px] h-[813px] sm:h-auto sm:max-h-[751px] bg-surface-bright rounded-t-modal sm:rounded-modal modal-shadow overflow-hidden flex flex-col relative z-10 transition-all duration-500 ease-out translate-y-0">
+<!-- Modal Header -->
+<header class="flex items-center justify-between px-gutter py-5 bg-surface-bright sticky top-0 z-20 border-b border-outline-variant/30">
+<button class="p-2 -ml-2 rounded-full hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-primary">Create New Project</h1>
+<button class="bg-primary-container text-on-primary font-semibold px-5 py-2 rounded-full active:scale-95 transition-transform">
+                    Create
+                </button>
+</header>
+<!-- Scrollable Content Canvas -->
+<div class="flex-1 overflow-y-auto custom-scrollbar px-gutter py-6 space-y-8">
+<!-- Project Name & Status Toggle -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<label class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Project Identity</label>
+<div class="flex items-center gap-3 bg-surface-container px-3 py-1.5 rounded-full">
+<span class="text-[11px] font-semibold text-primary">PRIVATE</span>
+<div class="w-8 h-4 bg-primary rounded-full relative cursor-pointer">
+<div class="absolute right-1 top-1 w-2 h-2 bg-white rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<input class="w-full font-headline-md text-headline-md bg-transparent border-none focus:ring-0 p-0 placeholder:text-outline-variant/50" placeholder="Enter project name..." type="text">
+<div class="h-[1px] w-full bg-outline-variant/30"></div>
+</div>
+</section>
+<!-- AI Roadmap Banner -->
+<section class="relative group cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-primary-container to-secondary p-[1px]">
+<div class="bg-surface-bright rounded-[15px] p-4 flex items-center gap-4 hover:bg-transparent transition-all duration-300">
+<div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-primary leading-tight">AI Roadmap Generator</h3>
+<p class="text-body-md text-on-surface-variant mt-0.5">Let TaskFlow AI build your project milestones based on name.</p>
+</div>
+<span class="material-symbols-outlined text-primary-container group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</section>
+<!-- Configuration Grid -->
+<section class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Workspace</label>
+<div class="flex items-center justify-between p-3 rounded-xl border border-outline-variant/40 bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">corporate_fare</span>
+<span class="font-semibold text-body-md">Marketing Lab</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-outline-variant">expand_more</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Client</label>
+<div class="flex items-center justify-between p-3 rounded-xl border border-outline-variant/40 bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center gap-2 text-outline-variant">
+<span class="material-symbols-outlined text-[18px]">person_add</span>
+<span class="font-medium text-body-md">Select Client</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Date Range Selection -->
+<section class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Timeline</label>
+<div class="flex items-center gap-3 p-3 rounded-xl border border-outline-variant/40 bg-surface-container-low">
+<div class="flex-1 flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">calendar_today</span>
+<div class="flex flex-col">
+<span class="text-[10px] text-outline-variant font-bold leading-none uppercase">Start Date</span>
+<span class="text-body-md font-semibold">Oct 24, 2023</span>
+</div>
+</div>
+<div class="w-[1px] h-8 bg-outline-variant/30"></div>
+<div class="flex-1 flex items-center gap-3">
+<div class="flex flex-col items-end w-full">
+<span class="text-[10px] text-outline-variant font-bold leading-none uppercase">End Date</span>
+<span class="text-body-md font-semibold">Dec 12, 2023</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Team Invitation -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Team Members</label>
+<span class="text-body-md font-semibold text-primary cursor-pointer hover:underline">Manage All</span>
+</div>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant/40 rounded-xl py-3 pl-10 pr-4 text-body-md focus:ring-1 focus:ring-primary-container focus:border-primary-container outline-none transition-all" placeholder="Search by name or email..." type="text">
+</div>
+<div class="flex gap-3 overflow-x-auto pb-2">
+<div class="flex-shrink-0 flex flex-col items-center gap-1 group">
+<div class="w-12 h-12 rounded-full border-2 border-dashed border-outline-variant flex items-center justify-center hover:border-primary hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">add</span>
+</div>
+<span class="text-[11px] font-medium text-on-surface-variant">Invite</span>
+</div>
+<!-- Mock Members -->
+<div class="flex-shrink-0 flex flex-col items-center gap-1">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A portrait of a professional woman with a calm expression, wearing a stylish minimalist outfit in a brightly lit modern office setting. The lighting is soft and airy, reflecting a clean and luxury aesthetic with a background featuring soft green plants and white marble textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-TDWfo7opqe66cFEDxtgKYuU5ni28A0jb3jxwmMzbt7QpULCv16PLbpYwU-AmJ-0-_-_4ABrXYYKUyxkUNJBI62i_OU9ew_WrjVf6PPPxoZ3-PMpYAo-3cGw6Gcac1-0Bp5drer9W7jvPcqR5S8j90H1hz_zYSiY8vB9YceM3SsjXoZYGu-aOXyh9rv-lH1G89cM1GIFTXFx5YHT7j1FDrEaAmI8FeMobyIX2DOKpdpQ0twXdcsYqAsJLwGR-JSP5NoW7Z34yylU">
+</div>
+<span class="text-[11px] font-medium text-on-surface-variant">Sarah K.</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-1">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A high-quality studio portrait of a young male professional, appearing focused and innovative. The visual style is inspired by modern technology companies, with a soft-focus background of a glass-walled office space and a color palette of deep greens and grays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMh5ireKZQ6g9EpKqaN2CqyAYCdQA3OSCOx_xsFwfxvHVQDQF1cR8aKgombJaIwFqqPNXWaxG8-3YdptscpHhT8ZQnH956ZB_8Gg3HQ7l2jSUHaGaXCZthArhji66FguH0RbEvcGmewqcPDkRSD-fRQJkdhsAaLKjwqp8oHt9DZAs8gSFJUPFq-lY1d1IbGY_VcWci-mpkZCCJnmZ1DiobruOSFle8857SBLbCnlw7WPY1G4CB7ur-DNB6CrhhG92lYtt3ZkoUMMM">
+</div>
+<span class="text-[11px] font-medium text-on-surface-variant">Marcus V.</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-1">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A profile photo of a creative designer in a minimalist workshop environment. Soft natural lighting illuminates the scene, emphasizing a workspace with high-end materials like wood and brushed metal. The aesthetic is sophisticated and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNSNHkK_qiVg16-pMZMC00z431xkBqCsfsQ1FuFCmx_XmQ8_5RV0uSoF8lzKqIwhSFFXCw-8aOSxUydiU35cm37ZzQjMsm8byFmDP2MGDid3pR4MVVV_gj3uI22D7t2xK2X3gL86PYqeag1ikCV9E6OHBMUdzkXdcw3v34EIMhktplINKgO8IH7EB6y0cTJRiDyDq8_xY4R8BRQGuPIlk8M50LC6fBrb8lPs0zcCQOeiriPqrL-TKiCVO3R7WfSEaJ8-AQNvcMOIA">
+</div>
+<span class="text-[11px] font-medium text-on-surface-variant">Lena R.</span>
+</div>
+</div>
+</section>
+<!-- Milestones Builder -->
+<section class="space-y-4">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Initial Milestones</label>
+<div class="space-y-3">
+<div class="flex items-center gap-3 p-3 bg-white rounded-xl shadow-sm border border-outline-variant/10">
+<div class="w-8 h-8 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary font-bold text-xs">01</div>
+<input class="flex-1 bg-transparent border-none p-0 focus:ring-0 text-body-md font-medium" type="text" value="Project Discovery &amp; Briefing">
+<span class="material-symbols-outlined text-outline-variant cursor-pointer hover:text-error">drag_indicator</span>
+</div>
+<div class="flex items-center gap-3 p-3 bg-white rounded-xl shadow-sm border border-outline-variant/10">
+<div class="w-8 h-8 rounded-lg bg-primary-container/10 flex items-center justify-center text-primary font-bold text-xs">02</div>
+<input class="flex-1 bg-transparent border-none p-0 focus:ring-0 text-body-md font-medium" type="text" value="Architecture &amp; Logic Flow">
+<span class="material-symbols-outlined text-outline-variant cursor-pointer hover:text-error">drag_indicator</span>
+</div>
+<button class="w-full flex items-center justify-center gap-2 py-3 border-2 border-dashed border-outline-variant/40 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">add_task</span>
+<span class="text-body-md font-semibold">Add Milestone</span>
+</button>
+</div>
+</section>
+<!-- Theme & Cover Selection -->
+<section class="space-y-4 pb-12">
+<label class="font-label-caps text-label-caps text-on-surface-variant">Theme &amp; Cover</label>
+<div class="grid grid-cols-2 gap-4">
+<div class="h-24 rounded-2xl overflow-hidden relative cursor-pointer border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A lush forest canopy viewed from below, with dappled sunlight filtering through deep emerald green leaves. The mood is tranquil, organic, and premium, perfectly representing the primary brand color #0D3D35. Soft motion blur suggests a gentle breeze." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB99LaqoiWqCFlEVvI15EnDV2U336YqIyPefDHyyTJba5mBmri3--ufbR9p62UzoRAUNHYIi4CiwPRSQhfzZ_boN2YoNHIfyNolh2T2SBgOJljO6OM-rukqV63JFSdhQDTsTt9j73reGO6qynoGF49WnGUcFOUrAREXpJ8GmK4AqA8kmi9rxpiQVO5H69sJ3-sCshUd1iGi5O1VfdxEPfYvhFHJsIYnbQiI8ISjG2hlGQAHkYgjBgnYuGNZF5ZGtdEbR5WjBAOmUI">
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="h-24 rounded-2xl overflow-hidden relative cursor-pointer group">
+<img class="w-full h-full object-cover" data-alt="An abstract 3D render of flowing silk ribbons in a soft sage and cream palette. The surfaces are highly reflective with a glass-like finish, creating a sense of professional elegance and digital fluidity. High-end architectural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvHfLLoifc8MZP4kb5JScch7xRDO0_JPXPdOfan3RPEijE5YgXK1ZpJtB_96W00H7UJXSj0VVkUl9ursM8Cv8PZGXboBMBdISKGxF9HZ7f39lvmfkLW8d7_GOgtDcG-xlVVkYJRnA--TafUdVQMpE9yzQTXjVlkT_YZ7QUnrmECNdaJgczA-idk8sT0JS59w-8F0UhjocumjqlR84e9O7mOIZrOVD70U5VfLxS0OYahD4G5Oktrg4fuvQfWxXS57pxO9Meeqlg6iM">
+<div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary ring-2 ring-offset-2 ring-primary"></div>
+<div class="w-8 h-8 rounded-full bg-secondary"></div>
+<div class="w-8 h-8 rounded-full bg-on-primary-container"></div>
+<div class="w-8 h-8 rounded-full bg-tertiary"></div>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">colorize</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Modal Footer (Action Bar) -->
+<footer class="p-gutter bg-surface-bright/80 backdrop-blur-md border-t border-outline-variant/30 hidden sm:block">
+<div class="flex gap-4">
+<button class="flex-1 py-3 text-body-md font-bold text-on-surface-variant bg-surface-container rounded-xl active:scale-95 transition-transform">Save as Draft</button>
+<button class="flex-[1.5] py-3 text-body-md font-bold text-white bg-primary-container rounded-xl active:scale-95 transition-transform">Launch Project</button>
+</div>
+</footer>
+</main>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        // Simple scale and fade in animation for the modal
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.querySelector('main');
+            modal.style.opacity = '0';
+            modal.style.transform = 'translateY(20px) scale(0.98)';
+            
+            setTimeout(() => {
+                modal.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+                modal.style.opacity = '1';
+                modal.style.transform = 'translateY(0) scale(1)';
+            }, 100);
+        });
+
+        // Toggle state simulation
+        const toggle = document.querySelector('.w-8.h-4');
+        const toggleCircle = toggle.querySelector('div');
+        let isPrivate = true;
+        toggle.addEventListener('click', () => {
+            isPrivate = !isPrivate;
+            if(isPrivate) {
+                toggle.classList.replace('bg-outline-variant', 'bg-primary');
+                toggleCircle.classList.replace('left-1', 'right-1');
+            } else {
+                toggle.classList.replace('bg-primary', 'bg-outline-variant');
+                toggleCircle.classList.replace('right-1', 'left-1');
+            }
+        });
+    </script>
+</body></html>

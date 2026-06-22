@@ -1,0 +1,389 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TaskFlow - Daily Focus</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#293937",
+                        "secondary-fixed": "#b9ede0",
+                        "on-secondary-fixed-variant": "#1b4f46",
+                        "on-primary-container": "#7ba89d",
+                        "surface-tint": "#3a665d",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1a1c1b",
+                        "surface-container-low": "#f3f4f2",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#00201b",
+                        "on-surface-variant": "#404846",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#3a4a47",
+                        "on-secondary-fixed": "#00201b",
+                        "on-surface": "#1a1c1b",
+                        "on-secondary-container": "#3a6b61",
+                        "surface-container-highest": "#e2e3e1",
+                        "primary-fixed-dim": "#a2d0c4",
+                        "primary": "#002620",
+                        "on-tertiary-container": "#91a29f",
+                        "secondary-fixed-dim": "#9dd1c4",
+                        "surface": "#f9f9f7",
+                        "outline-variant": "#c0c8c5",
+                        "outline": "#717976",
+                        "on-error-container": "#93000a",
+                        "background": "#f9f9f7",
+                        "surface-container-high": "#e8e8e6",
+                        "surface-dim": "#d9dad8",
+                        "surface-bright": "#f9f9f7",
+                        "tertiary-fixed-dim": "#b8cac6",
+                        "on-tertiary-fixed": "#0f1e1c",
+                        "inverse-surface": "#2f3130",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f0f1ef",
+                        "surface-container": "#edeeec",
+                        "primary-container": "#0d3d35",
+                        "inverse-primary": "#a2d0c4",
+                        "tertiary-fixed": "#d4e6e2",
+                        "secondary": "#35675d",
+                        "surface-variant": "#e2e3e1",
+                        "secondary-container": "#b6eadd",
+                        "tertiary": "#142421",
+                        "primary-fixed": "#bdece0",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#224e46"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-margin": "40px",
+                        "base": "4px",
+                        "gutter": "16px",
+                        "card-gap": "16px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #f9f9f7;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .ai-border-gradient {
+            border: 1px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(to right, #0d3d35, #bdece0) border-box;
+        }
+        .floating-card {
+            box-shadow: 0 30px 30px rgba(13,61,53,0.04), 0 4px 4px rgba(13,61,53,0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .floating-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 35px 35px rgba(13,61,53,0.06), 0 6px 6px rgba(13,61,53,0.03);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-high/50 rounded-full p-2 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TaskFlow</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="hover:bg-surface-container-high/50 rounded-full p-2 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-32 px-4 max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-10 gap-8">
+<!-- Dashboard Left (70%) -->
+<div class="md:col-span-7 space-y-10">
+<!-- AI Morning Briefing Section -->
+<section id="morning-briefing">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md text-primary">Morning Briefing</h2>
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">OCT 24, 2023</span>
+</div>
+<div class="ai-border-gradient rounded-xl p-8 bg-white floating-card relative overflow-hidden">
+<!-- Subtle AI Background Pattern -->
+<div class="absolute top-0 right-0 p-6 opacity-10">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 text-primary-container mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">AI Insights</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm mb-4">Good morning, Julian. You have a focused day ahead.</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-2xl mb-8">
+                            Based on your deadlines, we've prioritized the <span class="font-semibold text-primary">Q4 Strategy Deck</span>. Your peak focus time is predicted between 9:00 AM and 11:30 AM. Avoid scheduling meetings during this window.
+                        </p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="bg-surface-container-low p-4 rounded-xl">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">Deep Work</span>
+<span class="font-headline-sm text-headline-sm text-primary">2.5 Hours</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">Meetings</span>
+<span class="font-headline-sm text-headline-sm text-primary">2 Slots</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl">
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-1">Energy Peak</span>
+<span class="font-headline-sm text-headline-sm text-primary">High</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- High Priority Tasks Section -->
+<section id="high-priority">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-sm text-headline-sm text-primary">Today's High-Priority</h2>
+<button class="text-primary hover:underline font-label-caps text-label-caps">VIEW ALL</button>
+</div>
+<div class="space-y-4">
+<!-- Task Card 1 -->
+<div class="bg-primary-container text-on-primary rounded-xl p-6 flex items-center justify-between floating-card">
+<div class="flex items-start gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-on-primary-container">check_circle</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-white">Finalize Q4 Revenue Strategy</h4>
+<div class="flex items-center gap-3 mt-2">
+<span class="flex items-center gap-1 font-label-caps text-label-caps text-on-primary-container">
+<span class="material-symbols-outlined text-sm">schedule</span> 09:00 AM
+                                    </span>
+<span class="bg-on-primary-fixed-variant/30 px-2 py-0.5 rounded-full font-label-caps text-[10px] text-white">STRATEGY</span>
+</div>
+</div>
+</div>
+<div class="flex items-center -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-primary-container object-cover" data-alt="A professional headshot of a business executive in a minimalist studio, clean lighting, high-end photography, neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlXyn_KWDWACM0mPjQGAln9TOotzyJ9TRYu-LlAONrmW3RLyt4RI_SosObbfA2lLGfjbSfAUeUTDjlGv4aDVO2P9J6ZBvPrB6JKfwaA4njRk_gKbutbIxeQeLa_0drmneP7qdHu_n2kOESt4JUMrD_p0o3cMkPj4xdxNO8wRUG-9JvKR0JaAmM3GxX7M5rDuZTHShQhJ28h4ctg8i_kuBmRJwKky4KddS5-cwntbIO9DHI7swa2kjlWCcls8aRqqRLw1HPP3mVF28">
+<img class="w-8 h-8 rounded-full border-2 border-primary-container object-cover" data-alt="A professional headshot of a female creative director, minimalist aesthetic, soft studio lighting, high resolution, clean lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-_jJftrOp5gOxLSsBs-ACYYsn5x5Ls-eNSLJJfdOMUxb0G467yL26TRIZvABlAj2VXE6BnERVDhagt7dPf1omaEk_4LNqHDkAjmVJU4YVHUZvVZX4rNxhdC2l1Pl9-WmMrDAmO1mX9vxQj4FZPptthXGrROhUsNY6jDysEJhsy8EjjZAB11qkMZCxfGuI878uzQfGY7evkxqso7GX7dZfq3n78uKN4GUogGro_mFLSbXAkolR0yu1fIw_a7ygyzEX9KHQ6zoqbNU">
+</div>
+</div>
+<!-- Task Card 2 -->
+<div class="bg-white border border-outline-variant/30 rounded-xl p-6 flex items-center justify-between floating-card">
+<div class="flex items-start gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-outline">radio_button_unchecked</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">AI Ethics Board Review</h4>
+<div class="flex items-center gap-3 mt-2">
+<span class="flex items-center gap-1 font-label-caps text-label-caps text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">schedule</span> 02:30 PM
+                                    </span>
+<span class="bg-secondary-container px-2 py-0.5 rounded-full font-label-caps text-[10px] text-secondary">GOVERNANCE</span>
+</div>
+</div>
+</div>
+<button class="hover:bg-surface-container rounded-full p-2">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+<!-- Task Card 3 -->
+<div class="bg-white border border-outline-variant/30 rounded-xl p-6 flex items-center justify-between floating-card">
+<div class="flex items-start gap-4">
+<div class="mt-1">
+<span class="material-symbols-outlined text-outline">radio_button_unchecked</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">Sync with Design Team</h4>
+<div class="flex items-center gap-3 mt-2">
+<span class="flex items-center gap-1 font-label-caps text-label-caps text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">schedule</span> 04:00 PM
+                                    </span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded-full font-label-caps text-[10px] text-on-surface-variant">INTERNAL</span>
+</div>
+</div>
+</div>
+<button class="hover:bg-surface-container rounded-full p-2">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Dashboard Right / AI Sidebar (30%) -->
+<aside class="hidden md:block md:col-span-3 space-y-6">
+<div class="sticky top-24 space-y-6">
+<!-- AI Assistant Card -->
+<div class="bg-surface-container p-6 rounded-2xl border border-outline-variant/10">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block uppercase">AI Assistant</span>
+<span class="font-headline-sm text-headline-sm text-primary">Connected</span>
+</div>
+</div>
+<div class="space-y-4">
+<div class="p-3 bg-white rounded-xl shadow-sm border border-outline-variant/20">
+<p class="font-body-md text-body-md text-on-surface-variant">"I noticed you haven't reviewed the latest Figma file for the Q4 deck. Should I summarize the comments?"</p>
+<div class="flex gap-2 mt-3">
+<button class="px-3 py-1 bg-primary text-white font-label-caps text-[10px] rounded-full uppercase">Yes, please</button>
+<button class="px-3 py-1 border border-outline text-on-surface-variant font-label-caps text-[10px] rounded-full uppercase">Later</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Activity Feed / Stats -->
+<div class="bg-white p-6 rounded-2xl floating-card">
+<h5 class="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Weekly Velocity</h5>
+<div class="h-32 w-full flex items-end justify-between gap-1 pb-2 border-b border-surface-container">
+<div class="w-full bg-secondary-container rounded-t-sm" style="height: 40%"></div>
+<div class="w-full bg-secondary-container rounded-t-sm" style="height: 60%"></div>
+<div class="w-full bg-secondary-container rounded-t-sm" style="height: 35%"></div>
+<div class="w-full bg-secondary-container rounded-t-sm" style="height: 85%"></div>
+<div class="w-full bg-primary-container rounded-t-sm" style="height: 95%"></div>
+<div class="w-full bg-surface-container-high rounded-t-sm" style="height: 10%"></div>
+<div class="w-full bg-surface-container-high rounded-t-sm" style="height: 10%"></div>
+</div>
+<div class="mt-4 flex justify-between items-center">
+<span class="font-headline-md text-headline-md text-primary">84%</span>
+<span class="font-label-caps text-label-caps text-green-700 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span> +12%
+                        </span>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1 uppercase">Tasks Completed</p>
+</div>
+<!-- Quick Action FAB Contextual -->
+<button class="w-full bg-primary text-white py-4 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined">add_task</span>
+<span class="font-headline-sm text-headline-sm">Create New Task</span>
+</button>
+</div>
+</aside>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_-4px_30px_rgba(13,61,53,0.04)] rounded-t-xl md:hidden">
+<div class="flex justify-around items-center px-4 pb-6 pt-2">
+<!-- Today Active -->
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-2 w-12 h-12 transition-all duration-300 translate-y-[-2px]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event_upcoming</span>
+</button>
+<!-- Calendar -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+<!-- AI -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">bolt</span>
+</button>
+<!-- Projects -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">folder_open</span>
+</button>
+<!-- Profile -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</nav>
+<!-- Responsive Desktop Nav Sidebar (Pseudo-SideNav hidden for this focused view but following system patterns) -->
+<div class="hidden md:flex fixed top-0 right-0 h-full w-24 bg-surface-container-lowest border-l border-outline-variant/10 flex-col items-center py-10 gap-8 z-40">
+<button class="p-3 text-primary bg-primary-container rounded-2xl">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event_upcoming</span>
+</button>
+<button class="p-3 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+<button class="p-3 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">folder_open</span>
+</button>
+<div class="mt-auto flex flex-col gap-8">
+<button class="p-3 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="Close-up headshot of a stylish professional user with a neutral expression, high-end corporate aesthetic, minimalist background, forest green color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgDXrtJDJmSY6JQd9XkYxO0Dtl-GX-JF8Wt6z8eoP0ETW2NyhkVp7IpqGuvxvxzbvlxIN60xwBKlM6DYb9vtSpnY9IVT81wCTJYuFF5m6-psP-qBCVKMXwJlY1NjW55DAfneB3ehgOkxRDtbR-E6MGehhY52KJR8ce8aBZPsHQI8XAGc0CzLvLz6I3S3X3PnznHqq5Uo5VCdMeNYjZ_vUVl3J1dd3w35AuMar5fekaWNLEYWtICG99WxZnYrhJHLMU21CFUWXhuyc">
+</div>
+</div>
+</div>
+<!-- Script for subtle interactions -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Task check animation
+            const taskCheckboxes = document.querySelectorAll('.material-symbols-outlined');
+            taskCheckboxes.forEach(icon => {
+                if (icon.innerText === 'radio_button_unchecked') {
+                    icon.parentElement.addEventListener('click', () => {
+                        icon.innerText = icon.innerText === 'radio_button_unchecked' ? 'check_circle' : 'radio_button_unchecked';
+                        icon.classList.toggle('text-primary');
+                        if (icon.innerText === 'check_circle') {
+                            icon.style.fontVariationSettings = "'FILL' 1";
+                        } else {
+                            icon.style.fontVariationSettings = "'FILL' 0";
+                        }
+                    });
+                }
+            });
+
+            // Smooth scroll for anchors
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body></html>

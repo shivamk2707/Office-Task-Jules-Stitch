@@ -1,0 +1,267 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Personalize Your AI Flow | TaskFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f9f9f7",
+                        "surface-container-highest": "#e2e3e1",
+                        "surface-container": "#edeeec",
+                        "surface-bright": "#f9f9f7",
+                        "on-tertiary-fixed-variant": "#3a4a47",
+                        "surface-variant": "#e2e3e1",
+                        "on-surface-variant": "#404846",
+                        "on-surface": "#1a1c1b",
+                        "inverse-primary": "#a2d0c4",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f0f1ef",
+                        "on-primary-fixed-variant": "#224e46",
+                        "outline": "#717976",
+                        "on-tertiary-container": "#91a29f",
+                        "surface-tint": "#3a665d",
+                        "primary-fixed": "#bdece0",
+                        "on-tertiary-fixed": "#0f1e1c",
+                        "on-secondary-container": "#3a6b61",
+                        "surface-container-high": "#e8e8e6",
+                        "tertiary": "#142421",
+                        "secondary": "#35675d",
+                        "primary-fixed-dim": "#a2d0c4",
+                        "secondary-fixed-dim": "#9dd1c4",
+                        "on-secondary-fixed": "#00201b",
+                        "on-background": "#1a1c1b",
+                        "secondary-container": "#b6eadd",
+                        "tertiary-fixed": "#d4e6e2",
+                        "primary-container": "#0d3d35",
+                        "tertiary-fixed-dim": "#b8cac6",
+                        "outline-variant": "#c0c8c5",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f3130",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#b9ede0",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#f9f9f7",
+                        "on-primary-container": "#7ba89d",
+                        "on-primary-fixed": "#00201b",
+                        "surface-container-low": "#f3f4f2",
+                        "on-secondary-fixed-variant": "#1b4f46",
+                        "surface-dim": "#d9dad8",
+                        "tertiary-container": "#293937",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#002620",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "24px",
+                        "section-margin": "40px",
+                        "card-gap": "16px",
+                        "base": "4px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .ambient-shadow {
+            box-shadow: 0 30px 60px -12px rgba(13, 61, 53, 0.04), 0 18px 36px -18px rgba(13, 61, 53, 0.02);
+        }
+        .chip-active {
+            background-color: #0d3d35;
+            color: #ffffff;
+        }
+        .chip-inactive {
+            background-color: #edeeec;
+            color: #404846;
+        }
+        .progress-bar {
+            transition: width 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        .floating-orb {
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col overflow-x-hidden">
+<!-- Subtle Background Accents -->
+<div class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary-fixed rounded-full floating-orb"></div>
+<div class="fixed bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-secondary-container rounded-full floating-orb"></div>
+<!-- Top Navigation (Task-Focused: Suppressed normal Nav, specialized Header) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1200px] mx-auto">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high/50 rounded-full transition-colors active:scale-95">
+                arrow_back
+            </button>
+<div class="flex-1 px-8">
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="progress-bar h-full bg-primary" style="width: 65%;"></div>
+</div>
+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">
+                Step 3 of 5
+            </div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center px-gutter pt-24 pb-12">
+<div class="w-full max-w-[540px] animate-in fade-in slide-in-from-bottom-8 duration-700">
+<!-- Onboarding Card -->
+<div class="glass-panel ambient-shadow border border-surface-container-highest rounded-3xl p-8 md:p-12">
+<!-- Visual Context Area -->
+<div class="mb-10 flex justify-center">
+<div class="relative w-24 h-24 flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/5 rounded-full animate-pulse"></div>
+<span class="material-symbols-outlined text-5xl text-primary" style="font-variation-settings: 'FILL' 1;">
+                            bolt
+                        </span>
+</div>
+</div>
+<!-- Text Content -->
+<div class="text-center mb-10">
+<h1 class="font-display-lg text-display-lg md:text-display-lg text-primary mb-4">
+                        Personalize Your AI Flow
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                        Select your primary focus areas to help TaskFlow tailor its suggestions to your unique workflow.
+                    </p>
+</div>
+<!-- Goal Selection Grid -->
+<div class="grid grid-cols-1 gap-3 mb-12">
+<button class="chip-active group flex items-center justify-between p-5 rounded-2xl transition-all duration-300 hover:shadow-md" onclick="toggleChip(this)">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">docs</span>
+<span class="font-headline-sm text-headline-sm">Deep Work</span>
+</div>
+<span class="material-symbols-outlined opacity-100 check-icon">check_circle</span>
+</button>
+<button class="chip-inactive group flex items-center justify-between p-5 rounded-2xl transition-all duration-300 hover:bg-surface-container-high" onclick="toggleChip(this)">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-headline-sm text-headline-sm">Team Management</span>
+</div>
+<span class="material-symbols-outlined opacity-0 check-icon">check_circle</span>
+</button>
+<button class="chip-inactive group flex items-center justify-between p-5 rounded-2xl transition-all duration-300 hover:bg-surface-container-high" onclick="toggleChip(this)">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">account_tree</span>
+<span class="font-headline-sm text-headline-sm">Project Planning</span>
+</div>
+<span class="material-symbols-outlined opacity-0 check-icon">check_circle</span>
+</button>
+<button class="chip-inactive group flex items-center justify-between p-5 rounded-2xl transition-all duration-300 hover:bg-surface-container-high" onclick="toggleChip(this)">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="font-headline-sm text-headline-sm">Creative Writing</span>
+</div>
+<span class="material-symbols-outlined opacity-0 check-icon">check_circle</span>
+</button>
+</div>
+<!-- Action Button -->
+<div class="flex flex-col gap-4">
+<button class="w-full bg-primary-container text-white py-5 rounded-full font-headline-sm text-headline-sm shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200">
+                        Continue
+                    </button>
+<button class="w-full text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors py-2">
+                        I'LL DO THIS LATER
+                    </button>
+</div>
+</div>
+<!-- Contextual Insight (AI Suggestion style) -->
+<div class="mt-8 p-6 border border-primary/20 rounded-2xl bg-primary/5 flex gap-4 items-start animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-300">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'wght' 300;">info</span>
+<p class="text-body-md font-body-md text-on-primary-fixed-variant leading-relaxed">
+                    Most high-performers choose <span class="font-semibold">Deep Work</span> and <span class="font-semibold">Project Planning</span> to maximize their weekly output by 22%.
+                </p>
+</div>
+</div>
+</main>
+<!-- Footer / Legal Info -->
+<footer class="pb-12 text-center">
+<p class="text-on-surface-variant/60 font-label-caps text-[10px] tracking-widest uppercase">
+            TaskFlow AI Personalized Intelligence Engine • v2.4.0
+        </p>
+</footer>
+<script>
+        function toggleChip(el) {
+            const isActive = el.classList.contains('chip-active');
+            const checkIcon = el.querySelector('.check-icon');
+            
+            if (isActive) {
+                el.classList.remove('chip-active');
+                el.classList.add('chip-inactive');
+                checkIcon.classList.add('opacity-0');
+                checkIcon.classList.remove('opacity-100');
+            } else {
+                el.classList.remove('chip-inactive');
+                el.classList.add('chip-active');
+                checkIcon.classList.remove('opacity-0');
+                checkIcon.classList.add('opacity-100');
+            }
+
+            // Haptic-like interaction feedback
+            el.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                el.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        // Entrance animation orchestration
+        document.addEventListener('DOMContentLoaded', () => {
+            const chips = document.querySelectorAll('button[onclick="toggleChip(this)"]');
+            chips.forEach((chip, index) => {
+                chip.style.opacity = '0';
+                chip.style.transform = 'translateY(10px)';
+                setTimeout(() => {
+                    chip.style.transition = 'all 0.5s cubic-bezier(0.22, 1, 0.36, 1)';
+                    chip.style.opacity = '1';
+                    chip.style.transform = 'translateY(0)';
+                }, 400 + (index * 100));
+            });
+        });
+    </script>
+</body></html>

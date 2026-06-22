@@ -1,0 +1,392 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TaskFlow | Analytics &amp; Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e2e3e1",
+                        "surface-bright": "#f9f9f7",
+                        "inverse-surface": "#2f3130",
+                        "tertiary-fixed": "#d4e6e2",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#b9ede0",
+                        "on-surface": "#1a1c1b",
+                        "surface-container-high": "#e8e8e6",
+                        "inverse-primary": "#a2d0c4",
+                        "on-secondary-container": "#3a6b61",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d9dad8",
+                        "primary-container": "#0d3d35",
+                        "on-background": "#1a1c1b",
+                        "on-primary-container": "#7ba89d",
+                        "outline-variant": "#c0c8c5",
+                        "on-secondary-fixed-variant": "#1b4f46",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#91a29f",
+                        "on-secondary-fixed": "#00201b",
+                        "inverse-on-surface": "#f0f1ef",
+                        "on-tertiary-fixed": "#0f1e1c",
+                        "tertiary-fixed-dim": "#b8cac6",
+                        "on-error": "#ffffff",
+                        "surface-container": "#edeeec",
+                        "surface-container-highest": "#e2e3e1",
+                        "secondary": "#35675d",
+                        "secondary-container": "#b6eadd",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#a2d0c4",
+                        "background": "#f9f9f7",
+                        "on-primary-fixed-variant": "#224e46",
+                        "surface-tint": "#3a665d",
+                        "primary": "#002620",
+                        "on-surface-variant": "#404846",
+                        "secondary-fixed-dim": "#9dd1c4",
+                        "surface": "#f9f9f7",
+                        "primary-fixed": "#bdece0",
+                        "tertiary-container": "#293937",
+                        "on-secondary": "#ffffff",
+                        "outline": "#717976",
+                        "on-tertiary-fixed-variant": "#3a4a47",
+                        "surface-container-low": "#f3f4f2",
+                        "on-primary-fixed": "#00201b",
+                        "tertiary": "#142421"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-margin": "40px",
+                        "container-padding": "24px",
+                        "base": "4px",
+                        "gutter": "16px",
+                        "card-gap": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .apple-shadow {
+            box-shadow: 0 30px 60px -12px rgba(13, 61, 53, 0.04), 0 18px 36px -18px rgba(13, 61, 53, 0.02);
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .ai-border {
+            position: relative;
+        }
+        .ai-border::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            padding: 1px;
+            border-radius: inherit;
+            background: linear-gradient(135deg, #0d3d35, #bdece0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: destination-out;
+            pointer-events: none;
+        }
+        canvas#focusChart {
+            filter: drop-shadow(0 4px 12px rgba(13, 61, 53, 0.1));
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen selection:bg-primary-fixed selection:text-primary">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl transition-all duration-300">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high/50 rounded-full transition-colors active:scale-95" data-icon="arrow_back">arrow_back</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TaskFlow</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high/50 rounded-full transition-colors" data-icon="notifications">notifications</button>
+<div class="w-8 h-8 rounded-full bg-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a creative entrepreneur in a sun-drenched minimalist office. The lighting is soft and natural, emphasizing a calm and productive atmosphere. The aesthetic is high-end and clean, with a neutral color palette that complements the forest green branding of TaskFlow. The person's expression is focused and serene." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnN7a_3z7_itdvIxjD6Edz-Ek1q6oqifpJaBNjDROrkhMziVRqWg1QxgovoOstPxVqJQTuwqKxVo2FoKerK_yq62MYyPt1AAhrjBVnqSHOYdgefiBeCaSJBGD7zfwLStayaZTeUwKMxLq4LfdR9S5-AwKwlROFknaa9t1RYN9F9bOMZX2A7TthPZRUR2GbYPL2Wybqy-0MWEsHA6d31fhkmFqEaNWlmXa7LfisM_bIAl6vQMXN4A5KnDxccyC3I88rClWIxguaPQE">
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 max-w-[1200px] mx-auto px-container-padding">
+<!-- Header Section -->
+<section class="mb-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="text-label-caps font-label-caps text-secondary uppercase tracking-widest mb-2 block">Performance Dashboard</span>
+<h2 class="text-display-lg font-display-lg text-primary">Analytics &amp; Insights</h2>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-surface-container-low text-primary font-semibold rounded-full text-body-md hover:bg-surface-container-high transition-colors">Last 7 Days</button>
+<button class="px-4 py-2 bg-primary text-on-primary font-semibold rounded-full text-body-md shadow-lg shadow-primary/10 active:scale-95 transition-all">Export Report</button>
+</div>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+<!-- Productivity Score Card (Large) -->
+<div class="md:col-span-4 bg-surface-container-lowest apple-shadow rounded-3xl p-8 border border-outline-variant/30 flex flex-col items-center text-center">
+<h3 class="text-headline-sm font-headline-sm text-on-surface-variant mb-6">Productivity Score</h3>
+<div class="relative w-48 h-48 flex items-center justify-center mb-6">
+<svg class="w-full h-full -rotate-90 transform">
+<circle class="text-surface-container" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary-container" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-dasharray="552.9" stroke-dashoffset="71.8" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-5xl font-bold text-primary">87%</span>
+<span class="text-label-caps font-label-caps text-on-secondary-container">+4.2% vs LW</span>
+</div>
+</div>
+<p class="text-body-md text-on-surface-variant max-w-[200px]">You've maintained a steady focus rhythm this week.</p>
+</div>
+<!-- Focus Hours Line Chart -->
+<div class="md:col-span-8 bg-surface-container-lowest apple-shadow rounded-3xl p-8 border border-outline-variant/30 h-full">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="text-headline-sm font-headline-sm text-primary">Focus Hours</h3>
+<p class="text-body-md text-on-surface-variant">Deep work activity per day</p>
+</div>
+<div class="text-right">
+<span class="text-2xl font-bold text-primary">34.5h</span>
+<p class="text-label-caps font-label-caps text-on-secondary-container">Weekly Total</p>
+</div>
+</div>
+<div class="h-64 w-full relative">
+<canvas class="w-full h-full" id="focusChart"></canvas>
+</div>
+</div>
+<!-- AI Insight Cards -->
+<div class="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="ai-border bg-surface-container-lowest p-6 rounded-2xl flex items-start gap-4">
+<div class="w-10 h-10 bg-primary-fixed flex items-center justify-center rounded-xl shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<h4 class="font-semibold text-primary mb-1">Peak Performance</h4>
+<p class="text-body-md text-on-surface-variant">You are most productive between <span class="font-bold text-primary">10am-12pm</span>. Schedule your hardest tasks then.</p>
+</div>
+</div>
+<div class="ai-border bg-surface-container-lowest p-6 rounded-2xl flex items-start gap-4">
+<div class="w-10 h-10 bg-secondary-container flex items-center justify-center rounded-xl shrink-0">
+<span class="material-symbols-outlined text-secondary" data-icon="lightbulb">lightbulb</span>
+</div>
+<div>
+<h4 class="font-semibold text-primary mb-1">Energy Management</h4>
+<p class="text-body-md text-on-surface-variant">Your completion rate drops after 4pm. Consider taking a longer break at mid-day.</p>
+</div>
+</div>
+<div class="ai-border bg-surface-container-lowest p-6 rounded-2xl flex items-start gap-4">
+<div class="w-10 h-10 bg-tertiary-fixed flex items-center justify-center rounded-xl shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<h4 class="font-semibold text-primary mb-1">Weekly Forecast</h4>
+<p class="text-body-md text-on-surface-variant">Based on your current speed, you will finish <span class="font-bold text-primary">Project Orion</span> 2 days ahead of schedule.</p>
+</div>
+</div>
+</div>
+<!-- Comparison Metrics -->
+<div class="md:col-span-6 bg-surface-container-lowest apple-shadow rounded-3xl p-8 border border-outline-variant/30">
+<h3 class="text-headline-sm font-headline-sm text-primary mb-8">Task Completion</h3>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="flex-1">
+<div class="flex justify-between mb-2">
+<span class="text-body-md font-semibold text-primary">Completed</span>
+<span class="text-body-md font-bold text-primary">142</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[70%] rounded-full transition-all duration-1000"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex-1">
+<div class="flex justify-between mb-2">
+<span class="text-body-md font-semibold text-on-surface-variant">Pending</span>
+<span class="text-body-md font-bold text-on-surface-variant">48</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-on-tertiary-container w-[30%] rounded-full transition-all duration-1000"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Category Distribution -->
+<div class="md:col-span-6 bg-surface-container-lowest apple-shadow rounded-3xl p-8 border border-outline-variant/30 overflow-hidden relative">
+<h3 class="text-headline-sm font-headline-sm text-primary mb-6">Work Intensity</h3>
+<div class="flex items-end gap-2 h-40">
+<div class="flex-1 bg-primary-fixed-dim rounded-t-lg h-[60%] hover:bg-primary-container transition-colors group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Design</div>
+</div>
+<div class="flex-1 bg-primary-fixed-dim rounded-t-lg h-[85%] hover:bg-primary-container transition-colors group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Dev</div>
+</div>
+<div class="flex-1 bg-primary-fixed-dim rounded-t-lg h-[40%] hover:bg-primary-container transition-colors group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Admin</div>
+</div>
+<div class="flex-1 bg-primary-fixed-dim rounded-t-lg h-[70%] hover:bg-primary-container transition-colors group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Meetings</div>
+</div>
+<div class="flex-1 bg-primary-fixed-dim rounded-t-lg h-[55%] hover:bg-primary-container transition-colors group relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-primary text-on-primary text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Growth</div>
+</div>
+</div>
+<div class="flex justify-between mt-4 text-label-caps font-label-caps text-on-surface-variant">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Primary Shell) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-surface/90 backdrop-blur-xl z-50 rounded-t-xl shadow-[0_-4px_30px_rgba(13,61,53,0.04)] md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined" data-icon="event_upcoming">event_upcoming</span>
+<span class="font-label-caps text-label-caps mt-1">Today</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-caps text-label-caps mt-1">Calendar</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+<span class="font-label-caps text-label-caps mt-1">AI</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-2 w-12 h-12 shadow-lg shadow-primary-container/20" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats" style="font-variation-settings: 'FILL' 1;">query_stats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</nav>
+<!-- Chart Script (Simple Canvas drawing for Line Chart) -->
+<script>
+        window.addEventListener('load', () => {
+            const canvas = document.getElementById('focusChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const parent = canvas.parentElement;
+            
+            // Set canvas size to parent size
+            const resize = () => {
+                canvas.width = parent.clientWidth;
+                canvas.height = parent.clientHeight;
+                draw();
+            };
+
+            const draw = () => {
+                const width = canvas.width;
+                const height = canvas.height;
+                const points = [
+                    { x: 0, y: height * 0.7 },
+                    { x: width * 0.16, y: height * 0.4 },
+                    { x: width * 0.33, y: height * 0.55 },
+                    { x: width * 0.5, y: height * 0.2 },
+                    { x: width * 0.66, y: height * 0.45 },
+                    { x: width * 0.83, y: height * 0.3 },
+                    { x: width, y: height * 0.1 }
+                ];
+
+                ctx.clearRect(0, 0, width, height);
+
+                // Draw Area Gradient
+                const areaGradient = ctx.createLinearGradient(0, 0, 0, height);
+                areaGradient.addColorStop(0, 'rgba(13, 61, 53, 0.1)');
+                areaGradient.addColorStop(1, 'rgba(13, 61, 53, 0)');
+
+                ctx.beginPath();
+                ctx.moveTo(0, height);
+                ctx.lineTo(points[0].x, points[0].y);
+                for (let i = 0; i < points.length - 1; i++) {
+                    const xc = (points[i].x + points[i + 1].x) / 2;
+                    const yc = (points[i].y + points[i + 1].y) / 2;
+                    ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+                }
+                ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+                ctx.lineTo(width, height);
+                ctx.fillStyle = areaGradient;
+                ctx.fill();
+
+                // Draw Line
+                ctx.beginPath();
+                ctx.moveTo(points[0].x, points[0].y);
+                for (let i = 0; i < points.length - 1; i++) {
+                    const xc = (points[i].x + points[i + 1].x) / 2;
+                    const yc = (points[i].y + points[i + 1].y) / 2;
+                    ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+                }
+                ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+                ctx.strokeStyle = '#0d3d35';
+                ctx.lineWidth = 4;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.stroke();
+
+                // Draw Points
+                points.forEach((p, i) => {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 6, 0, Math.PI * 2);
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fill();
+                    ctx.strokeStyle = '#0d3d35';
+                    ctx.lineWidth = 3;
+                    ctx.stroke();
+                });
+            };
+
+            window.addEventListener('resize', resize);
+            resize();
+        });
+    </script>
+</body></html>

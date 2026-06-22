@@ -1,0 +1,386 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TaskFlow - Task Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e2e3e1",
+                    "surface-bright": "#f9f9f7",
+                    "inverse-surface": "#2f3130",
+                    "tertiary-fixed": "#d4e6e2",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#b9ede0",
+                    "on-surface": "#1a1c1b",
+                    "surface-container-high": "#e8e8e6",
+                    "inverse-primary": "#a2d0c4",
+                    "on-secondary-container": "#3a6b61",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#d9dad8",
+                    "primary-container": "#0d3d35",
+                    "on-background": "#1a1c1b",
+                    "on-primary-container": "#7ba89d",
+                    "outline-variant": "#c0c8c5",
+                    "on-secondary-fixed-variant": "#1b4f46",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#91a29f",
+                    "on-secondary-fixed": "#00201b",
+                    "inverse-on-surface": "#f0f1ef",
+                    "on-tertiary-fixed": "#0f1e1c",
+                    "tertiary-fixed-dim": "#b8cac6",
+                    "on-error": "#ffffff",
+                    "surface-container": "#edeeec",
+                    "surface-container-highest": "#e2e3e1",
+                    "secondary": "#35675d",
+                    "secondary-container": "#b6eadd",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#a2d0c4",
+                    "background": "#f9f9f7",
+                    "on-primary-fixed-variant": "#224e46",
+                    "surface-tint": "#3a665d",
+                    "primary": "#002620",
+                    "on-surface-variant": "#404846",
+                    "secondary-fixed-dim": "#9dd1c4",
+                    "surface": "#f9f9f7",
+                    "primary-fixed": "#bdece0",
+                    "tertiary-container": "#293937",
+                    "on-secondary": "#ffffff",
+                    "outline": "#717976",
+                    "on-tertiary-fixed-variant": "#3a4a47",
+                    "surface-container-low": "#f3f4f2",
+                    "on-primary-fixed": "#00201b",
+                    "tertiary": "#142421"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-margin": "40px",
+                    "container-padding": "24px",
+                    "base": "4px",
+                    "gutter": "16px",
+                    "card-gap": "16px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid #EEEEEE;
+            box-shadow: 0 30px 30px rgba(13, 61, 53, 0.04), 0 4px 4px rgba(13, 61, 53, 0.02);
+        }
+        .ai-gradient-border {
+            position: relative;
+            background: white;
+            background-clip: padding-box;
+            border: 2px solid transparent;
+        }
+        .ai-gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -2px;
+            border-radius: inherit;
+            background: linear-gradient(to right, #0D3D35, #DCEEEA);
+        }
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #F8F8F8;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-high/50 rounded-full p-2 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TaskFlow</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="hover:bg-surface-container-high/50 rounded-full p-2 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-gutter max-w-[1200px] mx-auto flex flex-col md:flex-row gap-8">
+<!-- Left Column: Task Details (70%) -->
+<section class="w-full md:w-[70%] space-y-6">
+<!-- Header Info Card -->
+<div class="glass-card rounded-xl p-8">
+<div class="flex flex-wrap items-center gap-3 mb-4">
+<span class="bg-primary text-on-primary px-4 py-1 rounded-full font-label-caps text-label-caps uppercase tracking-widest">UI/UX Design</span>
+<span class="bg-error/10 text-error px-4 py-1 rounded-full font-label-caps text-label-caps font-bold">HIGH PRIORITY</span>
+</div>
+<h2 class="font-display-lg text-display-lg mb-6">About us Website Design</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-caps text-label-caps">DUE DATE</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-primary text-sm">calendar_today</span>
+<span class="font-headline-sm text-headline-sm">21 July 2025</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-caps text-label-caps">TIME</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-primary text-sm">schedule</span>
+<span class="font-headline-sm text-headline-sm">10:30 AM</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-caps text-label-caps">STATUS</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-headline-sm text-headline-sm">In Progress</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-caps text-label-caps">ASSIGNEE</span>
+<div class="flex items-center -space-x-2 mt-1">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-surface-variant overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a creative UI designer with a modern, focused expression. The lighting is soft and artistic, reflecting a minimalist studio environment with clean lines and a hint of forest green in the background, maintaining a luxury productivity aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSIbunj_UxchWL3_8M6tg9rN-oiScQaXiJAf3JBkz-VD_5HuZ38zicQxv4Iev-j4lxprQBjJjcy0wZOZY5hq52aUvmfQNrXIDwObnfwppi1MPa4hWoBuDXC2mIaLIewVwXbb-LcOu4j46pkmVGEqOyXXizvKf2yxYsGakJxndmEhh3JbRhXHo13V6--CPB00hVDMbIqnpk5Ie6kpiKGn91ZJEm7c6iEBbxMQf8Bb_PBa94LlVcNwH1O0XwMG6gD9NeIBS3IX53x5U">
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-primary text-on-primary flex items-center justify-center text-[10px] font-bold">
+                                +2
+                            </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Description -->
+<div class="glass-card rounded-xl p-8">
+<h3 class="font-headline-sm text-headline-sm mb-4 text-primary">Description</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                    Crafting a compelling 'About Us' page that resonates with our core brand values of growth, stability, and professional excellence. The design should leverage the new forest-inspired palette and emphasize our commitment to AI-assisted productivity. We need to ensure the storytelling is visual, using high-end photography and subtle parallax effects.
+                </p>
+</div>
+<!-- Checklist Breakdown -->
+<div class="glass-card rounded-xl p-8">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-sm text-headline-sm text-primary">Task Breakdown</h3>
+<span class="font-label-caps text-label-caps text-on-surface-variant">40% COMPLETE</span>
+</div>
+<div class="space-y-4">
+<!-- Checklist Item 1 -->
+<div class="flex items-start gap-4 p-4 rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="mt-1 w-6 h-6 border-2 border-primary rounded flex items-center justify-center bg-primary text-on-primary">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex-1">
+<p class="font-body-lg text-body-lg line-through text-on-surface-variant">User Research &amp; Competitive Analysis</p>
+<p class="font-label-caps text-[10px] text-on-surface-variant/60">Completed by Sarah L. • Yesterday</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/40 group-hover:text-primary transition-colors">drag_indicator</span>
+</div>
+<!-- Checklist Item 2 -->
+<div class="flex items-start gap-4 p-4 rounded-lg border border-primary/10 bg-primary/5 transition-colors cursor-pointer group">
+<div class="mt-1 w-6 h-6 border-2 border-primary rounded flex items-center justify-center">
+<!-- Empty for checkbox -->
+</div>
+<div class="flex-1">
+<p class="font-body-lg text-body-lg font-semibold">Wireframing</p>
+<p class="font-label-caps text-[10px] text-secondary">ACTIVE TASK</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/40 group-hover:text-primary transition-colors">drag_indicator</span>
+</div>
+<!-- Checklist Item 3 -->
+<div class="flex items-start gap-4 p-4 rounded-lg hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="mt-1 w-6 h-6 border-2 border-outline rounded"></div>
+<div class="flex-1">
+<p class="font-body-lg text-body-lg">UI Design &amp; Prototyping</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant/40 group-hover:text-primary transition-colors">drag_indicator</span>
+</div>
+</div>
+<button class="mt-6 flex items-center gap-2 text-primary font-label-caps text-label-caps hover:translate-x-1 transition-transform">
+<span class="material-symbols-outlined">add</span>
+                    ADD NEW SUBTASK
+                </button>
+</div>
+<!-- Expandable Section: Attachments -->
+<div class="space-y-3">
+<details class="glass-card rounded-xl group overflow-hidden" open="">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">attach_file</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Attachments (3)</h3>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 pt-2 grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="aspect-video rounded-lg bg-surface-container overflow-hidden group/thumb relative">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist website wireframe for an 'About Us' page. The layout uses a sophisticated grid system with placeholders for high-resolution imagery and elegant serif typography. The style is professional and high-end, utilizing a palette of soft greys and deep forest greens, evoking a sense of tranquility and order." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnGYBEMdQAVHAFHff81k5iW2M7g9zYHxxcxVc04gNsiwLlLMC9jzMdWkk0FRCY6AzZFJxopjKi1f9yH2mWQOg7Wc7hi7SxAnrXcqaBFBiDXl6BJw2GYamrxI5T9GADJH3PtzyOVF0NhLyLxaxnvRuMhDqzQmyYA_BnbzU4BnsKgEOUbDdka6MbGWVFU3wH5vSmaH19brOdYnYGK6C99QHS2OjGLR55zn_BXQREWClbOrhXohy7N_q9hhI3O5jhxQM4MDEMP9lw70Y">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">visibility</span>
+</div>
+</div>
+<div class="aspect-video rounded-lg bg-surface-container overflow-hidden group/thumb relative">
+<img class="w-full h-full object-cover" data-alt="A color palette study showing various shades of deep forest green, sage, and ivory. The colors are presented in clean, floating circles against a minimalist white background. The aesthetic is inspired by premium lifestyle brands, emphasizing a natural yet professional atmosphere for a luxury workspace app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7E4M5sKqLlCfL779b5X2Tm7LkpUX7brgL0EGa-IUshuOhN-1Oj7U7QOSLVECXeuQSOrMViB_5_1UKbo1aliRxnmuK3pRhxGTj6yUFoZnIGlfDUgJYRlGz_HE4pqiRSfdUE53djRljYckYzZ4H3KwC8FpddJ7_e0sfCF-OMZwO4kbN4Odel1Zesat8NS2vNuSFgKAKbos6fPAGkhiWLQTYCWlGDl80ZT5IY2DMD0hHw1BCIJBBLy9-RUocDIVCsGAe1O-74HA8Pto">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white">visibility</span>
+</div>
+</div>
+<div class="aspect-video rounded-lg border-2 border-dashed border-outline-variant flex flex-col items-center justify-center text-on-surface-variant hover:border-primary hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined mb-1">upload</span>
+<span class="text-[10px] font-bold">UPLOAD</span>
+</div>
+</div>
+</details>
+<details class="glass-card rounded-xl group overflow-hidden">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">chat</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Comments</h3>
+</div>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 pt-2">
+<p class="text-on-surface-variant font-body-md text-body-md">No comments yet. Start the conversation!</p>
+</div>
+</details>
+</div>
+</section>
+<!-- Right Column: AI Workspace (30%) -->
+<aside class="hidden md:block w-[30%] space-y-6">
+<div class="ai-gradient-border rounded-xl p-6 h-fit sticky top-24">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<h4 class="font-headline-sm text-headline-sm text-primary">AI Workspace</h4>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-low rounded-lg p-4 border border-outline-variant/30">
+<p class="font-label-caps text-[10px] text-secondary mb-2">SUGGESTION</p>
+<p class="font-body-md text-body-md text-on-surface leading-snug">
+                            "Based on your 'Wireframing' step, I recommend exploring a 3-column bento grid for the team section to maintain the minimalist aesthetic."
+                        </p>
+<div class="flex gap-2 mt-4">
+<button class="bg-primary text-on-primary px-3 py-1.5 rounded-full text-[12px] font-bold">Apply Grid</button>
+<button class="bg-transparent border border-outline text-on-surface px-3 py-1.5 rounded-full text-[12px]">Dismiss</button>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 border border-outline-variant/30">
+<p class="font-label-caps text-[10px] text-secondary mb-2">CONTENT CO-PILOT</p>
+<p class="font-body-md text-body-md text-on-surface leading-snug">
+                            Need help drafting the 'Our Story' section?
+                        </p>
+<button class="mt-3 flex items-center gap-2 text-primary font-bold text-[12px]">
+<span class="material-symbols-outlined text-sm">edit_note</span>
+                            GENERATE DRAFT
+                        </button>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- AI Floating Widget (Bottom Right) -->
+<div class="fixed bottom-24 right-8 z-[60] flex flex-col items-end gap-4 pointer-events-none">
+<div class="ai-gradient-border p-4 rounded-2xl shadow-2xl max-w-[280px] opacity-0 translate-y-4 transition-all duration-500 pointer-events-auto" id="ai-suggestion-bubble">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface mb-2 italic">"You have 3 similar tasks in 'Portfolio Rebuild'. Should I link them?"</p>
+<button class="text-primary font-bold text-[12px]">LINK TASKS</button>
+</div>
+</div>
+</div>
+<button class="pointer-events-auto w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-95 transition-transform" onclick="toggleAISuggestion()">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-xl rounded-t-xl shadow-[0_-4px_30px_rgba(13,61,53,0.04)] px-4 pb-6 pt-2 flex justify-around items-center">
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="font-label-caps text-label-caps mt-1">Today</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-caps text-label-caps mt-1">Calendar</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-2 w-12 h-12 translate-y-[-2px] transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-caps text-label-caps mt-1">Projects</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</div>
+</nav>
+<script>
+        function toggleAISuggestion() {
+            const bubble = document.getElementById('ai-suggestion-bubble');
+            if (bubble.classList.contains('opacity-0')) {
+                bubble.classList.remove('opacity-0', 'translate-y-4');
+                bubble.classList.add('opacity-100', 'translate-y-0');
+            } else {
+                bubble.classList.add('opacity-0', 'translate-y-4');
+                bubble.classList.remove('opacity-100', 'translate-y-0');
+            }
+        }
+
+        // Show AI suggestion after a delay
+        setTimeout(() => {
+            const bubble = document.getElementById('ai-suggestion-bubble');
+            bubble.classList.remove('opacity-0', 'translate-y-4');
+            bubble.classList.add('opacity-100', 'translate-y-0');
+        }, 3000);
+
+        // Interaction logic for checklist
+        document.querySelectorAll('.checklist-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('bg-primary/5');
+            });
+        });
+    </script>
+</body></html>

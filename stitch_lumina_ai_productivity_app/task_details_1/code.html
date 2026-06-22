@@ -1,0 +1,359 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Task Details - TaskFlow</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "tertiary-container": "#293937",
+                "secondary-fixed": "#b9ede0",
+                "on-secondary-fixed-variant": "#1b4f46",
+                "on-primary-container": "#7ba89d",
+                "surface-tint": "#3a665d",
+                "on-primary": "#ffffff",
+                "on-background": "#1a1c1b",
+                "surface-container-low": "#f3f4f2",
+                "error-container": "#ffdad6",
+                "surface-container-lowest": "#ffffff",
+                "on-primary-fixed": "#00201b",
+                "on-surface-variant": "#404846",
+                "error": "#ba1a1a",
+                "on-tertiary-fixed-variant": "#3a4a47",
+                "on-secondary-fixed": "#00201b",
+                "on-surface": "#1a1c1b",
+                "on-secondary-container": "#3a6b61",
+                "surface-container-highest": "#e2e3e1",
+                "primary-fixed-dim": "#a2d0c4",
+                "primary": "#002620",
+                "on-tertiary-container": "#91a29f",
+                "secondary-fixed-dim": "#9dd1c4",
+                "surface": "#f9f9f7",
+                "outline-variant": "#c0c8c5",
+                "outline": "#717976",
+                "on-error-container": "#93000a",
+                "background": "#f9f9f7",
+                "surface-container-high": "#e8e8e6",
+                "surface-dim": "#d9dad8",
+                "surface-bright": "#f9f9f7",
+                "tertiary-fixed-dim": "#b8cac6",
+                "on-tertiary-fixed": "#0f1e1c",
+                "inverse-surface": "#2f3130",
+                "on-tertiary": "#ffffff",
+                "inverse-on-surface": "#f0f1ef",
+                "surface-container": "#edeeec",
+                "primary-container": "#0d3d35",
+                "inverse-primary": "#a2d0c4",
+                "tertiary-fixed": "#d4e6e2",
+                "secondary": "#35675d",
+                "surface-variant": "#e2e3e1",
+                "secondary-container": "#b6eadd",
+                "tertiary": "#142421",
+                "primary-fixed": "#bdece0",
+                "on-secondary": "#ffffff",
+                "on-error": "#ffffff",
+                "on-primary-fixed-variant": "#224e46"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "section-margin": "40px",
+                "base": "4px",
+                "gutter": "16px",
+                "card-gap": "16px",
+                "container-padding": "24px"
+            },
+            "fontFamily": {
+                "label-caps": ["Hanken Grotesk"],
+                "body-md": ["Hanken Grotesk"],
+                "headline-lg-mobile": ["Hanken Grotesk"],
+                "body-lg": ["Hanken Grotesk"],
+                "headline-sm": ["Hanken Grotesk"],
+                "display-lg": ["Hanken Grotesk"],
+                "headline-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .floating-card {
+            box-shadow: 0 30px 30px rgba(13, 61, 53, 0.04), 0 4px 4px rgba(13, 61, 53, 0.02);
+            border: 1px solid #EEEEEE;
+        }
+        .ai-border {
+            position: relative;
+            background: #fff;
+        }
+        .ai-border::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            z-index: -1;
+            background: linear-gradient(to right, #0D3D35, #DCEEEA);
+            border-radius: inherit;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-surface/80 backdrop-blur-xl fixed top-0 w-full z-50">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-high/50 rounded-full p-2 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Task Details</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="hover:bg-surface-container-high/50 rounded-full p-2 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-on-surface-variant">share</span>
+</button>
+<button class="hover:bg-surface-container-high/50 rounded-full p-2 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-32 px-gutter max-w-[1200px] mx-auto min-h-screen">
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- Left Column: Primary Task Info (70%) -->
+<section class="lg:w-[70%] space-y-8">
+<!-- Task Header Card -->
+<div class="bg-surface-container-lowest rounded-xl p-8 floating-card">
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-error-container text-on-error-container font-label-caps text-label-caps px-3 py-1 rounded-full">High Priority</span>
+<span class="bg-secondary-container text-on-secondary-container font-label-caps text-label-caps px-3 py-1 rounded-full">In Progress</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-primary mb-4">Reimagine Q4 Marketing Strategy</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        Develop a comprehensive digital transformation plan for the upcoming Q4 campaign. This involves coordinating with the creative team for visual assets, the data team for audience segmentation, and the AI agents for predictive engagement modeling.
+                    </p>
+</div>
+<!-- Sub-tasks Section -->
+<div class="space-y-4">
+<h3 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2 px-2">
+<span class="material-symbols-outlined">checklist</span>
+                        Sub-tasks
+                    </h3>
+<div class="space-y-3">
+<!-- Task Item -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center gap-4 floating-card transition-all hover:translate-y-[-2px]">
+<button class="w-6 h-6 rounded-full border-2 border-outline flex items-center justify-center hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-transparent hover:text-primary-container text-sm">check</span>
+</button>
+<span class="font-body-md text-body-md text-on-surface flex-1">Initial brainstorming session with creative directors</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Today</span>
+</div>
+<!-- Task Item -->
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center gap-4 floating-card transition-all hover:translate-y-[-2px]">
+<button class="w-6 h-6 rounded-full border-2 border-primary-container bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</button>
+<span class="font-body-md text-body-md text-on-surface-variant line-through flex-1">Review Q3 analytics and conversion reports</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Completed</span>
+</div>
+<!-- Task Item (AI Suggested) -->
+<div class="rounded-xl p-4 flex items-center gap-4 ai-border floating-card transition-all hover:translate-y-[-2px]">
+<button class="w-6 h-6 rounded-full border-2 border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-transparent text-sm">check</span>
+</button>
+<div class="flex-1 flex items-center gap-2">
+<span class="font-body-md text-body-md text-on-surface">Generate AI-driven audience personas</span>
+<span class="material-symbols-outlined text-secondary-container text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<span class="font-label-caps text-label-caps text-secondary">Suggested</span>
+</div>
+</div>
+</div>
+<!-- Comments Section -->
+<div class="space-y-4">
+<h3 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2 px-2">
+<span class="material-symbols-outlined">forum</span>
+                        Discussion
+                    </h3>
+<div class="bg-surface-container-lowest rounded-xl p-6 space-y-6 floating-card">
+<div class="flex gap-4">
+<img class="w-10 h-10 rounded-full bg-surface-container-highest" data-alt="A professional studio headshot of a female executive with a warm smile, wearing a minimalist dark green suit. High-end portrait lighting, soft depth of field, minimalist grey background. Clean, corporate, luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN22f64pIk8Y5vq6-Z-FiYh59MNhb_PwdP8FLWlcD3cY8sF9IeFX-_LRNC6ds0p0op3b_tEyyB2INvY33L2SFx7J189bK7PSSB-FLz-g_40O7UaVwOLR6KkCJ96mVT4ws5bJ5j8FwSj0xdSow5ujFA3UefIetvLjPL9hugyFpdbn4852w8EUQUT4jIeLMemabfFHhi9Tq3kQTjveyFL6aadfZpfinsY2sJgKUE5p1D4Hp-NHqLT8RdgKxAGIqaFQqW5ByHysHOrTY">
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-caps text-label-caps text-primary">Sarah Chen</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">2h ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">I've uploaded the moodboard for the visual direction. Let's ensure the green accents align with our new brand palette.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="flex-1 bg-surface-container-low p-4 rounded-xl rounded-tl-none">
+<div class="flex justify-between items-center mb-1">
+<span class="font-label-caps text-label-caps text-primary">TaskFlow AI</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">Just now</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">I've analyzed Sarah's moodboard and cross-referenced it with Q4 trends. Suggesting 3 additional audience segments based on the visual aesthetic.</p>
+<button class="mt-2 text-primary font-label-caps text-label-caps flex items-center gap-1 hover:underline">
+                                    View Segments <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Add Comment Input -->
+<div class="relative mt-4">
+<input class="w-full bg-surface border-none rounded-full py-3 px-6 text-body-md focus:ring-2 focus:ring-primary-container" placeholder="Write a comment..." type="text">
+<button class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary-container text-white p-1.5 rounded-full hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: Sidebar (30%) -->
+<aside class="lg:w-[30%] space-y-6">
+<!-- Metadata Card -->
+<div class="bg-surface-container-lowest rounded-xl p-6 space-y-6 floating-card sticky top-24">
+<div class="space-y-4">
+<label class="font-label-caps text-label-caps text-on-surface-variant block uppercase tracking-widest">Assignee</label>
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded-full bg-surface-container-highest" data-alt="A sharp, minimalist portrait of a man in his late 30s wearing a clean white linen shirt, looking thoughtfully to the side. Bright, airy, high-key office setting with a blurred dark green plant in the background. High-quality editorial photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMfR3ObjDgrB7mrZH6W8E7YosQ9I1JuXFiXCgq8xZj3EHTBfEDeL4x6sP767efKQD2ZJ-czPpJc_ww_cpPbg9PcGekjhM2Aa5qSNhibBQu95IY3t4-Xm-ODYDpJuRmys7g66wQgfV9hzNzHrHcLZYmOrjDbJs3Gyi_f3H6N4LBGKlLpmn8PCZjUXPvl3O5oU-N32SUaOl-jtwYR3rE422pMB14rBUsxnRjlY1acumU26vx4dErvocs9ZPM-sZITRBFpYhdiARBNoc">
+<span class="font-body-md text-body-md text-primary font-semibold">David Miller</span>
+<span class="material-symbols-outlined text-on-surface-variant ml-auto text-sm cursor-pointer">expand_more</span>
+</div>
+</div>
+<div class="h-px bg-outline-variant/30"></div>
+<div class="space-y-4">
+<label class="font-label-caps text-label-caps text-on-surface-variant block uppercase tracking-widest">Due Date</label>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+<span class="font-body-md text-body-md text-primary font-semibold">October 24, 2023</span>
+</div>
+</div>
+<div class="h-px bg-outline-variant/30"></div>
+<div class="space-y-4">
+<label class="font-label-caps text-label-caps text-on-surface-variant block uppercase tracking-widest">Project</label>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">folder_open</span>
+<span class="font-body-md text-body-md text-primary font-semibold">Growth &amp; Expansion</span>
+</div>
+</div>
+<div class="h-px bg-outline-variant/30"></div>
+<div class="space-y-4">
+<label class="font-label-caps text-label-caps text-on-surface-variant block uppercase tracking-widest">AI Intelligence</label>
+<div class="p-4 rounded-xl bg-secondary-container/20 border border-secondary/10 space-y-2">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-label-caps text-label-caps">Completion Prediction</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="h-2 flex-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[85%] rounded-full"></div>
+</div>
+<span class="font-label-caps text-label-caps text-primary">85% Likely</span>
+</div>
+<p class="text-[11px] text-on-surface-variant">AI predicts this task will be completed 1 day ahead of schedule based on current velocity.</p>
+</div>
+</div>
+<button class="w-full bg-primary-container text-white py-4 rounded-full font-headline-sm text-headline-sm active:scale-95 transition-transform">
+                        Complete Task
+                    </button>
+</div>
+</aside>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface/90 backdrop-blur-xl fixed bottom-0 w-full z-50 rounded-t-xl shadow-[0_-4px_30px_rgba(13,61,53,0.04)]">
+<div class="flex justify-around items-center px-4 pb-6 pt-2">
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="font-label-caps text-label-caps mt-1">Today</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-caps text-label-caps mt-1">Calendar</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-2 w-12 h-12">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-caps text-label-caps mt-1">Projects</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</div>
+</div>
+</nav>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('.active\\:scale-95').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Floating animation logic for cards
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.floating-card').forEach(card => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+            card.style.transition = "all 0.6s cubic-bezier(0.22, 1, 0.36, 1)";
+            observer.observe(card);
+        });
+    </script>
+</body></html>

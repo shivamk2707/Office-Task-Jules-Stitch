@@ -1,0 +1,321 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TaskFlow - Profile &amp; Settings</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f9f9f7",
+                    "surface-container-highest": "#e2e3e1",
+                    "surface-container": "#edeeec",
+                    "surface-bright": "#f9f9f7",
+                    "on-tertiary-fixed-variant": "#3a4a47",
+                    "surface-variant": "#e2e3e1",
+                    "on-surface-variant": "#404846",
+                    "on-surface": "#1a1c1b",
+                    "inverse-primary": "#a2d0c4",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f0f1ef",
+                    "on-primary-fixed-variant": "#224e46",
+                    "outline": "#717976",
+                    "on-tertiary-container": "#91a29f",
+                    "surface-tint": "#3a665d",
+                    "primary-fixed": "#bdece0",
+                    "on-tertiary-fixed": "#0f1e1c",
+                    "on-secondary-container": "#3a6b61",
+                    "surface-container-high": "#e8e8e6",
+                    "tertiary": "#142421",
+                    "secondary": "#35675d",
+                    "primary-fixed-dim": "#a2d0c4",
+                    "secondary-fixed-dim": "#9dd1c4",
+                    "on-secondary-fixed": "#00201b",
+                    "on-background": "#1a1c1b",
+                    "secondary-container": "#b6eadd",
+                    "tertiary-fixed": "#d4e6e2",
+                    "primary-container": "#0d3d35",
+                    "tertiary-fixed-dim": "#b8cac6",
+                    "outline-variant": "#c0c8c5",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2f3130",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#b9ede0",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface": "#f9f9f7",
+                    "on-primary-container": "#7ba89d",
+                    "on-primary-fixed": "#00201b",
+                    "surface-container-low": "#f3f4f2",
+                    "on-secondary-fixed-variant": "#1b4f46",
+                    "surface-dim": "#d9dad8",
+                    "tertiary-container": "#293937",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#002620",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding": "24px",
+                    "section-margin": "40px",
+                    "card-gap": "16px",
+                    "base": "4px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .ambient-shadow {
+            box-shadow: 0 30px 30px rgba(13, 61, 53, 0.04), 0 4px 4px rgba(13, 61, 53, 0.02);
+        }
+        .ai-gradient-border {
+            position: relative;
+            background: #ffffff;
+            background-clip: padding-box;
+            border: 1px solid transparent;
+        }
+        .ai-gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -1px;
+            border-radius: inherit;
+            background: linear-gradient(to bottom right, #0D3D35, #DCEEEA);
+        }
+        .custom-toggle {
+            width: 40px;
+            height: 20px;
+            background-color: #e2e3e1;
+            border-radius: 9999px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+        .custom-toggle::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: white;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+        input:checked + .custom-toggle {
+            background-color: #0D3D35;
+        }
+        input:checked + .custom-toggle::after {
+            transform: translateX(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-container/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1200px] mx-auto">
+<button class="hover:bg-surface-container-high/50 dark:hover:bg-surface-container-highest/50 rounded-full transition-colors p-2 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TaskFlow</h1>
+<button class="hover:bg-surface-container-high/50 dark:hover:bg-surface-container-highest/50 rounded-full transition-colors p-2 active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-gutter pt-24">
+<!-- Hero Profile Section -->
+<section class="flex flex-col items-center mb-section-margin">
+<div class="relative group">
+<div class="w-24 h-24 rounded-full overflow-hidden ambient-shadow border-2 border-white mb-4">
+<img class="w-full h-full object-cover" data-alt="A professional, high-resolution portrait of a modern executive in a minimalist office setting. The lighting is soft and directional, creating a clean light-mode aesthetic. The color palette is dominated by whites and soft greens, reflecting a calm yet productive forest-inspired workspace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEpyFPxdBvXz3fChfaPFy0oqGnllEU0jwrx4HdlruY-quGosvuwPyy4C41a3LQGWPZsktr24nhtavRTclkFQ0fYh7GYLM-2_Z80WaZL7M19_msi-_hTEd3zT8X3-mT8yTn3eyapYSe3GQEoZO0YpTS5MNZYDPRYYTaCVlHrTcVnchFQAOfDhPIh-MO6csOaluJ2_Qao6GgrdQjIqTyidl-aZHbrZ4HchKUb_4VKFUW1fl9emiJbSxrv4W_f8S112KlDCAGiJj_Ez4">
+</div>
+<button class="absolute bottom-4 right-0 bg-primary text-white rounded-full p-1.5 shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<h2 class="font-display-lg text-display-lg text-primary">Julian Thorne</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Senior Product Strategist</p>
+</section>
+<!-- Subscription / AI Status Badge (Premium Pattern) -->
+<div class="mb-gutter">
+<div class="ai-gradient-border rounded-xl p-4 flex items-center justify-between ambient-shadow">
+<div class="flex items-center gap-3">
+<div class="bg-primary-container p-2 rounded-lg">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-primary">Pro Workspace</p>
+<p class="font-body-md text-body-md text-on-surface-variant">AI Co-pilot enabled</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container">chevron_right</span>
+</div>
+</div>
+<!-- Settings Categories List -->
+<div class="space-y-base">
+<!-- Account -->
+<button class="w-full flex items-center justify-between p-4 bg-white hover:bg-surface-container-low transition-colors rounded-xl group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container group-hover:scale-110 transition-transform">person</span>
+<span class="font-body-lg text-body-lg text-on-surface">Account</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</button>
+<div class="h-px bg-surface-container-highest mx-4"></div>
+<!-- Notifications -->
+<button class="w-full flex items-center justify-between p-4 bg-white hover:bg-surface-container-low transition-colors rounded-xl group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container group-hover:scale-110 transition-transform">notifications_active</span>
+<span class="font-body-lg text-body-lg text-on-surface">Notifications</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</button>
+<div class="h-px bg-surface-container-highest mx-4"></div>
+<!-- AI Preferences -->
+<button class="w-full flex items-center justify-between p-4 bg-white hover:bg-surface-container-low transition-colors rounded-xl group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container group-hover:scale-110 transition-transform">psychology</span>
+<span class="font-body-lg text-body-lg text-on-surface">AI Preferences</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</button>
+<div class="h-px bg-surface-container-highest mx-4"></div>
+<!-- Workspace -->
+<button class="w-full flex items-center justify-between p-4 bg-white hover:bg-surface-container-low transition-colors rounded-xl group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container group-hover:scale-110 transition-transform">grid_view</span>
+<span class="font-body-lg text-body-lg text-on-surface">Workspace</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</button>
+<div class="h-px bg-surface-container-highest mx-4"></div>
+<!-- Subscription -->
+<button class="w-full flex items-center justify-between p-4 bg-white hover:bg-surface-container-low transition-colors rounded-xl group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container group-hover:scale-110 transition-transform">credit_card</span>
+<span class="font-body-lg text-body-lg text-on-surface">Subscription</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant">chevron_right</span>
+</button>
+</div>
+<!-- Secondary Controls Section -->
+<div class="mt-section-margin mb-8">
+<p class="font-label-caps text-label-caps text-on-surface-variant px-4 mb-4">SYSTEM</p>
+<div class="bg-white rounded-2xl overflow-hidden ambient-shadow">
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container">dark_mode</span>
+<span class="font-body-lg text-body-lg text-on-surface">Dark Mode</span>
+</div>
+<label class="inline-flex items-center cursor-pointer">
+<input class="sr-only" type="checkbox">
+<div class="custom-toggle"></div>
+</label>
+</div>
+<div class="h-px bg-surface-container-highest mx-4"></div>
+<div class="p-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary-container">language</span>
+<span class="font-body-lg text-body-lg text-on-surface">Language</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface-variant">English (US)</span>
+</div>
+</div>
+</div>
+<!-- Logout Button -->
+<button class="w-full flex items-center justify-center gap-2 p-4 mt-8 text-error font-headline-sm text-headline-sm hover:bg-error/5 rounded-xl transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined">logout</span>
+            Logout
+        </button>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-surface/90 dark:bg-surface-container-highest/90 backdrop-blur-xl rounded-t-xl shadow-[0_-4px_30px_rgba(13,61,53,0.04)] z-50">
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="font-label-caps text-label-caps mt-1">Today</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-caps text-label-caps mt-1">Calendar</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined">bolt</span>
+<span class="font-label-caps text-label-caps mt-1">AI</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-all">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-caps text-label-caps mt-1">Projects</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-2 w-12 h-12 active:translate-y-[-2px] transition-all duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+</nav>
+<script>
+        // Simple toggle interaction logic
+        document.querySelectorAll('input[type="checkbox"]').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                if(this.nextElementSibling.classList.contains('custom-toggle')) {
+                    // Micro-interaction sound or haptic feedback placeholder
+                }
+            });
+        });
+
+        // Scroll shadow logic for header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>

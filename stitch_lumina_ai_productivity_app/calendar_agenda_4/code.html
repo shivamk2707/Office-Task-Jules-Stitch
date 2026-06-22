@@ -1,0 +1,240 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TaskFlow - Calendar Agenda</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Custom Apple-style dual shadow */
+        .apple-shadow {
+            box-shadow: 0 30px 30px rgba(13, 61, 53, 0.04), 0 4px 4px rgba(13, 61, 53, 0.02);
+        }
+        .glass-header {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#293937",
+                        "secondary-fixed": "#b9ede0",
+                        "on-secondary-fixed-variant": "#1b4f46",
+                        "on-primary-container": "#7ba89d",
+                        "surface-tint": "#3a665d",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1a1c1b",
+                        "surface-container-low": "#f3f4f2",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#00201b",
+                        "on-surface-variant": "#404846",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#3a4a47",
+                        "on-secondary-fixed": "#00201b",
+                        "on-surface": "#1a1c1b",
+                        "on-secondary-container": "#3a6b61",
+                        "surface-container-highest": "#e2e3e1",
+                        "primary-fixed-dim": "#a2d0c4",
+                        "primary": "#002620",
+                        "on-tertiary-container": "#91a29f",
+                        "secondary-fixed-dim": "#9dd1c4",
+                        "surface": "#f9f9f7",
+                        "outline-variant": "#c0c8c5",
+                        "outline": "#717976",
+                        "on-error-container": "#93000a",
+                        "background": "#f9f9f7",
+                        "surface-container-high": "#e8e8e6",
+                        "surface-dim": "#d9dad8",
+                        "surface-bright": "#f9f9f7",
+                        "tertiary-fixed-dim": "#b8cac6",
+                        "on-tertiary-fixed": "#0f1e1c",
+                        "inverse-surface": "#2f3130",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f0f1ef",
+                        "surface-container": "#edeeec",
+                        "primary-container": "#0d3d35",
+                        "inverse-primary": "#a2d0c4",
+                        "tertiary-fixed": "#d4e6e2",
+                        "secondary": "#35675d",
+                        "surface-variant": "#e2e3e1",
+                        "secondary-container": "#b6eadd",
+                        "tertiary": "#142421",
+                        "primary-fixed": "#bdece0",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed-variant": "#224e46"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-margin": "40px",
+                        "base": "4px",
+                        "gutter": "16px",
+                        "card-gap": "16px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl transition-all duration-300">
+
+</header>
+<main class="pt-24 pb-32 max-w-[1200px] mx-auto px-gutter min-h-screen">
+<!-- Page Title & Month Select -->
+<div class="mb-8 flex items-center justify-between">
+<div class="animate-in fade-in slide-in-from-left duration-700">
+
+
+</div>
+
+</div>
+<!-- Horizontal Date Picker -->
+<section class="mb-10 overflow-hidden">
+
+</section>
+<!-- Layout Grid: 70% Timeline, 30% AI Insights -->
+<div class="grid grid-cols-1 md:grid-cols-10 gap-8">
+<!-- Timeline (Agenda) -->
+<div class="md:col-span-7 space-y-6">
+<!-- Time Block: 09:00 AM -->
+
+<!-- Time Block: 11:30 AM (AI Suggestion) -->
+
+<!-- Time Block: 01:00 PM -->
+
+<!-- Time Block: 03:00 PM -->
+
+</div>
+<!-- AI Sidebar (Insights) -->
+<div class="md:col-span-3 space-y-6">
+<div class="bg-surface-container-low rounded-3xl p-6 apple-shadow sticky top-24">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h4 class="text-headline-sm font-headline-sm text-primary">Day Insights</h4>
+</div>
+<div class="space-y-6">
+<div class="p-4 bg-white/50 rounded-2xl border border-white/20">
+<p class="text-label-caps font-label-caps text-on-surface-variant mb-2">PRODUCTIVITY SCORE</p>
+<div class="flex items-end gap-2">
+<span class="text-display-lg font-display-lg text-primary leading-none">84</span>
+<span class="text-on-primary-container font-semibold pb-1">/100</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-3">
+<div class="bg-primary-container h-full rounded-full w-[84%]"></div>
+</div>
+</div>
+<div class="p-4 bg-white/50 rounded-2xl border border-white/20">
+<p class="text-label-caps font-label-caps text-on-surface-variant mb-2">FOCUS BLOCKS</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-caps font-label-caps">Morning: High</span>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full text-label-caps font-label-caps">Afternoon: Med</span>
+</div>
+</div>
+<div class="space-y-4 pt-2">
+<p class="text-body-md text-on-surface-variant italic">"Your calendar is 15% more congested than last Wednesday. I recommend postponing the 'Logo Exploration' to Thursday morning to preserve your deep work block."</p>
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-semibold hover:bg-primary-container transition-all">Optimize My Day</button>
+</div>
+</div>
+</div>
+<!-- Small Task Preview Mini-Card -->
+<div class="bg-surface-container-lowest p-6 rounded-3xl apple-shadow border border-outline-variant/20 overflow-hidden relative group">
+<div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
+
+</div>
+<div class="relative z-10">
+<p class="text-label-caps font-label-caps text-on-surface-variant mb-4">PENDING TASKS</p>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_box_outline_blank</span>
+<span class="text-body-md text-primary">Finalize icon sets</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">check_box_outline_blank</span>
+<span class="text-body-md text-primary">Email stakeholders</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-xl transition-all duration-300 shadow-[0_-4px_30px_rgba(13,61,53,0.04)] rounded-t-xl">
+
+</nav>
+<!-- Floating Action Button for Today -->
+<div class="fixed bottom-24 right-8 z-40">
+
+</div>
+<script>
+        // Micro-interaction for scroll depth
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('apple-shadow', 'bg-surface/95');
+            } else {
+                header.classList.remove('apple-shadow', 'bg-surface/95');
+            }
+        });
+
+        // Simple click interaction for dates
+        const dateCards = document.querySelectorAll('.flex-shrink-0.w-16.h-24');
+        dateCards.forEach(card => {
+            card.addEventListener('click', () => {
+                dateCards.forEach(c => {
+                    c.classList.remove('bg-primary-container', 'text-on-primary', 'scale-105', 'z-10', 'border-none', 'ring-2');
+                    c.classList.add('bg-surface-container-lowest', 'text-on-surface', 'border');
+                });
+                card.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'border');
+                card.classList.add('bg-primary-container', 'text-on-primary', 'scale-105', 'z-10', 'border-none', 'ring-2', 'ring-primary-container', 'ring-offset-2', 'ring-offset-background');
+            });
+        });
+    </script>
+
+
+</body></html>

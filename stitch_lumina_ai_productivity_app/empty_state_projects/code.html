@@ -1,0 +1,235 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#b8cac6",
+                    "outline-variant": "#c0c8c5",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#00201b",
+                    "inverse-on-surface": "#f0f1ef",
+                    "primary-fixed": "#bdece0",
+                    "surface": "#f9f9f7",
+                    "secondary-container": "#b6eadd",
+                    "surface-bright": "#f9f9f7",
+                    "secondary-fixed": "#b9ede0",
+                    "tertiary-container": "#293937",
+                    "tertiary": "#142421",
+                    "inverse-primary": "#a2d0c4",
+                    "on-secondary-fixed": "#00201b",
+                    "on-secondary-container": "#3a6b61",
+                    "on-primary-container": "#7ba89d",
+                    "outline": "#717976",
+                    "surface-container-low": "#f3f4f2",
+                    "on-tertiary-fixed": "#0f1e1c",
+                    "surface-dim": "#d9dad8",
+                    "primary": "#002620",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#224e46",
+                    "secondary": "#35675d",
+                    "on-primary": "#ffffff",
+                    "on-background": "#1a1c1b",
+                    "secondary-fixed-dim": "#9dd1c4",
+                    "background": "#f9f9f7",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#3a665d",
+                    "primary-container": "#0d3d35",
+                    "on-surface-variant": "#404846",
+                    "tertiary-fixed": "#d4e6e2",
+                    "surface-container": "#edeeec",
+                    "on-tertiary-container": "#91a29f",
+                    "on-secondary": "#ffffff",
+                    "on-surface": "#1a1c1b",
+                    "on-secondary-fixed-variant": "#1b4f46",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e2e3e1",
+                    "surface-variant": "#e2e3e1",
+                    "surface-container-high": "#e8e8e6",
+                    "primary-fixed-dim": "#a2d0c4",
+                    "on-tertiary-fixed-variant": "#3a4a47",
+                    "inverse-surface": "#2f3130",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "16px",
+                    "container-padding": "24px",
+                    "section-margin": "40px",
+                    "base": "4px",
+                    "card-gap": "16px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "display-lg": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "display-lg": ["34px", {"lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f9f9f7;
+            font-family: 'Hanken Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .floating-card {
+            box-shadow: 0 30px 60px -12px rgba(13, 61, 53, 0.04), 0 18px 36px -18px rgba(13, 61, 53, 0.02);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col text-on-surface overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-container/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-high/50 dark:hover:bg-surface-container-highest/50 rounded-full transition-colors p-2 flex items-center justify-center active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">TaskFlow</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="hover:bg-surface-container-high/50 dark:hover:bg-surface-container-highest/50 rounded-full transition-colors p-2 flex items-center justify-center active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed" data-icon="notifications">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center px-container-padding pt-24 pb-32">
+<div class="w-full max-w-[1200px] flex flex-col items-center">
+<!-- Empty State Container -->
+<div class="w-full max-w-lg flex flex-col items-center text-center space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+<!-- Premium Illustration / Icon -->
+<div class="relative group">
+<div class="absolute inset-0 bg-primary-container/5 rounded-full blur-3xl scale-150 animate-pulse"></div>
+<div class="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center rounded-full overflow-hidden floating-card bg-surface-container-lowest border border-outline-variant/20">
+<img class="w-full h-full object-cover opacity-90" data-alt="A sophisticated, minimalist 3D render of an architectural desk with clean lines. A single high-end pen and a textured paper notebook are organized on a smooth surface of deep forest green and soft cream. The lighting is soft and cinematic, casting elegant shadows that emphasize a quiet, productive workspace. The overall aesthetic is luxurious, modern, and perfectly aligned with Apple's clean design philosophy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNjCX7UOdlGdy9uJjJ19hJ8E5QkqCdQojPK2TRud0LRU1c5GxDzUgDrBbkwPq0lWRHeVeF_BGTUhWAClUpknzzT6FjgJilRa212qsgi7oJgbJNVIxLswo8_arwbzIxhH1nPxzZb2UzipWzVaDUlzCjMzz7gIETB1UaKT8AcAvdP93h4o-xIXVnNHOOSaUYyvmyQT_iwJQxf0x7Ht9kWLm2zVN6DlGU0Fn_alnPMBZFt9Fpj-NNuuFENEjUEjaFBS9tnrCs3EZNT8I">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent"></div>
+<div class="absolute bottom-6 flex items-center justify-center">
+<div class="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-full flex items-center gap-2 backdrop-blur-md border border-on-primary-container/20">
+<span class="material-symbols-outlined text-[16px]" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-caps text-label-caps">READY TO START</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Text Content -->
+<div class="space-y-3">
+<h2 class="font-display-lg text-display-lg text-primary tracking-tight">No projects yet.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-sm mx-auto">
+                        Start your first masterpiece. Organize your thoughts and let AI handle the heavy lifting.
+                    </p>
+</div>
+<!-- CTA Button -->
+<div class="pt-4">
+<button class="group flex items-center gap-3 bg-primary-container text-white px-8 py-4 rounded-full font-headline-sm text-headline-sm shadow-lg shadow-primary-container/20 hover:shadow-xl hover:shadow-primary-container/30 transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span>Create New Project</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<p class="mt-6 font-label-caps text-label-caps text-on-tertiary-container uppercase tracking-widest flex items-center justify-center gap-2">
+<span class="w-8 h-[1px] bg-outline-variant/30"></span>
+                        or import from workspace
+                        <span class="w-8 h-[1px] bg-outline-variant/30"></span>
+</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-surface/90 dark:bg-surface-container-highest/90 backdrop-blur-xl rounded-t-xl shadow-[0_-4px_30px_rgba(13,61,53,0.04)]">
+<div class="flex justify-around items-center px-4 pb-6 pt-2 max-w-[1200px] mx-auto">
+<!-- Today -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container p-2 hover:text-primary dark:hover:text-primary-fixed group transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="event_upcoming">event_upcoming</span>
+<span class="font-label-caps text-label-caps mt-1">Today</span>
+</a>
+<!-- Calendar -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container p-2 hover:text-primary dark:hover:text-primary-fixed group transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-caps text-label-caps mt-1">Calendar</span>
+</a>
+<!-- AI (Dynamic/FAB style) -->
+<div class="relative -top-4">
+<button class="bg-primary text-on-primary rounded-full w-14 h-14 flex items-center justify-center shadow-xl hover:scale-105 active:scale-90 transition-transform duration-300">
+<span class="material-symbols-outlined text-[28px]" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</button>
+</div>
+<!-- Projects (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-full p-2 w-12 h-12 transition-all duration-300 translate-y-[-2px]" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open" style="font-variation-settings: 'FILL' 1;">folder_open</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container p-2 hover:text-primary dark:hover:text-primary-fixed group transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Simple entry animation trigger
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContent = document.querySelector('main');
+            mainContent.classList.add('opacity-0');
+            setTimeout(() => {
+                mainContent.classList.remove('opacity-0');
+                mainContent.classList.add('transition-opacity', 'duration-1000');
+            }, 100);
+        });
+
+        // Hover effect for the illustration
+        const card = document.querySelector('.floating-card');
+        if (card) {
+            card.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = card.getBoundingClientRect();
+                const x = (e.clientX - left) / width;
+                const y = (e.clientY - top) / height;
+                
+                const tiltX = (y - 0.5) * 10;
+                const tiltY = (x - 0.5) * -10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            });
+        }
+    </script>
+</body></html>

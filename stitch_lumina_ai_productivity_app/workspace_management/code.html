@@ -1,0 +1,368 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Workspace Settings | TaskFlow</title>
+<!-- Google Fonts: Hanken Grotesk -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f9f9f7",
+                        "surface-container-highest": "#e2e3e1",
+                        "surface-container": "#edeeec",
+                        "surface-bright": "#f9f9f7",
+                        "on-tertiary-fixed-variant": "#3a4a47",
+                        "surface-variant": "#e2e3e1",
+                        "on-surface-variant": "#404846",
+                        "on-surface": "#1a1c1b",
+                        "inverse-primary": "#a2d0c4",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f0f1ef",
+                        "on-primary-fixed-variant": "#224e46",
+                        "outline": "#717976",
+                        "on-tertiary-container": "#91a29f",
+                        "surface-tint": "#3a665d",
+                        "primary-fixed": "#bdece0",
+                        "on-tertiary-fixed": "#0f1e1c",
+                        "on-secondary-container": "#3a6b61",
+                        "surface-container-high": "#e8e8e6",
+                        "tertiary": "#142421",
+                        "secondary": "#35675d",
+                        "primary-fixed-dim": "#a2d0c4",
+                        "secondary-fixed-dim": "#9dd1c4",
+                        "on-secondary-fixed": "#00201b",
+                        "on-background": "#1a1c1b",
+                        "secondary-container": "#b6eadd",
+                        "tertiary-fixed": "#d4e6e2",
+                        "primary-container": "#0d3d35",
+                        "tertiary-fixed-dim": "#b8cac6",
+                        "outline-variant": "#c0c8c5",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f3130",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#b9ede0",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface": "#f9f9f7",
+                        "on-primary-container": "#7ba89d",
+                        "on-primary-fixed": "#00201b",
+                        "surface-container-low": "#f3f4f2",
+                        "on-secondary-fixed-variant": "#1b4f46",
+                        "surface-dim": "#d9dad8",
+                        "tertiary-container": "#293937",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#002620",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "24px",
+                        "section-margin": "40px",
+                        "card-gap": "16px",
+                        "base": "4px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["34px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #f9f9f7;
+            color: #1a1c1b;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ambient-card {
+            box-shadow: 0 30px 30px rgba(13, 61, 53, 0.04), 0 4px 4px rgba(13, 61, 53, 0.02);
+            border: 1px solid #EEEEEE;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-gutter py-4 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container-high/50 rounded-full p-2 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TaskFlow</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="hover:bg-surface-container-high/50 rounded-full p-2 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container text-[10px] font-bold">
+                    JD
+                </div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-24 px-gutter max-w-[1200px] mx-auto">
+<!-- Header Section -->
+<section class="mb-section-margin">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Settings</span>
+<h2 class="font-display-lg text-display-lg mt-1">Workspace Management</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2 max-w-xl">Configure your environment, manage team collaboration, and monitor shared resource allocation.</p>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-3 rounded-full flex items-center gap-2 font-headline-sm text-headline-sm hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+                    Add New Workspace
+                </button>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-card-gap">
+<!-- Active Workspace Card -->
+<div class="md:col-span-8 bg-surface-container-lowest ambient-card rounded-xl p-8 relative overflow-hidden">
+<!-- AI Subtle Gradient Border Accent -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-container to-secondary-container"></div>
+<div class="flex justify-between items-start mb-8">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 bg-primary-container rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container text-4xl" style="font-variation-settings: 'FILL' 1;">workspaces</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Design Innovation Lab</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-0.5 rounded-full font-label-caps text-label-caps uppercase">Active</span>
+<span class="font-body-md text-body-md text-on-surface-variant">• Primary Workspace</span>
+</div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-primary p-2">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<!-- Members Section -->
+<div class="mb-10">
+<div class="flex items-center justify-between mb-4">
+<h4 class="font-headline-sm text-headline-sm">Team Members (6)</h4>
+<button class="text-primary font-headline-sm text-headline-sm flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+                            Invite Members
+                        </button>
+</div>
+<div class="space-y-4">
+<!-- Member Item -->
+<div class="flex items-center justify-between p-3 hover:bg-surface-container-low rounded-lg transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-container">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a mid-30s female creative director with a minimalist aesthetic. She has a serene expression and is set against a clean, off-white background that matches the TaskFlow light mode design system. The lighting is soft and high-key, emphasizing a modern and organized professional vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCuWYKmzUZcLXlnbFrb3giURgiQIKCBWwVq8ARiXgcmByjb6aGTQ-pxFnUIPlnVYeDhf_7hdt7rO7od846jmcBg-TGgyHcoNiQbdsotEEJLx7HyRiYXzOFDrX45wFTty_fCdx53s61uHVC4pqlYh37787mco9oMxQheQiCT7sTe5kAE_DUzQc7Pqyh2cmBnkD7KOQqpiMAkXAa8Q9BopA8_vK_LlvWSP0JoNoK2b4MQ2uHuMKMG70RtpYTdaT7UE761BJTs3QVbJM">
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm leading-none">Elena Rossi</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">elena.r@designlab.com</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-label-caps text-label-caps bg-surface-container-highest px-3 py-1 rounded-full text-primary">Admin</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">more_vert</span>
+</div>
+</div>
+<!-- Member Item -->
+<div class="flex items-center justify-between p-3 hover:bg-surface-container-low rounded-lg transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-container">
+<img class="w-full h-full object-cover" data-alt="A high-quality studio headshot of a professional male software engineer in his late 20s. He is wearing a dark charcoal turtleneck, looking directly at the camera with a confident yet approachable smile. The background is a soft, blurred office interior with neutral tones that complement the minimalist forest-inspired palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDbBJCA_-FJHxGA2ljOq1RqZueuWz7jsoc66H_ZNMWx_MzofjSQIXUravJehLmL2-z6_7SWh_16aSdmCeK79h_ApESfxfo1kGRBq8pw90Bm3YRNnW6SHRrVz0QJ3IQI2Jorxj1477degBVUncJR1LM_HYmCH2sNSZlpovpFoBrZU5Qq3a2Aqjy-AYpZGIysq0WlmiZcQus7eWCqUHIgYa66zzjbNWw393hDdxXIm2bgeylDYtqi4xDWDJ6-bNTTGVUyb-OfSXzP-0">
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm leading-none">Marcus Thorne</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">m.thorne@designlab.com</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-label-caps text-label-caps border border-outline-variant px-3 py-1 rounded-full text-on-surface-variant">Member</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">more_vert</span>
+</div>
+</div>
+<!-- Member Item -->
+<div class="flex items-center justify-between p-3 hover:bg-surface-container-low rounded-lg transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed-dim flex items-center justify-center font-bold text-on-secondary-fixed-variant">
+                                    SK
+                                </div>
+<div>
+<p class="font-headline-sm text-headline-sm leading-none">Sarah Khen</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">s.khen@designlab.com</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-label-caps text-label-caps border border-outline-variant px-3 py-1 rounded-full text-on-surface-variant">Member</span>
+<span class="material-symbols-outlined text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">more_vert</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Storage & Stats Column -->
+<div class="md:col-span-4 space-y-card-gap">
+<!-- Storage Usage Card -->
+<div class="bg-surface-container-lowest ambient-card rounded-xl p-6">
+<h4 class="font-headline-sm text-headline-sm mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">cloud_done</span>
+                        Storage Usage
+                    </h4>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<span class="font-display-lg text-display-lg text-primary">42.8 <small class="text-headline-sm font-normal text-on-surface-variant">GB</small></span>
+<span class="font-body-md text-body-md text-on-surface-variant">of 100 GB</span>
+</div>
+<div class="w-full bg-surface-container-high h-2.5 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full transition-all duration-1000 ease-out" style="width: 42.8%;"></div>
+</div>
+<div class="grid grid-cols-2 gap-2 pt-2">
+<div class="p-3 bg-surface-container-low rounded-lg">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Documents</p>
+<p class="font-headline-sm text-headline-sm">12.4 GB</p>
+</div>
+<div class="p-3 bg-surface-container-low rounded-lg">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Media</p>
+<p class="font-headline-sm text-headline-sm">30.4 GB</p>
+</div>
+</div>
+<button class="w-full py-3 border border-outline-variant rounded-full font-headline-sm text-headline-sm text-primary hover:bg-surface-container-low transition-colors mt-2">
+                            Upgrade Storage
+                        </button>
+</div>
+</div>
+<!-- AI Workspace Insights Card -->
+<div class="bg-primary-container text-on-primary-container rounded-xl p-6 relative overflow-hidden">
+<div class="absolute top-[-20px] right-[-20px] opacity-10">
+<span class="material-symbols-outlined text-[120px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined">bolt</span>
+                        AI Workspace Insight
+                    </h4>
+<p class="font-body-md text-body-md mb-4 text-on-primary-container/80">
+                        Workspace activity is up 12% this week. Most collaborative hour: 10:00 AM. 
+                        We recommend archiving 3 inactive projects to optimize search speed.
+                    </p>
+<button class="bg-surface-container-lowest text-primary px-4 py-2 rounded-full font-label-caps text-label-caps uppercase tracking-wider hover:bg-background transition-colors">
+                        Run Optimization
+                    </button>
+</div>
+</div>
+<!-- Other Workspaces Section -->
+<div class="md:col-span-12 mt-4">
+<h4 class="font-headline-sm text-headline-sm mb-4">Other Workspaces</h4>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-card-gap">
+<!-- Workspace Mini Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex items-center justify-between group hover:border-primary-container transition-all cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">architecture</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm leading-none">Side Projects</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">2 Members</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 transition-all">chevron_right</span>
+</div>
+<!-- Workspace Mini Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex items-center justify-between group hover:border-primary-container transition-all cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm leading-none">Reading List</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">1 Member</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary group-hover:translate-x-1 transition-all">chevron_right</span>
+</div>
+<!-- Workspace Mini Card (Skeleton Add) -->
+<div class="border-2 border-dashed border-outline-variant rounded-xl p-4 flex items-center justify-center group hover:bg-surface-container-low hover:border-primary-container transition-all cursor-pointer">
+<div class="flex items-center gap-2 text-on-surface-variant group-hover:text-primary">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-headline-sm text-headline-sm">New Workspace</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-xl flex justify-around items-center px-4 pb-6 pt-2 z-50 rounded-t-xl shadow-[0_-4px_30px_rgba(13,61,53,0.04)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="font-label-caps text-[10px] mt-1">Today</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-caps text-[10px] mt-1">Calendar</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span class="font-label-caps text-[10px] mt-1">AI</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2" href="#">
+<span class="material-symbols-outlined">folder_open</span>
+<span class="font-label-caps text-[10px] mt-1">Projects</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full p-2 w-12 h-12 translate-y-[-12px] shadow-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+</a>
+</nav>
+<!-- Interactive Layer: Simple JS for hover effect enhancement -->
+<script>
+        document.querySelectorAll('.ambient-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body></html>
