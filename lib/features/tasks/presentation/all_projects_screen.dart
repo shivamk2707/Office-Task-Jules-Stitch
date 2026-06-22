@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import "package:go_router/go_router.dart";
+import "package:flutter_screenutil/flutter_screenutil.dart";
+import 'package:flutter/material.dart';
 
 class AllProjectsScreen extends StatelessWidget {
   const AllProjectsScreen({super.key});
@@ -9,47 +11,53 @@ class AllProjectsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('All Projects'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.pop(),
         ),
-        title: const Text('All Projects'),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
               context.push('/create-project');
             },
+          )
+        ],
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(24.w),
+          child: Column(
+            children: [
+              SizedBox(height: 16.h),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      margin: EdgeInsets.only(bottom: 16.h),
+                      child: Padding(
+                        padding: EdgeInsets.all(16.w),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Project ${index + 1}',
+                              style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 8.h),
+                            const Text('3 active tasks • 2 completed'),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-      body: ListView(
-        padding: EdgeInsets.all(24.w),
-        children: [
-          _buildProjectCard(context, 'Website Redesign', '12 tasks', 0.8),
-          SizedBox(height: 16.h),
-          _buildProjectCard(context, 'Marketing Campaign Q4', '5 tasks', 0.3),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildProjectCard(BuildContext context, String title, String subtitle, double progress) {
-    return Container(
-      padding: EdgeInsets.all(16.w),
-      decoration: BoxDecoration(
-        border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
-        borderRadius: BorderRadius.circular(16.r),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(title, style: Theme.of(context).textTheme.headlineSmall),
-          SizedBox(height: 4.h),
-          Text(subtitle, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant)),
-          SizedBox(height: 16.h),
-          LinearProgressIndicator(value: progress),
-        ],
+        ),
       ),
     );
   }

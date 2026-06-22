@@ -1,55 +1,51 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import "package:go_router/go_router.dart";
+import "package:flutter_screenutil/flutter_screenutil.dart";
+import 'package:flutter/material.dart';
 
-class ThemeSwitchingScreen extends StatefulWidget {
+class ThemeSwitchingScreen extends StatelessWidget {
   const ThemeSwitchingScreen({super.key});
-
-  @override
-  State<ThemeSwitchingScreen> createState() => _ThemeSwitchingScreenState();
-}
-
-class _ThemeSwitchingScreenState extends State<ThemeSwitchingScreen> {
-  String _selectedTheme = 'system';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Theme'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.pop(),
         ),
-        title: const Text('Theme'),
       ),
-      body: ListView(
-        padding: EdgeInsets.all(24.w),
-        children: [
-          RadioListTile<String>(
-            title: const Text('System Default'),
-            value: 'system',
-            groupValue: _selectedTheme,
-            onChanged: (String? value) {
-              if (value != null) setState(() => _selectedTheme = value);
-            },
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(24.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Choose your preferred theme:', style: Theme.of(context).textTheme.titleLarge),
+              SizedBox(height: 16.h),
+              RadioListTile(
+                value: ThemeMode.system,
+                groupValue: ThemeMode.system, // mock for now
+                onChanged: (val) {},
+                title: const Text('System Default'),
+              ),
+              RadioListTile(
+                value: ThemeMode.light,
+                groupValue: ThemeMode.system, // mock for now
+                onChanged: (val) {},
+                title: const Text('Light'),
+              ),
+              RadioListTile(
+                value: ThemeMode.dark,
+                groupValue: ThemeMode.system, // mock for now
+                onChanged: (val) {},
+                title: const Text('Dark'),
+              ),
+            ],
           ),
-          RadioListTile<String>(
-            title: const Text('Light'),
-            value: 'light',
-            groupValue: _selectedTheme,
-            onChanged: (String? value) {
-              if (value != null) setState(() => _selectedTheme = value);
-            },
-          ),
-          RadioListTile<String>(
-            title: const Text('Dark'),
-            value: 'dark',
-            groupValue: _selectedTheme,
-            onChanged: (String? value) {
-              if (value != null) setState(() => _selectedTheme = value);
-            },
-          ),
-        ],
+        ),
       ),
     );
   }
