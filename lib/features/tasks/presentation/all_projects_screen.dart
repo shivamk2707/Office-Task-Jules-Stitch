@@ -1,8 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import "package:go_router/go_router.dart";
-import "package:flutter_screenutil/flutter_screenutil.dart";
-import 'package:flutter/material.dart';
 
 class AllProjectsScreen extends StatelessWidget {
   const AllProjectsScreen({super.key});
@@ -11,54 +9,81 @@ class AllProjectsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('All Projects'),
+        title: Text(
+          'All Projects',
+          style: TextStyle(
+            fontFamily: 'Hanken Grotesk',
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w600,
+            color: const Color(0xFF002620),
+          ),
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF002620)),
           onPressed: () => context.pop(),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {
-              context.push('/create-project');
-            },
-          )
-        ],
+        backgroundColor: const Color(0xFFF9F9F7),
+        elevation: 0,
       ),
+      backgroundColor: const Color(0xFFF9F9F7),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(24.w),
-          child: Column(
-            children: [
-              SizedBox(height: 16.h),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      margin: EdgeInsets.only(bottom: 16.h),
-                      child: Padding(
-                        padding: EdgeInsets.all(16.w),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Project ${index + 1}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(height: 8.h),
-                            const Text('3 active tasks • 2 completed'),
-                          ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(24.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'All Projects',
+                  style: TextStyle(
+                    fontFamily: 'Hanken Grotesk',
+                    fontSize: 28.sp,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFF1A1C1B),
+                  ),
+                ),
+                SizedBox(height: 16.h),
+                Text(
+                  'This is a functional placeholder for the All Projects feature. It demonstrates routing, styling, and basic architecture.',
+                  style: TextStyle(
+                    fontFamily: 'Hanken Grotesk',
+                    fontSize: 16.sp,
+                    color: const Color(0xFF404846),
+                    height: 1.5,
+                  ),
+                ),
+                SizedBox(height: 32.h),
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(24.w),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16.r),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x0A0D3D35),
+                        blurRadius: 20,
+                        offset: Offset(0, 10),
+                      )
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Icon(Icons.construction, size: 48.sp, color: const Color(0xFF7BA89D)),
+                      SizedBox(height: 16.h),
+                      Text(
+                        'Feature Module',
+                        style: TextStyle(
+                          fontFamily: 'Hanken Grotesk',
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
-                    );
-                  },
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

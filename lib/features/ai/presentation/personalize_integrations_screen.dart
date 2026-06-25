@@ -1,8 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import "package:go_router/go_router.dart";
-import "package:flutter_screenutil/flutter_screenutil.dart";
-import 'package:flutter/material.dart';
 
 class PersonalizeIntegrationsScreen extends StatelessWidget {
   const PersonalizeIntegrationsScreen({super.key});
@@ -11,72 +9,83 @@ class PersonalizeIntegrationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.pop(),
-        ),
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 32.h),
-              Text(
-                'Connect Integrations',
-                style: Theme.of(context).textTheme.headlineLarge,
-              ),
-              SizedBox(height: 8.h),
-              Text(
-                'Connect your favorite tools for a seamless experience.',
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
-              ),
-              SizedBox(height: 32.h),
-              _buildIntegrationCard(
-                  context, 'Google Calendar', Icons.calendar_today, true),
-              SizedBox(height: 16.h),
-              _buildIntegrationCard(context, 'Slack', Icons.chat, false),
-              SizedBox(height: 16.h),
-              _buildIntegrationCard(context, 'GitHub', Icons.code, true),
-              SizedBox(height: 32.h),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.push('/personalize-ai-final');
-                  },
-                  child: const Text('Continue'),
-                ),
-              ),
-            ],
+        title: Text(
+          'Integrations',
+          style: TextStyle(
+            fontFamily: 'Hanken Grotesk',
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w600,
+            color: const Color(0xFF002620),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildIntegrationCard(
-      BuildContext context, String title, IconData icon, bool isConnected) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
-      trailing: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          backgroundColor: isConnected
-              ? Theme.of(context).colorScheme.surfaceContainerLowest
-              : Theme.of(context).colorScheme.primary,
-          foregroundColor: isConnected
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).colorScheme.onPrimary,
-          side: isConnected
-              ? BorderSide(color: Theme.of(context).colorScheme.primary)
-              : null,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF002620)),
+          onPressed: () => context.pop(),
         ),
-        child: Text(isConnected ? 'Connected' : 'Connect'),
+        backgroundColor: const Color(0xFFF9F9F7),
+        elevation: 0,
+      ),
+      backgroundColor: const Color(0xFFF9F9F7),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(24.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Integrations',
+                  style: TextStyle(
+                    fontFamily: 'Hanken Grotesk',
+                    fontSize: 28.sp,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFF1A1C1B),
+                  ),
+                ),
+                SizedBox(height: 16.h),
+                Text(
+                  'This is a functional placeholder for the Integrations feature. It demonstrates routing, styling, and basic architecture.',
+                  style: TextStyle(
+                    fontFamily: 'Hanken Grotesk',
+                    fontSize: 16.sp,
+                    color: const Color(0xFF404846),
+                    height: 1.5,
+                  ),
+                ),
+                SizedBox(height: 32.h),
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(24.w),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16.r),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x0A0D3D35),
+                        blurRadius: 20,
+                        offset: Offset(0, 10),
+                      )
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Icon(Icons.construction, size: 48.sp, color: const Color(0xFF7BA89D)),
+                      SizedBox(height: 16.h),
+                      Text(
+                        'Feature Module',
+                        style: TextStyle(
+                          fontFamily: 'Hanken Grotesk',
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

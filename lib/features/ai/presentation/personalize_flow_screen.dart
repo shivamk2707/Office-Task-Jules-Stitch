@@ -1,8 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import "package:go_router/go_router.dart";
-import "package:flutter_screenutil/flutter_screenutil.dart";
-import 'package:flutter/material.dart';
 
 class PersonalizeFlowScreen extends StatelessWidget {
   const PersonalizeFlowScreen({super.key});
@@ -11,51 +9,81 @@ class PersonalizeFlowScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          'Personalize AI Flow',
+          style: TextStyle(
+            fontFamily: 'Hanken Grotesk',
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w600,
+            color: const Color(0xFF002620),
+          ),
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF002620)),
           onPressed: () => context.pop(),
         ),
+        backgroundColor: const Color(0xFFF9F9F7),
+        elevation: 0,
       ),
+      backgroundColor: const Color(0xFFF9F9F7),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 32.h),
-              Text(
-                'Personalize AI Flow',
-                style: Theme.of(context).textTheme.headlineLarge,
-              ),
-              SizedBox(height: 8.h),
-              Text(
-                'Let\'s tailor the AI to match your workflow.',
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.onSurfaceVariant,
-                    ),
-              ),
-              const Spacer(),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    context.push('/personalize-ai-role');
-                  },
-                  child: const Text('Start Personalization'),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(24.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Personalize AI Flow',
+                  style: TextStyle(
+                    fontFamily: 'Hanken Grotesk',
+                    fontSize: 28.sp,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFF1A1C1B),
+                  ),
                 ),
-              ),
-              SizedBox(height: 16.h),
-              SizedBox(
-                width: double.infinity,
-                child: TextButton(
-                  onPressed: () {
-                    context.go('/dashboard');
-                  },
-                  child: const Text('Skip for now'),
+                SizedBox(height: 16.h),
+                Text(
+                  'This is a functional placeholder for the Personalize AI Flow feature. It demonstrates routing, styling, and basic architecture.',
+                  style: TextStyle(
+                    fontFamily: 'Hanken Grotesk',
+                    fontSize: 16.sp,
+                    color: const Color(0xFF404846),
+                    height: 1.5,
+                  ),
                 ),
-              ),
-              SizedBox(height: 32.h),
-            ],
+                SizedBox(height: 32.h),
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(24.w),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16.r),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x0A0D3D35),
+                        blurRadius: 20,
+                        offset: Offset(0, 10),
+                      )
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Icon(Icons.construction, size: 48.sp, color: const Color(0xFF7BA89D)),
+                      SizedBox(height: 16.h),
+                      Text(
+                        'Feature Module',
+                        style: TextStyle(
+                          fontFamily: 'Hanken Grotesk',
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

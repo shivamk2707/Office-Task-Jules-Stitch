@@ -1,8 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import "package:go_router/go_router.dart";
-import "package:flutter_screenutil/flutter_screenutil.dart";
-import 'package:flutter/material.dart';
 
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
@@ -11,35 +9,83 @@ class CategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          'Categories',
+          style: TextStyle(
+            fontFamily: 'Hanken Grotesk',
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w600,
+            color: const Color(0xFF002620),
+          ),
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF002620)),
           onPressed: () => context.pop(),
         ),
-        title: const Text('Categories'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: () {},
-          ),
-        ],
+        backgroundColor: const Color(0xFFF9F9F7),
+        elevation: 0,
       ),
-      body: ListView(
-        padding: EdgeInsets.all(24.w),
-        children: [
-          ListTile(
-            leading: const Icon(Icons.work_outline),
-            title: const Text('Work'),
-            trailing: const Text('12 tasks'),
-            onTap: () {},
+      backgroundColor: const Color(0xFFF9F9F7),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(24.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Categories',
+                  style: TextStyle(
+                    fontFamily: 'Hanken Grotesk',
+                    fontSize: 28.sp,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFF1A1C1B),
+                  ),
+                ),
+                SizedBox(height: 16.h),
+                Text(
+                  'This is a functional placeholder for the Categories feature. It demonstrates routing, styling, and basic architecture.',
+                  style: TextStyle(
+                    fontFamily: 'Hanken Grotesk',
+                    fontSize: 16.sp,
+                    color: const Color(0xFF404846),
+                    height: 1.5,
+                  ),
+                ),
+                SizedBox(height: 32.h),
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(24.w),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16.r),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x0A0D3D35),
+                        blurRadius: 20,
+                        offset: Offset(0, 10),
+                      )
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Icon(Icons.construction, size: 48.sp, color: const Color(0xFF7BA89D)),
+                      SizedBox(height: 16.h),
+                      Text(
+                        'Feature Module',
+                        style: TextStyle(
+                          fontFamily: 'Hanken Grotesk',
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.person_outline),
-            title: const Text('Personal'),
-            trailing: const Text('5 tasks'),
-            onTap: () {},
-          ),
-        ],
+        ),
       ),
     );
   }

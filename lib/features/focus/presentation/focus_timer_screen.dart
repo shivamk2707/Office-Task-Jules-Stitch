@@ -1,8 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import "package:go_router/go_router.dart";
-import "package:flutter_screenutil/flutter_screenutil.dart";
-import 'package:flutter/material.dart';
 
 class FocusTimerScreen extends StatelessWidget {
   const FocusTimerScreen({super.key});
@@ -11,66 +9,82 @@ class FocusTimerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          'Focus Timer',
+          style: TextStyle(
+            fontFamily: 'Hanken Grotesk',
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w600,
+            color: const Color(0xFF002620),
+          ),
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back, color: Color(0xFF002620)),
           onPressed: () => context.pop(),
         ),
-        title: const Text('Focus Timer'),
+        backgroundColor: const Color(0xFFF9F9F7),
+        elevation: 0,
       ),
+      backgroundColor: const Color(0xFFF9F9F7),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  SizedBox(
-                    width: 250.r,
-                    height: 250.r,
-                    child: CircularProgressIndicator(
-                      value: 0.75, // Placeholder value
-                      strokeWidth: 12.w,
-                      backgroundColor:
-                          Theme.of(context).colorScheme.surfaceContainerHighest,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(24.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Focus Timer',
+                  style: TextStyle(
+                    fontFamily: 'Hanken Grotesk',
+                    fontSize: 28.sp,
+                    fontWeight: FontWeight.w700,
+                    color: const Color(0xFF1A1C1B),
                   ),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
+                ),
+                SizedBox(height: 16.h),
+                Text(
+                  'This is a functional placeholder for the Focus Timer feature. It demonstrates routing, styling, and basic architecture.',
+                  style: TextStyle(
+                    fontFamily: 'Hanken Grotesk',
+                    fontSize: 16.sp,
+                    color: const Color(0xFF404846),
+                    height: 1.5,
+                  ),
+                ),
+                SizedBox(height: 32.h),
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(24.w),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16.r),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x0A0D3D35),
+                        blurRadius: 20,
+                        offset: Offset(0, 10),
+                      )
+                    ],
+                  ),
+                  child: Column(
                     children: [
+                      Icon(Icons.construction, size: 48.sp, color: const Color(0xFF7BA89D)),
+                      SizedBox(height: 16.h),
                       Text(
-                        '25:00',
-                        style:
-                            Theme.of(context).textTheme.displayLarge?.copyWith(
-                                  fontSize: 64.sp,
-                                ),
-                      ),
-                      Text(
-                        'Focusing on Design Review',
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        'Feature Module',
+                        style: TextStyle(
+                          fontFamily: 'Hanken Grotesk',
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
-            SizedBox(height: 64.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                OutlinedButton(
-                  onPressed: () {},
-                  child: const Text('Pause'),
-                ),
-                SizedBox(width: 16.w),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text('Complete'),
                 ),
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
