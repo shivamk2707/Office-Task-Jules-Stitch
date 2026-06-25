@@ -28,7 +28,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthAuthenticated) {
-          context.go('/home');
+          context.go('/dashboard');
         }
       },
       child: Scaffold(

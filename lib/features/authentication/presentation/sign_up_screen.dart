@@ -242,7 +242,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         height: 56.h,
                         child: ElevatedButton(
                           onPressed: () {
+
+                            // Trigger auth state change before going to workspace setup
+                            // context.read<AuthBloc>().add(SignInEvent('new@user.com', 'password'));
                             context.go('/setup-workspace');
+
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF0D3D35),
