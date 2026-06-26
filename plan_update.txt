@@ -1,0 +1,5 @@
+1. The user clarified they want me to continue working on the `Lumina AI Productivity App`. The initial prompt about an "e-commerce" app was a copy-paste error by the user.
+2. My overarching goal remains: fully implement every screen in the Lumina AI app in Flutter using clean architecture, BLoC, GoRouter, and pixel-perfect UI.
+3. The extracted HTML assets are in `/tmp/stitch/stitch_lumina_ai_productivity_app`.
+4. The immediate next step is to continue replacing the placeholder screens in `lib/features/` with real UI based on the HTML assets.
+5. I'll pick the AI module next (`ai_assistant`, `ai_export_handover`, etc.) and start building out those screens.

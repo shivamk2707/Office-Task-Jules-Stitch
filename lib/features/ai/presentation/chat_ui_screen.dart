@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-class PersonalizeFinalScreen extends StatelessWidget {
-  const PersonalizeFinalScreen({super.key});
+class ChatUiScreen extends StatelessWidget {
+  const ChatUiScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'AI Setup Complete',
+          'Chat',
           style: TextStyle(
             fontFamily: 'Hanken Grotesk',
             fontSize: 20.sp,
@@ -34,7 +34,7 @@ class PersonalizeFinalScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'AI Setup Complete',
+                  'Chat',
                   style: TextStyle(
                     fontFamily: 'Hanken Grotesk',
                     fontSize: 28.sp,
@@ -44,7 +44,7 @@ class PersonalizeFinalScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 16.h),
                 Text(
-                  'This is a functional placeholder for the AI Setup Complete feature. It demonstrates routing, styling, and basic architecture.',
+                  'This is a functional placeholder for the Chat feature. It demonstrates routing, styling, and basic architecture.',
                   style: TextStyle(
                     fontFamily: 'Hanken Grotesk',
                     fontSize: 16.sp,
