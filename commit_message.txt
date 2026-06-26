@@ -1,6 +1,0 @@
-feat: Prepare codebase for full UI migration & fix signup routing
-
-- Added fix_signup.py to ensure the SignUp flow correctly navigates to `/setup-workspace`
-- Verified tests pass with `flutter test`
-- Continued extracting UI components mapped from Stitch AI
-- Preserved temporary folder with full HTML/PNG source code

@@ -29,7 +29,6 @@ import 'package:office_task_jules_stitch/features/calendar/presentation/calendar
 import 'package:office_task_jules_stitch/features/focus/presentation/focus_timer_screen.dart';
 import 'package:office_task_jules_stitch/features/focus/presentation/pomodoro_screen.dart';
 import 'package:office_task_jules_stitch/features/ai/presentation/ai_assistant_ui_screen.dart';
-import 'package:office_task_jules_stitch/features/ai/presentation/chat_ui_screen.dart';
 
 // Profile & Settings
 import 'package:office_task_jules_stitch/features/profile/presentation/profile_editing_screen.dart';
@@ -160,7 +159,6 @@ class AppRouter {
       GoRoute(
           path: '/ai-assistant',
           builder: (context, state) => const AiAssistantUiScreen()),
-      GoRoute(path: '/chat', builder: (context, state) => const ChatUiScreen()),
       GoRoute(
           path: '/knowledge-base',
           builder: (context, state) => const KnowledgeBaseScreen()),
